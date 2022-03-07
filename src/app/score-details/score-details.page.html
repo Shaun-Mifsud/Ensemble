@@ -1,0 +1,258 @@
+<!--header-->
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="primary" defaultHref="home"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6">
+        <!--title-->
+        <ion-row>
+          <ion-col size="12"><h1>{{selectedScore.name}}</h1></ion-col>
+        </ion-row>
+        
+        <!--score info-->
+        <ion-row>
+          <ion-col size="6"><h3>{{selectedScore.composer}}</h3></ion-col>
+          <ion-col size="6"><h4>{{parts ? parts.length + ' Parts' : '1 Part'}} </h4></ion-col>
+        </ion-row>
+
+        <!--description-->
+        <ion-row>
+          <ion-col size="12">
+            <p>{{selectedScore.description}}</p>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+
+      
+      <ion-col class="ion-text-end" size="6">
+        <!--visibility-->
+        <ion-row>
+          <ion-col size="12">
+            <h3>{{ensembleService.getEnsembleByID(selectedScore.ensembleID)? ensembleService.getEnsembleByID(selectedScore.ensembleID).name : 'Personal'  }}</h3>
+          </ion-col>
+        </ion-row>
+
+        <!--avatar-->
+        <ion-row>
+          <ion-col size="12">
+            <ion-avatar id="ensemblePic">
+              <img src="/assets/images/userPic.jpg" alt="account profile image">
+            </ion-avatar>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-grid>  
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <!--segment nav-->
+  <ion-segment color="secondary" [(ngModel)]="selectedtab">
+    <ion-segment-button value="score" layout="icon-start">
+      <ion-label>Score & Parts</ion-label>
+      <ion-icon name="library"></ion-icon>
+    </ion-segment-button>
+
+    <ion-segment-button value="recordings" layout="icon-start">
+      <ion-label>Recordings</ion-label>
+      <ion-icon name="mic"></ion-icon>
+    </ion-segment-button>
+
+    <ion-segment-button value="events" layout="icon-start">
+      <ion-label>Events</ion-label>
+      <ion-icon name="flame"></ion-icon>
+    </ion-segment-button>
+  </ion-segment>
+
+  <!--scores-->
+  <div *ngIf="selectedtab =='score'">
+
+    <!--Full score-->
+    <ion-list lines="none">
+      <!--list header-->
+      <ion-item>
+        <h2>Full Score</h2>
+      </ion-item>
+
+      <ion-item>
+        <h6>Type</h6>
+      </ion-item>
+
+      <ion-item>
+      <!--full score card-->
+        <ion-card [routerLink]="['/score/', scoreID]"  class="pieceCard" color="light">
+          <ion-card-content>
+            <ion-grid>
+              <ion-row>
+                <ion-col size="11"><h1>Full Score</h1></ion-col>
+                <ion-col size="1">popover</ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </ion-item>
+
+    </ion-list>
+
+
+    <!--Parts-->
+    <!--Strings-->
+    <ion-list *ngIf="checkParts('strings')" lines="none">
+      <ion-item>
+        <h2>Strings</h2>
+      </ion-item>
+
+      <ion-item>
+        <h6>Type</h6>
+      </ion-item>
+
+      <ion-item *ngFor="let instrInSection of strings; let i = index">
+      <!--piece card-->
+        <ion-card class="pieceCard" color="light">
+          <ion-card-content>
+            <ion-grid>
+              <ion-row>
+                <ion-col (click)="partSelect(instrInSection);" size="11"><h1>{{instrInSection}}</h1></ion-col>
+                <ion-col size="1">{{i}}popover</ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </ion-item>
+    </ion-list>
+
+    <!--woodwind-->
+    <ion-list *ngIf="checkParts('woodwind')" lines="none">
+      <ion-item>
+        <h2>Woodwind</h2>
+      </ion-item>
+
+      <ion-item>
+        <h6>Type</h6>
+      </ion-item>
+
+      <ion-item *ngFor="let instrInSection of woodwind; let i = index">
+      <!--piece card-->
+        <ion-card class="pieceCard" color="light">
+          <ion-card-content>
+            <ion-grid>
+              <ion-row>
+                <ion-col (click)="partSelect(instrInSection);" size="11"><h1>{{instrInSection}}</h1></ion-col>
+                <ion-col size="1">{{i}}popover</ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </ion-item>
+    </ion-list>
+
+    <!--Brass-->
+    <ion-list *ngIf="checkParts('brass')" lines="none">
+      <ion-item>
+        <h2>Brass</h2>
+      </ion-item>
+
+      <ion-item>
+        <h6>Type</h6>
+      </ion-item>
+
+      <ion-item *ngFor="let instrInSection of brass; let i = index">
+      <!--piece card-->
+        <ion-card class="pieceCard" color="light">
+          <ion-card-content>
+            <ion-grid>
+              <ion-row>
+                <ion-col (click)="partSelect(instrInSection);" size="11"><h1>{{instrInSection}}</h1></ion-col>
+                <ion-col size="1">popover</ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </ion-item>
+    </ion-list>
+
+    <!--percussion-->
+    <ion-list *ngIf="checkParts('percussion')" lines="none">
+      <ion-item>
+        <h2>percussion</h2>
+      </ion-item>
+
+      <ion-item>
+        <h6>Type</h6>
+      </ion-item>
+
+      <ion-item *ngFor="let instrInSection of percussion; let i = index">
+      <!--piece card-->
+        <ion-card class="pieceCard" color="light">
+          <ion-card-content>
+            <ion-grid>
+              <ion-row>
+                <ion-col (click)="partSelect(instrInSection);" size="11"><h1>{{instrInSection}}</h1></ion-col>
+                <ion-col size="1">{{i}}popover</ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </ion-item>
+    </ion-list>
+
+  </div>
+
+  <!--recordings-->
+  <div *ngIf="selectedtab =='recordings'"></div>
+
+  <!--events-->
+  <!-- only show if score is in event -->
+  <div *ngIf="selectedtab =='events'">
+    <div>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12">
+            <ion-button class="ion-float-end" color="primary" (click)="showModal()">Add Event</ion-button>
+          </ion-col>
+        </ion-row>
+        <!--events cards-->
+        <ion-row>
+          <!--card 1, 2, etc.. -->
+          <ion-col size="4" *ngFor="let event of scoreEvent">
+            <ion-card color="light" [routerLink]="['./', event.id]">
+              <img src="/assets/images/mpo.jpg" alt="mpo">
+  
+              <ion-card-header>
+                <ion-grid>
+                  <ion-row>
+                    <ion-col size="12">
+                      <ion-card-subtitle>(ensemble name)</ion-card-subtitle>
+                      <ion-text color="danger">(date/time)</ion-text>
+                    </ion-col>
+                  </ion-row>
+  
+                  <ion-row>
+                    <ion-col size="12">
+                      <ion-text color="success">{{event.type}}</ion-text>
+                    </ion-col>
+                  </ion-row>
+  
+                </ion-grid>
+                <ion-card-title>{{event.name}}</ion-card-title>
+              </ion-card-header>
+  
+              <ion-card-content>
+                <p>{{event.description}}</p>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+  
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+
+</ion-content>
+
+<!--[routerLink]="['/score/', getScoreID()]"-->

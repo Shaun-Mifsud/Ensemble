@@ -1,0 +1,84 @@
+<!--header-->
+<ion-header class="ion-no-border">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="10">
+        <h1>
+          Ensembles
+        </h1>
+      </ion-col>
+      <ion-col size="2">
+        <ion-button color="primary">Join ensemble</ion-button>
+      </ion-col>
+    </ion-row>
+
+    <!--search-->
+    <ion-row>
+      <ion-searchbar color="light" animated placeholder="search for scores, ensembles..."></ion-searchbar>
+    </ion-row>
+
+  </ion-grid>  
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <!--ensembles-->
+    <ion-grid>
+      <!--ensemble cards-->
+      <ion-row>
+        <!--card 1-->
+        <ion-col size="4" *ngFor="let ensemble of ensembleService.ensemble; let i = index" [routerLink]="['./', ensemble.id]">
+          <ion-card id="ensemble" color="light">
+            <ion-avatar>
+              <img src="{{ensemble.picture}}" alt="ensemble profile image">
+            </ion-avatar>
+
+            <ion-card-header>
+              <ion-card-title class="ion-text-center">{{ensemble.name}}</ion-card-title>
+            </ion-card-header>
+
+            <ion-card-content>
+              <ion-grid>
+                <ion-row class="ion-text-center">
+                  <ion-col class="ion-text-justify" size="4">
+                    <span id="noOfMembers" class="iconify" data-icon="ic:baseline-person"></span>
+                    (40)
+                  </ion-col>
+
+                  <ion-col size="4">
+                    <span id="noOfEvents" class="iconify" data-icon="ic:baseline-person"></span>
+                    (4)
+                  </ion-col>
+
+                  <ion-col size="4">
+                    <span id="ensembleType" class="iconify" data-icon="ic:baseline-person"></span>
+                    {{ensemble.visibility}}
+                  </ion-col>
+                </ion-row>
+
+                <ion-row>
+                  <ion-col size="12">
+                    <p>{{ensemble.description}}</p>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+
+      </ion-row>
+
+      <!--Join new ensemble card-->
+
+      <ion-row>
+        <ion-col size="4">
+          <ion-card id="newEnsemble" color="light">
+            <ion-card-content>
+              <ion-icon text-center name="add"></ion-icon>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+</ion-content>

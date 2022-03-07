@@ -1,0 +1,194 @@
+<!--header-->
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="primary" defaultHref="home"></ion-back-button>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button color="danger">leave Event</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-grid>
+    <!--event title and hosting-->
+    <ion-row>
+      <ion-col size="8">
+        <h1>
+          {{selectedEvent.name}}
+        </h1>
+      </ion-col>
+      <ion-col size="4">
+        <span>
+          <h6>Hosting: </h6>
+          <h5>{{selectedEnsemble.name}}</h5>
+        </span>
+      </ion-col>
+    </ion-row>
+
+    <!--event details and buttons-->
+    <ion-row>
+      <ion-col size="8">
+        <ion-row>
+          <ion-item id="eventLocation">
+            <h6>{{selectedEvent.location}}</h6>
+          </ion-item>
+        </ion-row>
+
+        <ion-row>
+          <ion-item id="eventType">
+            <h6>{{selectedEvent.type}}</h6>
+          </ion-item>
+        </ion-row>
+
+        <ion-row>
+          <ion-item id="eventDate">
+            <h6>{{selectedEvent.date}}</h6>
+          </ion-item>
+        </ion-row>
+      </ion-col>
+      <ion-col size="4">
+          <ion-button color="success">Going</ion-button>
+          <ion-button color="secondary">maybe</ion-button>
+          <ion-button color="danger">not going</ion-button>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>  
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <!--details-->
+  <ion-grid>
+    <!--title-->
+    <ion-row>
+      <ion-col size="12">
+        <span class="iconify" data-icon="mdi:music-box-multiple" style="color: #0b1a33;"></span>
+
+        <span>
+          <h2>Details</h2>
+        </span>
+      </ion-col>
+    </ion-row>
+
+    <!--details card-->
+    <ion-row>
+      <ion-col size="12">
+        <ion-card color="light">
+          <ion-card-content>
+            <p color="primary">{{selectedEvent.description}}</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+  <!--location-->
+  <ion-grid>
+    <!--title-->
+    <ion-row>
+      <ion-col size="12">
+        <span class="iconify" data-icon="mdi:music-box-multiple" style="color: #0b1a33;"></span>
+
+        <span>
+          <h2>Location</h2>
+        </span>
+      </ion-col>
+    </ion-row>
+
+    <!--details card-->
+    <ion-row>
+      <ion-col size="12">
+        <ion-card color="light">
+          <ion-card-content>
+            <p color="primary">Location map here</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+  <!--Memeber list-->
+  <ion-grid>
+    <!--title-->
+    <ion-row>
+      <ion-col size="12">
+        <span class="iconify" data-icon="mdi:music-box-multiple" style="color: #0b1a33;"></span>
+
+        <span>
+          <h2>Attending Members</h2>
+        </span>
+      </ion-col>
+    </ion-row>
+
+    <!--details card-->
+    <ion-row>
+      <ion-col size="1">
+        <ion-avatar>
+          <img src="assets/images/userPic.jpg" alt="">
+        </ion-avatar>
+      </ion-col>
+      <ion-col size="1">
+        <ion-avatar>
+          <img src="assets/images/userPic.jpg" alt="">
+        </ion-avatar>
+      </ion-col>
+      <ion-col size="1">
+        <ion-avatar>
+          <img src="assets/images/userPic.jpg" alt="">
+        </ion-avatar>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+  <!--Program-->
+  <ion-grid>
+    <!--title-->
+    <ion-row>
+      <ion-col size="12">
+        <span class="iconify" data-icon="ic:round-library-music"></span>
+        <span>
+
+          <h2>Programm</h2>
+        </span>
+      </ion-col>
+    </ion-row>
+
+    <ion-list lines="none">
+      <!--list header-->
+      <ion-item id="listHeader">
+        <ion-grid>
+          <ion-row>
+            <ion-col size="5"><h6>Piece Title</h6></ion-col>
+            <ion-col size="2"><h6>Composer</h6></ion-col>
+            <ion-col size="2"><h6>Instrumentation</h6></ion-col>
+            <ion-col size="3"><h6>Ensemble</h6></ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+
+      <ion-item *ngFor="let number of [0,1,2,3,4]">
+      <!--piece card-->
+        <ion-card class="pieceCard" color="light">
+          <ion-card-content>
+            <ion-grid>
+              <ion-row>
+                <ion-col size="5"><h1>(piece name)</h1></ion-col>
+                <ion-col size="2"><h4>(composer name)</h4></ion-col>
+                <ion-col size="2"><h4>(instrumentation)</h4></ion-col>
+                <ion-col size="2"><h4>(ensemble name)</h4></ion-col>
+                <ion-col size="1">popover</ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </ion-item>
+
+
+    </ion-list>
+</ion-grid>
+
+</ion-content>

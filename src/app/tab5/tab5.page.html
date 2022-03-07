@@ -1,0 +1,116 @@
+<!--header-->
+<ion-header class="ion-no-border">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="10">
+        <h1>
+          Account
+        </h1>
+      </ion-col>
+      <ion-col size="2">
+        <ion-img src="/assets/icons/logoHalf.png"></ion-img>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>  
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row>
+      <!--title-->
+      <ion-col size="4">
+        <span class="iconify" data-icon="mdi:music-box-multiple" style="color: #0b1a33;"></span>
+        <span>
+          <h2>Details</h2>
+        </span>
+      </ion-col>
+
+      <!--avatar-->
+      <ion-col size="4">
+        <ion-avatar>
+          <img src="{{loggedInUser.picture}}" alt="">
+        </ion-avatar>
+      </ion-col>
+
+      <!--log out button-->
+      <ion-col size="4">
+        <ion-button class="ion-float-end" color="danger">log out</ion-button>
+      </ion-col>
+    </ion-row>
+
+    <!--display fields-->
+    <div id="displayFields">
+      <ion-row>
+        <ion-col size="6">
+          <h6>Full name</h6>
+          <ion-card class="pieceCard" color="light">
+            <ion-card-content>
+              <h1>{{loggedInUser.name}}</h1>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+
+        <ion-col size="6">
+          <h6>Email</h6>
+          <ion-card  class="pieceCard" color="light">
+            <ion-card-content>
+              <h1>{{loggedInUser.email}}</h1>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="6">
+          <h6>Phone Number</h6>
+          <ion-card class="pieceCard" color="light">
+            <ion-card-content>
+              <h1>{{loggedInUser.phoneNumber? loggedInUser.phoneNumber : 'no phone number'}}</h1>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+
+        <ion-col size="6">
+          <h6>Email</h6>
+          <ion-card  class="pieceCard" color="light">
+            <ion-card-content>
+              <h1>{{convertPassword(loggedInUser.password)}}</h1>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <!--instruments-->
+    <div id="instrument">
+      <ion-row *ngIf="loggedInUser.instrument">
+        <ion-col size="10">
+          <span class="iconify" data-icon="mdi:music-box-multiple" style="color: #0b1a33;"></span>
+          <span>
+            <h2>Instruments</h2>
+          </span>
+        </ion-col>
+
+        <ion-col size="2">
+          <ion-button class="ion-float-end">Add instrument</ion-button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="3" *ngFor="let userInstru of loggedInUser.instrument"> 
+          <ion-card class="pieceCard" color="light">
+            <ion-card-content>
+              <h1>{{userInstru}}</h1>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+  </div>
+
+    
+  </ion-grid>
+
+</ion-content>
+
+

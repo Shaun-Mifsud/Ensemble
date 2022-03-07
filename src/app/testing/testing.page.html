@@ -1,0 +1,43 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Testing
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-header collapse="condense">
+
+    <ion-toolbar>
+      <ion-title size="large">Home</ion-title>
+    </ion-toolbar>
+    
+  </ion-header>
+  
+  <h1 id="pieceName">1</h1>
+  <div id="sheetmusic"></div>
+  
+  <h1 id="pieceName">PDF</h1>
+  <div class="pdf-container">
+    <pdf-viewer
+    [src]="pdfSrc"
+    [rotation]="0"
+    [original-size]="false"
+    [show-all]="true"
+    [fit-to-page]="false"
+    [zoom]="1"
+    [zoom-scale]="'page-width'"
+    [stick-to-page]="false"
+    [render-text]="true"
+    [external-link-target]="'blank'"
+    [autoresize]="true"
+    [show-borders]="false"
+    [page]="1"
+    ></pdf-viewer>
+  </div>
+
+</ion-content>
+
+
