@@ -33,11 +33,11 @@
           <span>
             <h2>Upcoming Events</h2>
           </span>
-      </ion-col>
+        </ion-col>
 
-      <ion-col size="2">
-        <ion-button color="danger">View Events</ion-button>
-      </ion-col>
+        <ion-col size="2">
+          <ion-button color="danger">View Events</ion-button>
+        </ion-col>
       </ion-row>
 
       <!--events cards-->
@@ -68,8 +68,8 @@
     </ion-grid>
   </div>
 
-  <!--updates-->
-  <div class="updates">
+  <!--update post-->
+  <div class="updatePost">
     <ion-grid>
       <!--update title & button-->
       <ion-row>
@@ -81,37 +81,41 @@
           </span>
       </ion-col>
 
-      <ion-col size="2">
-        <ion-button>View Updates</ion-button>
-      </ion-col>
+        <ion-col size="2">
+          <ion-button>View Updates</ion-button>
+        </ion-col>
       </ion-row>
 
       <!--posts-->
-      <ion-row>
-        <ion-col size="1">
-          <ion-avatar>
-            <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
-          </ion-avatar>
-        </ion-col>
+      <ion-card>
+        <ion-row>
+          <ion-col size="1">
+            <ion-avatar>
+              <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+            </ion-avatar>
+          </ion-col>
 
-        <ion-col size="11">
-          <ion-card color="light">
+          <ion-col size="11">
             <ion-card-header>
               <ion-card-title>(ensemble name)</ion-card-title>
               <ion-text color="success">(date/time)</ion-text>
             </ion-card-header>
+          </ion-col>
 
-            <ion-card-content>
-              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minus porro, voluptatibus quia quisquam magni cupiditate officiis amet ex minima necessitatibus saepe, natus perspiciatis ut corporis? Voluptatem maxime unde placeat ratione.</p>
-            </ion-card-content>
-          </ion-card>
-        </ion-col>
-      </ion-row>
+          <ion-row>
+            <ion-col size="12">        
+              <ion-card-content>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minus porro, voluptatibus quia quisquam magni cupiditate officiis amet ex minima necessitatibus saepe, natus perspiciatis ut corporis? Voluptatem maxime unde placeat ratione.</p>
+              </ion-card-content>
+            </ion-col>
+          </ion-row>
+        </ion-row>
+      </ion-card>
     </ion-grid>
-  </div>E
+  </div>
 
-<!--playlists-->
-  <div class="playlists">
+<!--recent Playlists-->
+  <div class="recentPlaylists">
     <ion-grid>
       <!--playlist title & button-->
       <ion-row>
@@ -132,36 +136,36 @@
 
       <ion-row>
         <ion-col size="12">
-          <ion-button>
-            <ion-icon slot="start" name="star"></ion-icon>
-            Classics     
-          </ion-button>   
+          <ion-chip color="tertiary">
+            <ion-icon name="star"></ion-icon>
+            <ion-label>Favorites</ion-label>
+          </ion-chip>
 
-          <ion-button>
-            <ion-icon slot="start" name="star"></ion-icon>
-            alcm     
-          </ion-button> 
+          <ion-chip color="primary">
+            <ion-icon name="star"></ion-icon>
+            <ion-label>ALCM</ion-label>
+          </ion-chip>
 
-          <ion-button>
-            <ion-icon slot="start" name="star"></ion-icon>
-            Marches     
-          </ion-button> 
+          <ion-chip color="secondary">
+            <ion-icon name="star"></ion-icon>
+            <ion-label>Marches</ion-label>
+          </ion-chip>
 
-          <ion-button>
-            <ion-icon slot="start" name="star"></ion-icon>
-            symphonies     
-          </ion-button> 
+          <ion-chip color="success">
+            <ion-icon name="star"></ion-icon>
+            <ion-label>Summer Exam</ion-label>
+          </ion-chip>
 
         </ion-col>
       </ion-row>
 
     </ion-grid>
-  </div>
-
-  <!--recently viewed-->
-  <div class="recent">
-    <ion-list lines="none">
-
+    
+    <!--recently viewed-->
+    <div class="recent">
+      <ion-list lines="none">
+        
+      
       <!--list header-->
       <ion-item>
         <ion-grid>
@@ -197,6 +201,7 @@
 
     </ion-list>
   </div>
+</div>
 
 
 </ion-content>
