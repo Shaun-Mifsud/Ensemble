@@ -44,30 +44,22 @@
       <ion-row>
         <!--card 1-->
         <ion-col size="4" *ngFor="let event of ensembleService.event | slice:0:3;" >
-          <ion-card color="light" [routerLink]="['../','tab4',event.ensembleID,event.id]">
-            <img src="/assets/images/mpo.jpg" alt="mpo">
-
-            <ion-card-header>
-              <ion-grid>
-                <ion-row>
-                  <ion-col size="12">
-                    <ion-card-subtitle>{{event.name}}</ion-card-subtitle>
-                    <ion-text color="danger">date/time</ion-text>
-                  </ion-col>
-                </ion-row>
-
-                <ion-row>
-                  <ion-col size="12">
-                    <ion-text color="success">{{event.type}}</ion-text>
-                  </ion-col>
-                </ion-row>
-
-              </ion-grid>
+          <ion-card [routerLink]="['../','tab4',event.ensembleID,event.id]">
+            <div id="colorFilter"></div>
+            <ion-card-content> 
               <ion-card-title>{{event.name}}</ion-card-title>
-            </ion-card-header>
+              <ion-card-subtitle>{{ensembleService.getEnsembleByID(event.ensembleID).name}}</ion-card-subtitle>
+              
+              <ion-row id="eventCardDetails">
+                <ion-col size="6">
+                  <ion-text id="type">{{event.type}}</ion-text>                  
+                </ion-col>
 
-            <ion-card-content>
-              <p>{{event.description}}</p>
+                <ion-col size="6">
+                  <ion-text id="date">date/time</ion-text>
+                </ion-col>
+              </ion-row>
+
             </ion-card-content>
           </ion-card>
         </ion-col>
@@ -116,7 +108,7 @@
         </ion-col>
       </ion-row>
     </ion-grid>
-  </div>
+  </div>E
 
 <!--playlists-->
   <div class="playlists">
