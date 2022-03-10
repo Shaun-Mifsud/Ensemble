@@ -19,7 +19,7 @@ export class ScoreDetailsPage implements OnInit {
   selectedtab: string= "score";
   public scoreID:any;
   public selectedScore: Score | undefined;
-  public scoreEvent: any; // TO EDIT
+  public scoreEvents: any; 
   public parts: Part[];
   public selectedPart:number;
 
@@ -51,7 +51,9 @@ export class ScoreDetailsPage implements OnInit {
     console.log("All parts: ", this.parts);
 
     //get events by scoreID
-    this.scoreEvent = this.ensembleService.getEventsByScoreID(this.scoreID);      
+    this.scoreEvents = this.ensembleService.getEventsByScoreID(this.scoreID);      
+    console.log("Events by score: ", this.scoreEvents);
+    
 
     if(this.selectedScore.type == 'static'){
       //get partFamily and place them in categories variables aggording to family
@@ -76,7 +78,7 @@ export class ScoreDetailsPage implements OnInit {
         this.woodwind.push(woodwindList[list].partName);
       }
 
-      //woodwind
+      //percussion
       let percussionList = Object.values(this.parts.filter(f => f.partFamiliy == 'percussion'));
 
       for(let list in percussionList){

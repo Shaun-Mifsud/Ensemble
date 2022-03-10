@@ -2,7 +2,7 @@ import { ComponentFactoryResolver, Injectable } from '@angular/core';
 
 import { LocalStorageService } from './local-storage.service';
 
-import { Ensemble,Event,EventHasScore,Part,Score,User } from '../struct/ensemble';
+import { Ensemble, Event, EventHasScore, Part, Score, User } from '../struct/ensemble';
 
 import { SCORES } from '../struct/data/scores.data';
 import { ENSEMBLES } from '../struct/data/ensemble.data';

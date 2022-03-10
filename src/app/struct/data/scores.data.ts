@@ -8,7 +8,7 @@ export const SCORES: Score[] =[
         type:'interactive',
         name: "A Flat",
         composer:"Shaun Mifsud",
-        instruments:"Piano", // to be removed
+        instruments:"Piano", // to be removed, flat.io instrument will be used instead
         fullScorePath:"/assets/musicXML/aflat.musicxml",
         videoPath:"Hv4Jylc_Kq4",
     },
@@ -20,7 +20,7 @@ export const SCORES: Score[] =[
         type:'interactive',
         name: "G minor",
         composer:"Shaun Mifsud",
-        instruments:"Piano", // to be removed
+        instruments:"Piano", // to be removed, flat.io instrument will be used instead
         fullScorePath:"/assets/musicXML/G_Minor.xml",
     },
     
@@ -29,6 +29,7 @@ export const SCORES: Score[] =[
         id: 3,
         userID:1,
         ensembleID:1,
+        eventID:2,
         type:'static',
         name: "March Op.13",
         composer:"Shaun Mifsud",
@@ -52,7 +53,7 @@ export const SCORES: Score[] =[
         partID:3,
         partFamiliy:'woodwind',
         partName:'Alto Saxophone',
-        partPath:"/assets/pdf/march13/March13-Alto_Saxophone.pdf"
+        partPath:"/assets/pdf/march13/March 13-Alto_Saxophone.pdf"
         }
         ,
         {
@@ -178,6 +179,7 @@ export const SCORES: Score[] =[
         type:'static',
         name:'Symphony No. 5',
         composer:'L.V Beethoven',
+        fullScorePath:'/assets/pdf/sympNo5/fullScore.pdf',
         parts:[{
             partID:1,
             partFamiliy:'string',

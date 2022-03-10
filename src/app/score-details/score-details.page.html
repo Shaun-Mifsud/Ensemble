@@ -204,7 +204,9 @@
   </div>
 
   <!--recordings-->
-  <div *ngIf="selectedtab =='recordings'"></div>
+  <div *ngIf="selectedtab =='recordings'">
+    
+  </div>
 
   <!--events-->
   <!-- only show if score is in event -->
@@ -219,8 +221,8 @@
         <!--events cards-->
         <ion-row>
           <!--card 1, 2, etc.. -->
-          <ion-col size="4" *ngFor="let event of scoreEvent">
-            <ion-card color="light" [routerLink]="['./', event.id]">
+          <ion-col size="4" *ngFor="let event of scoreEvents">
+            <ion-card color="light" [routerLink]="['/','tabs','tab4',event.ensembleID,event.id]">
               <img src="/assets/images/mpo.jpg" alt="mpo">
   
               <ion-card-header>

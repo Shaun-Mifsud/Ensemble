@@ -31,8 +31,11 @@ export class Tab1Page implements OnInit{
     
     }
 
-    //scorre popover
+    //score popover
     async showPopover(ev:any) {
+      console.log(ev);
+      
+      
       ev.stopPropagation();
       const popover = await this.popoverController.create({
         component: ScorePopComponent,

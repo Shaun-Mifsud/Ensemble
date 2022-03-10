@@ -92,7 +92,7 @@ export class ScorePage implements OnInit {
     
   }
   //recording popover
-  async showPopover(ev:any) {
+  async recordingPopover(ev:any) {
     const popover = await this.popoverController.create({
       component: RecordingPopComponent,
       cssClass: 'recordingPopover',

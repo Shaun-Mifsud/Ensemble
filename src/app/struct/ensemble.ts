@@ -9,6 +9,7 @@ export interface Ensemble{
 export interface Event{
     id:number;
     ensembleID:number;
+    scoreID?:number;
     name:string;
     description:string;
     type:string;
@@ -25,6 +26,7 @@ export interface Score{
     id: number;
     userID:number;
     ensembleID?:number;
+    eventID?:number;
     type:string;
     name: string;
     composer:string;

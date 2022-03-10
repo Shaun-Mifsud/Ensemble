@@ -30,14 +30,50 @@
 
 </ion-content>
 
-<ion-footer>
+<ion-footer *ngIf="selectedScore.type =='interactive' ">
   <ion-toolbar color="light">   
     <ion-row>
-      <ion-col routerLink="/tabs/tab2">
+      <ion-col [routerLink]="['/','score-detail',scoreID]">
         <span class="iconify" data-icon="ic:baseline-home"></span>
       </ion-col>
 
-      <ion-col (click)="showPopover($event);">
+      <ion-col (click)="recordingPopover($event);">
+        <ion-icon name="mic"></ion-icon>
+      </ion-col>
+
+      <ion-col>
+        <span class="iconify" data-icon="mdi:metronome"></span>
+      </ion-col>
+
+      <ion-col>
+        <ion-icon name="play-circle"></ion-icon>
+      </ion-col>
+      
+      <ion-col>
+        <span class="iconify" data-icon="mdi:brush"></span>
+      </ion-col>
+            
+      <ion-col>
+        <ion-icon name="volume-medium"></ion-icon>
+      </ion-col>     
+
+      <ion-col>
+        <ion-icon name="settings"></ion-icon>
+      </ion-col>
+
+    </ion-row>
+
+  </ion-toolbar>
+</ion-footer>
+
+<ion-footer *ngIf="selectedScore.type =='static' ">
+  <ion-toolbar color="light">   
+    <ion-row>
+      <ion-col [routerLink]="['/','score-detail',scoreID]">
+        <span class="iconify" data-icon="ic:baseline-home"></span>
+      </ion-col>
+
+      <ion-col (click)="recordingPopover($event);">
         <ion-icon name="mic"></ion-icon>
       </ion-col>
 
