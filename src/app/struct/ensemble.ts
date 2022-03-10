@@ -16,11 +16,15 @@ export interface Event{
     date?:string; // TO BE CHANGED TO type Date
 }
 
+export interface EventHasScore{
+    eventID:number;
+    scoreID:number;
+}
+
 export interface Score{
     id: number;
     userID:number;
     ensembleID?:number;
-    eventID?:number;
     type:string;
     name: string;
     composer:string;

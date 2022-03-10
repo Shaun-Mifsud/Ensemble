@@ -2,7 +2,7 @@ import { ComponentFactoryResolver, Injectable } from '@angular/core';
 
 import { LocalStorageService } from './local-storage.service';
 
-import { Ensemble,Event,Part,Score,User } from '../struct/ensemble';
+import { Ensemble,Event,EventHasScore,Part,Score,User } from '../struct/ensemble';
 
 import { SCORES } from '../struct/data/scores.data';
 import { ENSEMBLES } from '../struct/data/ensemble.data';
@@ -54,9 +54,11 @@ export class EnsembleService extends BaseService {
     return this.event.find(e => e.id == IDvalue);
   }
 
-  // TO EDIT
-  getEventsByScoreID(IDvalue: number): Event | undefined{
-    return this.event.find(s => s.id == IDvalue);
+  getEventsByScoreID(IDvalue: number): Event[] | undefined{
+    var sample: EventHasScore[] = [ { eventID: 1, scoreID: 3 } ];
+    const values = sample.filter(e => e.scoreID == IDvalue).map(e => e.eventID);
+    
+    return this.event.filter(s => values.indexOf(s.id) > -1);
   }
 
   getEventsByEnsembleID(IDvalue: number): any

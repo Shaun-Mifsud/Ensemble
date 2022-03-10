@@ -29,7 +29,6 @@ export const SCORES: Score[] =[
         id: 3,
         userID:1,
         ensembleID:1,
-        eventID:2,
         type:'static',
         name: "March Op.13",
         composer:"Shaun Mifsud",
