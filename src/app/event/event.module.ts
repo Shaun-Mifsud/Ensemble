@@ -8,13 +8,27 @@ import { EventPageRoutingModule } from './event-routing.module';
 
 import { EventPage } from './event.page';
 
+import { GoogleMapsModule } from '@angular/google-maps';
+import { MapComponent } from '../components/map/map.component';
+
+
 @NgModule({
+  declarations: [EventPage, MapComponent],
+
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    EventPageRoutingModule
+    EventPageRoutingModule,
+
+    GoogleMapsModule,
+
   ],
-  declarations: [EventPage]
+
+  exports: [
+    MapComponent
+  ]
+
 })
-export class EventPageModule {}
+export class EventPageModule { }
+

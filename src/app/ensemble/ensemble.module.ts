@@ -8,12 +8,15 @@ import { EnsemblePageRoutingModule } from './ensemble-routing.module';
 
 import { EnsemblePage } from './ensemble.page';
 
+
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    EnsemblePageRoutingModule
+    EnsemblePageRoutingModule,
+
   ],
   declarations: [EnsemblePage]
 })

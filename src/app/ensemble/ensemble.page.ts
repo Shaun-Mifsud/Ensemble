@@ -13,6 +13,8 @@ import { PopoverController } from '@ionic/angular';
 import { ScorePopComponent } from '../components/score-pop/score-pop.component';
 
 
+
+
 @Component({
   selector: 'app-ensemble',
   templateUrl: './ensemble.page.html',
