@@ -1,5 +1,13 @@
 .swiper {
-    width: 600px;
-    height: 300px;
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide{
+    width: 100%/3;
+}
+
+.swiper-wrapper{
+    padding-bottom: 30px;
 }
 

@@ -7,15 +7,18 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
 
 import { Tab1PageRoutingModule } from './tab1-routing.module';
 
+import { SwiperModule } from 'swiper/angular';
+
 @NgModule({
   imports: [
     IonicModule,
     CommonModule,
     FormsModule,
     ExploreContainerComponentModule,
-    Tab1PageRoutingModule
+    Tab1PageRoutingModule,
+    SwiperModule
   ],
   declarations: [Tab1Page]
 })
 
-export class Tab1PageModule {}
+export class Tab1PageModule { }

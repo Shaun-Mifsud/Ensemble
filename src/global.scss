@@ -25,6 +25,9 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
+/* Swiper */
+@import '~swiper/css/bundle';
+
 body{
     //text color
     color: var(--ion-color-text);
@@ -234,16 +237,13 @@ ion-segment-button{
 
 //ALL cards for each score in the list
 .pieceCard{
-    color: var(--ion-color-primary);
 
-    border-left: 20px solid #C4DBFF;
     width: 100%;
-    
-
 
     ion-card-content{
-        padding: 2px;
+        padding: 0.5vh 0.5vh 0.5vh 1vh;
     }
+
 }
 
 //specific cards

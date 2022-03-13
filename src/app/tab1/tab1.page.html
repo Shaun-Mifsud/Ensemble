@@ -17,7 +17,7 @@
       <ion-searchbar color="light" animated placeholder="search for scores, ensembles..."></ion-searchbar>
     </ion-row>
 
-  </ion-grid>  
+  </ion-grid>
 </ion-header>
 
 <ion-content [fullscreen]="true">
@@ -42,28 +42,31 @@
 
       <!--events cards-->
       <ion-row>
-        <!--card 1-->
-        <ion-col size="4" *ngFor="let event of ensembleService.event | slice:0:3;" >
-          <ion-card [routerLink]="['../','tab4',event.ensembleID,event.id]">
-            <div id="colorFilter"></div>
-            <ion-card-content> 
-              <ion-card-title>{{event.name}}</ion-card-title>
-              <ion-card-subtitle>{{ensembleService.getEnsembleByID(event.ensembleID).name}}</ion-card-subtitle>
-              
-              <ion-row id="eventCardDetails">
-                <ion-col size="6">
-                  <ion-text id="type">{{event.type}}</ion-text>                  
-                </ion-col>
+        <swiper #swiper [config]="config">
+          <ng-template swiperSlide *ngFor="let event of ensembleService.event">
+            <!--card 1-->
+            <ion-card [routerLink]="['../','tab4',event.ensembleID,event.id]">
+              <div id="colorFilter"></div>
+              <ion-card-content>
+                <ion-card-title>{{event.name}}</ion-card-title>
+                <ion-card-subtitle>{{ensembleService.getEnsembleByID(event.ensembleID).name}}</ion-card-subtitle>
 
-                <ion-col size="6">
-                  <ion-text id="date">date/time</ion-text>
-                </ion-col>
-              </ion-row>
+                <ion-row id="eventCardDetails">
+                  <ion-col size="6">
+                    <ion-text id="type">{{event.type}}</ion-text>
+                  </ion-col>
 
-            </ion-card-content>
-          </ion-card>
-        </ion-col>
+                  <ion-col size="6">
+                    <ion-text id="date">date/time</ion-text>
+                  </ion-col>
+                </ion-row>
 
+              </ion-card-content>
+            </ion-card>
+
+          </ng-template>
+
+        </swiper>
       </ion-row>
     </ion-grid>
   </div>
@@ -79,7 +82,7 @@
           <span>
             <h2>Ensemble Update</h2>
           </span>
-      </ion-col>
+        </ion-col>
 
         <ion-col size="2">
           <ion-button>View Updates</ion-button>
@@ -103,9 +106,11 @@
           </ion-col>
 
           <ion-row>
-            <ion-col size="12">        
+            <ion-col size="12">
               <ion-card-content>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minus porro, voluptatibus quia quisquam magni cupiditate officiis amet ex minima necessitatibus saepe, natus perspiciatis ut corporis? Voluptatem maxime unde placeat ratione.</p>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minus porro, voluptatibus quia quisquam
+                  magni cupiditate officiis amet ex minima necessitatibus saepe, natus perspiciatis ut corporis?
+                  Voluptatem maxime unde placeat ratione.</p>
               </ion-card-content>
             </ion-col>
           </ion-row>
@@ -114,7 +119,7 @@
     </ion-grid>
   </div>
 
-<!--recent Playlists-->
+  <!--recent Playlists-->
   <div class="recentPlaylists">
     <ion-grid>
       <!--playlist title & button-->
@@ -123,15 +128,15 @@
           <ion-item>
             <span class="iconify" data-icon="ic:round-library-music"></span>
             <span>
-    
-              <h2>Recently viewed</h2>
+
+              <h2>Quick playlist</h2>
             </span>
           </ion-item>
-      </ion-col>
+        </ion-col>
 
-      <ion-col size="2">
-        <ion-button routerLink="../tab2" routerDirection="forward">View Playlists</ion-button>
-      </ion-col>
+        <ion-col size="2">
+          <ion-button routerLink="../tab2" routerDirection="forward">View Playlists</ion-button>
+        </ion-col>
       </ion-row>
 
       <ion-row>
@@ -160,50 +165,65 @@
       </ion-row>
 
     </ion-grid>
-    
+
     <!--recently viewed-->
     <div class="recent">
       <ion-list lines="none">
-        
-      
-      <!--list header-->
-      <ion-item>
-        <ion-grid>
-          <ion-row>
-            <ion-col size="5"><h6>Piece Title</h6></ion-col>
-            <ion-col size="2"><h6>Composer</h6></ion-col>
-            <ion-col size="2"><h6>Instrumentation</h6></ion-col>
-            <ion-col size="3"><h6>Ensemble</h6></ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-item>
 
-      <ion-item *ngFor="let score of ensembleService.score | slice:0:3; let i = index;" [routerLink]="['/score-detail/', score.id]">
-      <!--piece card-->
-        <ion-card class="pieceCard" color="light">
-          <ion-card-content>
-            <ion-grid>
-              <ion-row>
-                <ion-col size="5"><h1>{{score.name}}</h1></ion-col>
-                <ion-col size="2"><h4>{{score.composer}}</h4></ion-col>
-                <ion-col size="2"><h4>{{score.instruments}}</h4></ion-col>
-                <ion-col size="2"><h4>{{ensembleService.getEnsembleByID(score.ensembleID)? ensembleService.getEnsembleByID(score.ensembleID).name : 'Personal'  }}</h4></ion-col>
-                <ion-col size="1">
-                  <ion-button (click)="showPopover($event);" fill="clear">
-                    <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
-                  </ion-button>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
-          </ion-card-content>
-        </ion-card>
-      </ion-item>
 
-    </ion-list>
+        <!--list header-->
+        <ion-item>
+          <ion-grid>
+            <ion-row>
+              <ion-col size="5">
+                <h6>Piece Title</h6>
+              </ion-col>
+              <ion-col size="2">
+                <h6>Composer</h6>
+              </ion-col>
+              <ion-col size="2">
+                <h6>Instrumentation</h6>
+              </ion-col>
+              <ion-col size="3">
+                <h6>Ensemble</h6>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+
+        <ion-item *ngFor="let score of ensembleService.score | slice:0:3; let i = index;">
+          <!--piece card-->
+          <ion-card [routerLink]="['/score-detail/', score.id]" class="pieceCard" color="light">
+            <ion-card-content>
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="5">
+                    <h1>{{score.name}}</h1>
+                  </ion-col>
+                  <ion-col size="2">
+                    <h4>{{score.composer}}</h4>
+                  </ion-col>
+                  <ion-col size="2">
+                    <h4>{{score.instruments}}</h4>
+                  </ion-col>
+                  <ion-col size="2">
+                    <h4>{{ensembleService.getEnsembleByID(score.ensembleID)?
+                      ensembleService.getEnsembleByID(score.ensembleID).name : 'Personal' }}</h4>
+                  </ion-col>
+                  <ion-col size="1">
+                    <ion-button (click)="showPopover($event);" fill="clear">
+                      <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
+                    </ion-button>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-card-content>
+          </ion-card>
+        </ion-item>
+
+      </ion-list>
+    </div>
   </div>
-</div>
 
 
 </ion-content>
-
-
