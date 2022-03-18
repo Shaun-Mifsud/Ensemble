@@ -20,9 +20,8 @@ import { MapComponent } from '../components/map/map.component';
     FormsModule,
     IonicModule,
     EventPageRoutingModule,
-
     GoogleMapsModule,
-
+    
   ],
 
   exports: [

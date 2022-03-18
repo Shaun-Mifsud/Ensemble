@@ -172,6 +172,7 @@ ion-card{
 
 //recent Playlists
 .recentPlaylists{
+
     ion-chip{
         margin-right: 2rem;
         width: 10rem;
@@ -254,6 +255,16 @@ ion-segment-button{
     }
     .pieceCard{
         border-left: 10px solid var(--ion-color-success);
+    }
+
+}
+
+ion-item-option{
+    background-color: transparent;
+    
+    ion-icon{
+        font-size: 2rem;
+        color: var(--ion-color-danger);
     }
 }
 

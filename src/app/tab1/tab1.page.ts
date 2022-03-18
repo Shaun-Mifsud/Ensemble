@@ -2,9 +2,6 @@ import { AfterContentChecked, Component, OnInit, ViewChild, ViewEncapsulation } 
 import { ActivatedRoute, Router } from '@angular/router';
 import { EnsembleService } from '../services/ensemble.service';
 
-import { PopoverController } from '@ionic/angular';
-import { ScorePopComponent } from '../components/score-pop/score-pop.component';
-
 import { SwiperComponent } from 'swiper/angular';
 import Swiper, { SwiperOptions, Pagination } from 'swiper';
 Swiper.use([Pagination]);
@@ -22,7 +19,7 @@ export class Tab1Page implements OnInit, AfterContentChecked {
 
   constructor(
     public ensembleService: EnsembleService,
-    public popoverController: PopoverController) {
+    ) {
 
   }
 
@@ -43,24 +40,6 @@ export class Tab1Page implements OnInit, AfterContentChecked {
 
   }
 
-
-  //score popover
-  async showPopover(ev: any) {
-    console.log(ev);
-
-
-    ev.stopPropagation();
-    const popover = await this.popoverController.create({
-      component: ScorePopComponent,
-      cssClass: 'scorePopover',
-      event: ev,
-      translucent: true
-    });
-    await popover.present();
-
-    const { role } = await popover.onDidDismiss();
-    console.log('onDidDismiss resolved with role', role);
-  }
 
 }
 

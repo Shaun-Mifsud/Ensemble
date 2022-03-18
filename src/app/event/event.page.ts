@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { EnsembleService } from '../services/ensemble.service';
 import { Ensemble,Event,Score,User } from '../struct/ensemble';
 
+
 @Component({
   selector: 'app-event',
   templateUrl: './event.page.html',

@@ -9,9 +9,6 @@ import { LocalStorageService } from '../services/local-storage.service';
 import { ModalController } from '@ionic/angular';
 import { NewEventComponent } from '../components/new-event/new-event.component';
 
-import { PopoverController } from '@ionic/angular';
-import { ScorePopComponent } from '../components/score-pop/score-pop.component';
-
 
 
 
@@ -36,7 +33,6 @@ export class EnsemblePage implements OnInit {
     private route: ActivatedRoute,
     public ensembleService:EnsembleService,
     public localStorage:LocalStorageService,
-    public popoverController:PopoverController,    
     private modalCtrl:ModalController) 
     { 
       
@@ -75,7 +71,7 @@ export class EnsemblePage implements OnInit {
     
     }
 
-  //event model
+  //new event model
   async showModal(){
     const modal = await this.modalCtrl.create({
       component:NewEventComponent,
@@ -85,25 +81,6 @@ export class EnsemblePage implements OnInit {
 
     await modal.present();
   }
-
-  async close(){
-    await this.modalCtrl.dismiss();
-  }
-
-    //scorre popover
-    async showPopover(ev:any) {
-      ev.stopPropagation();
-      const popover = await this.popoverController.create({
-        component: ScorePopComponent,
-        cssClass: 'scorePopover',
-        event:ev,
-        translucent: true
-      });
-      await popover.present();
-    
-      const { role } = await popover.onDidDismiss();
-      console.log('onDidDismiss resolved with role', role);
-    }
 
 
 }

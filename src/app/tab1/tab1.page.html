@@ -175,7 +175,7 @@
         <ion-item>
           <ion-grid>
             <ion-row>
-              <ion-col size="5">
+              <ion-col size="6">
                 <h6>Piece Title</h6>
               </ion-col>
               <ion-col size="2">
@@ -184,42 +184,45 @@
               <ion-col size="2">
                 <h6>Instrumentation</h6>
               </ion-col>
-              <ion-col size="3">
+              <ion-col size="2">
                 <h6>Ensemble</h6>
               </ion-col>
             </ion-row>
           </ion-grid>
         </ion-item>
 
-        <ion-item *ngFor="let score of ensembleService.score | slice:0:3; let i = index;">
+        <ion-item-sliding *ngFor="let score of ensembleService.score | slice:0:3; let i = index;">
           <!--piece card-->
-          <ion-card [routerLink]="['/score-detail/', score.id]" class="pieceCard" color="light">
-            <ion-card-content>
-              <ion-grid>
-                <ion-row>
-                  <ion-col size="5">
-                    <h1>{{score.name}}</h1>
-                  </ion-col>
-                  <ion-col size="2">
-                    <h4>{{score.composer}}</h4>
-                  </ion-col>
-                  <ion-col size="2">
-                    <h4>{{score.instruments}}</h4>
-                  </ion-col>
-                  <ion-col size="2">
-                    <h4>{{ensembleService.getEnsembleByID(score.ensembleID)?
-                      ensembleService.getEnsembleByID(score.ensembleID).name : 'Personal' }}</h4>
-                  </ion-col>
-                  <ion-col size="1">
-                    <ion-button (click)="showPopover($event);" fill="clear">
-                      <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
-                    </ion-button>
-                  </ion-col>
-                </ion-row>
-              </ion-grid>
-            </ion-card-content>
-          </ion-card>
-        </ion-item>
+          <ion-item>
+            <ion-card [routerLink]="['/score-detail/', score.id]" class="pieceCard" color="light">
+              <ion-card-content>
+                <ion-grid>
+                  <ion-row>
+                    <ion-col size="6">
+                      <h1>{{score.name}}</h1>
+                    </ion-col>
+                    <ion-col size="2">
+                      <h4>{{score.composer}}</h4>
+                    </ion-col>
+                    <ion-col size="2">
+                      <h4>{{score.instruments}}</h4>
+                    </ion-col>
+                    <ion-col size="2">
+                      <h4>{{ensembleService.getEnsembleByID(score.ensembleID)?
+                        ensembleService.getEnsembleByID(score.ensembleID).name : 'Personal' }}</h4>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </ion-card-content>
+              </ion-card>
+          </ion-item>
+
+          <ion-item-options>
+            <ion-item-option>
+              <ion-icon name="trash"></ion-icon>
+            </ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
 
       </ion-list>
     </div>

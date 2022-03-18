@@ -18,7 +18,8 @@ export class NewEventComponent implements OnInit {
 
   constructor(private ModalCtrl:ModalController,
               public alertController: AlertController,
-              public ensembleService:EnsembleService
+              public ensembleService:EnsembleService,
+
               ) { }
 
   ngOnInit() {

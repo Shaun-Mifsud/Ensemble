@@ -11,7 +11,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NewEventComponent } from './components/new-event/new-event.component';
 import { RecordingPopComponent } from './components/recording-pop/recording-pop.component';
-import { ScorePopComponent } from './components/score-pop/score-pop.component';
 
 import { FormsModule } from '@angular/forms';
 import { EnsembleService } from './services/ensemble.service';
@@ -20,7 +19,7 @@ import { BaseService } from './services/base.service';
 
 
 @NgModule({
-    declarations: [AppComponent, NewEventComponent, RecordingPopComponent, ScorePopComponent],
+    declarations: [AppComponent, NewEventComponent, RecordingPopComponent],
     imports: [BrowserModule, IonicModule.forRoot({ mode: 'md' }), AppRoutingModule, FormsModule],
     providers: [
         { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
