@@ -10,6 +10,8 @@ import { USERS } from '../struct/data/user.data';
 import { EVENTS } from '../struct/data/events.data';
 import { BaseService } from './base.service';
 
+import {format, parseISO} from 'date-fns';
+
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +31,8 @@ export class EnsembleService extends BaseService {
   async init()
   {
     this.event = await this.localStorageService.get(this.STORAGE_KEY) || EVENTS;
+    console.log("hello");
+    
   }
 
 
@@ -63,7 +67,19 @@ export class EnsembleService extends BaseService {
 
   getEventsByEnsembleID(IDvalue: number): any
   {    
+
     return this.event.filter(e => e.ensembleID == IDvalue);
+  }
+
+  getEventsByDate(dateValue:string): Event[] | undefined{
+
+    var dateOnly= format(parseISO(dateValue),'yyyy-MM-dd');
+    var timeOnly= format(parseISO(dateValue),'HH:mm:ss');
+
+    console.log("date only:", dateOnly," time: ", timeOnly);
+    
+    return this.event.filter(e => e.date == dateOnly);
+    
   }
 
   getEventsLengh(): number{

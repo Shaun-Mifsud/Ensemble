@@ -4,8 +4,6 @@ import { ActivatedRoute, ChildActivationStart, Router } from '@angular/router';
 import { EnsembleService } from '../services/ensemble.service';
 import { Ensemble,Event,Score,User } from '../struct/ensemble';
 
-import { LocalStorageService } from '../services/local-storage.service';
-
 import { ModalController } from '@ionic/angular';
 import { NewEventComponent } from '../components/new-event/new-event.component';
 
@@ -32,7 +30,6 @@ export class EnsemblePage implements OnInit {
     private router:Router, 
     private route: ActivatedRoute,
     public ensembleService:EnsembleService,
-    public localStorage:LocalStorageService,
     private modalCtrl:ModalController) 
     { 
       

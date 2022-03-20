@@ -14,7 +14,7 @@ export class NewEventComponent implements OnInit {
   @Input() ensembleID:number;
   @Input() eventCount:number;
   
-  public newEvent: Event = {id:0, name: '', ensembleID:0, description:'', type:''};
+  public newEvent: Event = {id:0, name: '',ensembleID:0,description:'',type:'',date:'',time:''};
 
   constructor(private ModalCtrl:ModalController,
               public alertController: AlertController,
@@ -69,7 +69,7 @@ export class NewEventComponent implements OnInit {
     this.ensembleService.save("Events",this.newEvent);
 
     //reset temporary variable 
-    this.newEvent = {id:0, name: '',ensembleID:this.ensembleID,description:'',type:''};
+    this.newEvent = {id:0, name: '',ensembleID:this.ensembleID,description:'',type:'',date:'',time:''};
 
     this.close();
   }

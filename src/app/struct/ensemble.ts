@@ -14,7 +14,8 @@ export interface Event {
     description: string;
     type: string;
     location?: string;
-    date?: string; // TO BE CHANGED TO type Date
+    date: string; 
+    time: string;
 }
 
 export interface EventHasScore {

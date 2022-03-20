@@ -43,6 +43,12 @@ body{
 
 h1{
     font-weight: 550 !important;
+    padding-left: 0.5rem;
+}
+
+h2{
+    font-weight: 500 !important;
+    padding-left: 0.5rem;
 }
 
 h3{
@@ -66,6 +72,7 @@ ion-header{
 //searchbar
 ion-searchbar{
     margin-top: 10px;
+    border-radius: 50px;
 }
 
 //tabs
@@ -88,10 +95,6 @@ ion-tab-bar{
 }
 
 
-h2{
-    padding-left: 0.5rem;
-}
-
 //cards
 ion-card{
     background-color: var(--ion-color-light);
@@ -100,7 +103,7 @@ ion-card{
 }
 
 //event card
-#events{
+.events{
     ion-card{
         position: relative;
         background-image: url(assets/images/mpo.jpg);
@@ -111,8 +114,14 @@ ion-card{
         min-height: 20rem;
 
         #colorFilter{
-            //background: linear-gradient(0deg, rgba(11,26,51,1) 0%, rgba(11,26,51,0) 50%);
-            background: rgba(11,26,51,0.70);
+            background: rgba(11,26,51,0.60);
+            position: absolute;
+            height: 100%;
+            width: 100%;
+        }
+
+        #colorGradient{
+            background: linear-gradient(0deg, rgba(102,153,255,.5) 0%, rgba(255,102,139,.4) 100%);
             position: absolute;
             height: 100%;
             width: 100%;
@@ -158,8 +167,27 @@ ion-card{
 
 }
 
-//update post
-.updatePost{
+//all events
+#todayDate{
+    font-size: 2em;
+}
+
+#eventList{
+    #eventCardDetails{
+        text-align: right;
+        margin-top: 1em;
+    }
+}
+
+//calendar
+ion-datetime{
+    border-radius: var(--card-border);
+}
+
+//ensemble post
+.ensemblePost{
+    color: var(--ion-color-primary);
+
     ion-avatar{
         max-height: 100%;
         max-width: 100%;
@@ -167,7 +195,9 @@ ion-card{
         margin: auto;   
     }
 
-    color: var(--ion-color-primary);
+    h2{
+        color: var(--ion-color-secondary);
+    }
 }
 
 //recent Playlists
@@ -370,14 +400,6 @@ ion-item-option{
     }
 }
 
-//new event - date / time 
-ion-datetime {
-
-    height: 100%;
-    width: 100%;
-
-    max-width: 350px;
-}
 
 //footer
 ion-footer{

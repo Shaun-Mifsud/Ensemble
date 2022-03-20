@@ -31,6 +31,16 @@
             </ion-col>
         </ion-row> 
 
+        <!--Details-->
+        <ion-row>
+            <ion-col size="12">
+                <ion-item fill="solid">
+                    <ion-label position="floating">Details</ion-label>
+                    <ion-input id="details" type="text" inputmode="description" [(ngModel)]="newEvent.description"></ion-input>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+
         <!--location-->
         <ion-row>
             <ion-col size="12">
@@ -43,21 +53,11 @@
             </ion-col>
         </ion-row>
 
-        <!--Details-->
-        <ion-row>
-            <ion-col size="12">
-                <ion-item fill="solid">
-                    <ion-label position="floating">Details</ion-label>
-                    <ion-input id="details" type="text" inputmode="description" [(ngModel)]="newEvent.description"></ion-input>
-                </ion-item>
-            </ion-col>
-        </ion-row>
-
         <ion-row>
             <!--date & time-->
-            <ion-col size="6">
+            <ion-col size="12">
                 <ion-label>Date</ion-label>
-                <ion-datetime [(ngModel)]="newEvent.date"  presentation="date-time" min="2022" max="2099-10-31" displayFormat="D MMM, YY" minute-values="0,15,30,45"></ion-datetime>
+                <ion-datetime [(ngModel)]="newEvent.date" size="cover"  presentation="date-time" min="2022" max="2099-10-31" displayFormat="D MMM, YY" minute-values="0,15,30,45"></ion-datetime>
             </ion-col>
         </ion-row>
 

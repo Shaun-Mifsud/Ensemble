@@ -8,7 +8,8 @@ export const EVENTS: Event[] = [
         description: "Event Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
         type: "Performance",
         location: "Valletta",
-        date: "date here (type to be changed)"
+        date: "2022-03-24",
+        time: "09:00:00"
     },
     {
         id: 2,
@@ -18,7 +19,8 @@ export const EVENTS: Event[] = [
         description: "Event Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
         type: "Practice",
         location: "Birkirkara",
-        date: "date here (type to be changed)"
+        date: "2022-03-24",
+        time: "09:00:00"
     },
     {
         id: 3,
@@ -27,7 +29,8 @@ export const EVENTS: Event[] = [
         description: "Event Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
         type: "Performance",
         location: "Valletta",
-        date: "date here (type to be changed)"
+        date: "2022-03-24",
+        time: "09:00:00"
     },
     {
         id: 4,
@@ -36,7 +39,8 @@ export const EVENTS: Event[] = [
         description: "Event Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
         type: "Performance",
         location: "Valletta",
-        date: "date here (type to be changed)"
+        date: "2022-03-24",
+        time: "09:00:00"
     },
     {
         id: 5,
@@ -44,7 +48,7 @@ export const EVENTS: Event[] = [
         name: "President Concert",
         description: "Event Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
         type: "Performance",
-        location: "Valletta",
-        date: "date here (type to be changed)"
+        date: "2022-03-24",
+        time: "09:00:00"
     }
 ]
