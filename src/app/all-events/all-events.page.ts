@@ -57,7 +57,7 @@ export class AllEventsPage implements OnInit {
     async showModal(){
       const modal = await this.modalCtrl.create({
         component:NewEventComponent,
-        componentProps: {ensembleID:0,ensembleEvent:this.eventCount},
+        componentProps: {hasEnsemble:false,ensembleID:0,ensembleEvent:this.eventCount},
         cssClass:'eventModal'
       })
   

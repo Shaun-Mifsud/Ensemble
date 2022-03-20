@@ -13,6 +13,7 @@ export class NewEventComponent implements OnInit {
 
   @Input() ensembleID:number;
   @Input() eventCount:number;
+  @Input() hasEnsemble:boolean;
   
   public newEvent: Event = {id:0, name: '',ensembleID:0,description:'',type:'',date:'',time:''};
 
@@ -23,9 +24,9 @@ export class NewEventComponent implements OnInit {
               ) { }
 
   ngOnInit() {
-    //selecting ensemble to save in
-    this.newEvent.ensembleID = this.ensembleID;
-
+    //selecting ensemble to save in    
+      this.newEvent.ensembleID = this.ensembleID;
+    
     //getting number of events
     this.eventCount = this.ensembleService.getEventsLengh() +1;
     //setting the new ID
@@ -65,6 +66,7 @@ export class NewEventComponent implements OnInit {
   //saving new event
   async save(){
 
+    
     //save new event
     this.ensembleService.save("Events",this.newEvent);
 

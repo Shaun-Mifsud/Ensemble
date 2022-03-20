@@ -72,7 +72,7 @@ export class EnsemblePage implements OnInit {
   async showModal(){
     const modal = await this.modalCtrl.create({
       component:NewEventComponent,
-      componentProps: {ensembleID:this.ensembleID,ensembleEvent:this.eventCount},
+      componentProps: {hasEnsemble:true,ensembleID:this.ensembleID,ensembleEvent:this.eventCount},
       cssClass:'eventModal'
     })
 

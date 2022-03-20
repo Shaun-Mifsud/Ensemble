@@ -31,6 +31,16 @@
             </ion-col>
         </ion-row> 
 
+        <!--ensemble-->
+        <ion-col size="12" *ngIf="!hasEnsemble">
+            <ion-item>
+                <ion-label position="floating">Ensemble</ion-label>
+                    <ion-select interface="popover" [(ngModel)]="newEvent.ensembleID">
+                        <ion-select-option *ngFor="let ensemble of ensembleService.ensemble" value={{ensemble.id}}>{{ensemble.name}}</ion-select-option>
+                    </ion-select>
+            </ion-item>
+        </ion-col>
+
         <!--Details-->
         <ion-row>
             <ion-col size="12">
