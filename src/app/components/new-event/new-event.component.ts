@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import {ModalController, AlertController} from '@ionic/angular';
 import { Event } from 'src/app/struct/ensemble';
 import { EnsembleService } from 'src/app/services/ensemble.service';
+import {format, parseISO} from 'date-fns';
 
 
 @Component({
@@ -17,11 +18,19 @@ export class NewEventComponent implements OnInit {
   
   public newEvent: Event = {id:0, name: '',ensembleID:0,description:'',type:'',date:'',time:''};
 
+  dateValue= format(new Date(), 'yyyy-MM-dd') + 'T09:00:00.000Z'; 
+  todaysDate='';
+  selectedDate='';
+
+  currentYear=new Date().getFullYear();
+
   constructor(private ModalCtrl:ModalController,
               public alertController: AlertController,
-              public ensembleService:EnsembleService,
-
-              ) { }
+              public ensembleService:EnsembleService,) 
+    {
+      //setting todays date
+      this.setToday();
+    }
 
   ngOnInit() {
     //selecting ensemble to save in    
@@ -32,6 +41,24 @@ export class NewEventComponent implements OnInit {
     //setting the new ID
     this.newEvent.id = this.eventCount;
     
+  }
+
+
+  setToday(){
+    this.todaysDate= format(parseISO(format(new Date(), 'yyyy-MM-dd')),'dd MMMM yyyy');
+    this.selectedDate=this.todaysDate;
+  }
+
+  dateChanged(value){
+    
+    this.dateValue = value;    
+    this.selectedDate = format(parseISO(value),'dd MMMM yyyy');
+
+    //get date only and set to new event
+    this.newEvent.date = format(parseISO(value),'yyyy-MM-dd');
+    
+    //get time only and set to new event
+    this.newEvent.time = format(parseISO(value),'HH:mm:ss');    
   }
   
   //Alert

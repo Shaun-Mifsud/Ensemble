@@ -45,7 +45,7 @@ export class AllEventsPage implements OnInit {
   }
   
   dateChanged(value){
-    console.log("value",format(parseISO(value),'yyyy'));
+    console.log("value",format(parseISO(value),'dd MMMM yyyy'));
     
     this.dateValue = value;
     this.eventsByDate = this.ensembleService.getEventsByDate(this.dateValue);
