@@ -37,6 +37,7 @@
                 <ion-item>
                     <ion-label position="floating">Ensemble</ion-label>
                         <ion-select interface="popover" [(ngModel)]="newEvent.ensembleID">
+                            <ion-select-option value=0>Personal</ion-select-option>
                             <ion-select-option *ngFor="let ensemble of ensembleService.ensemble" value={{ensemble.id}}>{{ensemble.name}}</ion-select-option>
                         </ion-select>
                 </ion-item>

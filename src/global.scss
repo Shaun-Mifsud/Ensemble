@@ -171,6 +171,10 @@ ion-card{
 }
 
 #eventList{
+    ion-card{
+        width: 100%;
+    }
+
     #eventCardDetails{
         text-align: right;
         margin-top: 1em;

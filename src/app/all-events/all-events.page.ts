@@ -14,7 +14,7 @@ import { NewEventComponent } from '../components/new-event/new-event.component';
 })
 export class AllEventsPage implements OnInit {
 
-  dateValue= format(new Date(), 'yyyy-MM-dd') + 'T09:00:00.000Z'; 
+  dateValue= format(new Date(), 'yyyy-MM-dd') 'dd MMMM yyyy';
   todaysDate='';
   selectedDate='';
   eventsByDate: Event[];
@@ -35,15 +35,15 @@ export class AllEventsPage implements OnInit {
   constructor(public ensembleService: EnsembleService,
               private modalCtrl:ModalController) { 
 
-    this.setToday();
+    this.todaysDate= format(parseISO(this.dateValue),'dd MMMM yyyy');
+    this.selectedDate= this.todaysDate;
     
   }
   
   setToday(){
-    this.todaysDate= format(parseISO(format(new Date(), 'yyyy-MM-dd')),'dd MMMM yyyy');
-    this.selectedDate=this.todaysDate;
+    this.dateValue= format(parseISO(this.todaysDate),'dd MMMM yyyy');
   }
-  
+
   dateChanged(value){
     console.log("value",format(parseISO(value),'dd MMMM yyyy'));
     

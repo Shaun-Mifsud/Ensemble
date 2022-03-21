@@ -44,7 +44,7 @@
       <ion-row>
         <swiper #swiper [config]="config">
           <ng-template swiperSlide *ngFor="let event of ensembleService.event">
-            <!--card 1-->
+            <!--card 1, 2, etc.. -->
             <ion-card [routerLink]="['../','tab4',event.ensembleID,event.id]">
               <div id="colorGradient"></div>
               <div id="colorFilter"></div>
