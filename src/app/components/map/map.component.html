@@ -1,4 +1,6 @@
-<google-map width=" 100%" [options]="options">
-  <map-marker *ngFor="let markerPosition of markerPosition" 
-              [position]="markerPosition"></map-marker>
+<google-map width=" 100%" [options]="options" (mapClick)="mapClick($event);">
+  <div *ngIf="markerPosition">
+    <map-marker  *ngFor="let markerPosition of markerPosition" 
+                [position]="markerPosition"></map-marker>
+  </div>
 </google-map>

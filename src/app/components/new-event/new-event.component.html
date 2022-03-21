@@ -58,7 +58,7 @@
             <ion-col size="12">
                 <h3>Location</h3>
                 
-                <app-map></app-map>
+                <app-map [writeMap]=true (chosenLocation)="getLocation($event)" ></app-map>
             </ion-col>
         </ion-row>
         

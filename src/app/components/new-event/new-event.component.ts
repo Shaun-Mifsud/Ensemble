@@ -4,8 +4,6 @@ import { Event } from 'src/app/struct/ensemble';
 import { EnsembleService } from 'src/app/services/ensemble.service';
 import {format, parseISO} from 'date-fns';
 
-import { GoogleMap } from '@angular/google-maps';
-
 
 @Component({
   selector: 'app-new-event',
@@ -23,6 +21,8 @@ export class NewEventComponent implements OnInit {
   dateValue= format(new Date(), 'yyyy-MM-dd') + 'T09:00:00.000Z'; 
   todaysDate='';
   selectedDate='';
+
+  chosenLocation:any;
 
   currentYear=new Date().getFullYear();
 
@@ -42,7 +42,8 @@ export class NewEventComponent implements OnInit {
     this.eventCount = this.ensembleService.getEventsLengh() +1;
     //setting the new ID
     this.newEvent.id = this.eventCount;
-    
+
+
   }
 
 
@@ -92,9 +93,15 @@ export class NewEventComponent implements OnInit {
     await this.ModalCtrl.dismiss();
   }
 
+  //get location from the output of map component
+  getLocation(event){
+    this.chosenLocation=event;
+    
+  }
+  
   //saving new event
   async save(){
-
+    this.newEvent.location = this.chosenLocation;
     
     //save new event
     this.ensembleService.save("Events",this.newEvent);

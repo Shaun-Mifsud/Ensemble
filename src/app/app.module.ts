@@ -3,8 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
-
 import { AppRoutingModule } from './app-routing.module';
+import { ComponentsModule } from './components/components.module';
 
 
 //components
@@ -16,7 +16,6 @@ import { FormsModule } from '@angular/forms';
 import { EnsembleService } from './services/ensemble.service';
 import { BaseService } from './services/base.service';
 
-import { ComponentsModule } from './components/components.module';
 
 
 
