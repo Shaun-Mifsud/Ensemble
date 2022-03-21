@@ -1,8 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, NgModule, OnInit } from '@angular/core';
 import {ModalController, AlertController} from '@ionic/angular';
 import { Event } from 'src/app/struct/ensemble';
 import { EnsembleService } from 'src/app/services/ensemble.service';
 import {format, parseISO} from 'date-fns';
+
+import { GoogleMap } from '@angular/google-maps';
 
 
 @Component({

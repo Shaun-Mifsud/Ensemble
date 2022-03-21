@@ -1,32 +1,29 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
 import { IonicModule } from '@ionic/angular';
 
 import { EventPageRoutingModule } from './event-routing.module';
 
 import { EventPage } from './event.page';
 
-import { GoogleMapsModule } from '@angular/google-maps';
-import { MapComponent } from '../components/map/map.component';
+
+import { ComponentsModule } from '../components/components.module';
 
 
 @NgModule({
-  declarations: [EventPage, MapComponent],
+  declarations: [EventPage],
 
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     EventPageRoutingModule,
-    GoogleMapsModule,
     
+    ComponentsModule
   ],
 
-  exports: [
-    MapComponent
-  ]
+
 
 })
 export class EventPageModule { }

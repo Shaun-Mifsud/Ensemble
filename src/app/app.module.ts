@@ -16,11 +16,13 @@ import { FormsModule } from '@angular/forms';
 import { EnsembleService } from './services/ensemble.service';
 import { BaseService } from './services/base.service';
 
+import { ComponentsModule } from './components/components.module';
+
 
 
 @NgModule({
     declarations: [AppComponent, NewEventComponent, RecordingPopComponent],
-    imports: [BrowserModule, IonicModule.forRoot({ mode: 'md' }), AppRoutingModule, FormsModule],
+    imports: [BrowserModule, IonicModule.forRoot({ mode: 'md' }), AppRoutingModule, FormsModule, ComponentsModule],
     providers: [
         { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
         {

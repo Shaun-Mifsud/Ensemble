@@ -52,23 +52,20 @@
                 </ion-item>
             </ion-col>
         </ion-row>
-
+        
         <!--location-->
         <ion-row>
             <ion-col size="12">
-                <ion-item fill="solid">
-                    <ion-label position="floating">Location</ion-label>
-                    <ion-card>
-                        
-                    </ion-card>
-                </ion-item>
+                <h3>Location</h3>
+                
+                <app-map></app-map>
             </ion-col>
         </ion-row>
-
+        
         <ion-row>
             <!--date & time-->
             <ion-col size="12">
-                <ion-label>Date</ion-label>
+                <h3>Date</h3>
                 <ion-datetime 
                 #datetime
                 [value]="dateValue"
