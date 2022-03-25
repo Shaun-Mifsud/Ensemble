@@ -1,9 +1,19 @@
 <ion-list>
-  <ion-item> 
+  <ion-item [routerLink]="['/','score-detail',scoreID]"> 
     <ion-label>Recordings</ion-label>
   </ion-item>
 
-  <ion-item>
+  <ion-item (click)="initiateRecording();">
     <ion-label>New recording</ion-label>
   </ion-item>
+
+  <ion-item *ngIf="recording" (click)="stopRecording();">
+    <ion-label>Stop recording</ion-label>
+  </ion-item>
+
+  <ion-item>
+    <audio controls *ngIf="url">
+      <source [src]="sanitize(url)" type="audio/wav">
+    </audio>
+</ion-item>
 </ion-list>

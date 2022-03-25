@@ -24,11 +24,11 @@ export class NewEventComponent implements OnInit {
 
   chosenLocation:any;
 
-  currentYear=new Date().getFullYear();
+  currentYear= new Date().getFullYear();
 
   constructor(private ModalCtrl:ModalController,
               public alertController: AlertController,
-              public ensembleService:EnsembleService,) 
+              public ensembleService:EnsembleService) 
     {
       //setting todays date
       this.setToday();
@@ -42,7 +42,6 @@ export class NewEventComponent implements OnInit {
     this.eventCount = this.ensembleService.getEventsLengh() +1;
     //setting the new ID
     this.newEvent.id = this.eventCount;
-
 
   }
 
@@ -104,7 +103,7 @@ export class NewEventComponent implements OnInit {
     this.newEvent.location = this.chosenLocation;
     
     //save new event
-    this.ensembleService.save("Events",this.newEvent);
+    this.ensembleService.saveEvent("Events",this.newEvent);
 
     //reset temporary variable 
     this.newEvent = {id:0, name: '',ensembleID:this.ensembleID,description:'',type:'',date:'',time:''};

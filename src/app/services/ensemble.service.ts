@@ -2,7 +2,7 @@ import { ComponentFactoryResolver, Injectable } from '@angular/core';
 
 import { LocalStorageService } from './local-storage.service';
 
-import { Ensemble, Event, EventHasScore, Part, Score, User } from '../struct/ensemble';
+import { Ensemble, Event, EventHasScore, Part, Recording, Score, User } from '../struct/ensemble';
 
 import { SCORES } from '../struct/data/scores.data';
 import { ENSEMBLES } from '../struct/data/ensemble.data';
@@ -25,6 +25,7 @@ export class EnsembleService extends BaseService {
   public score: Score[] = SCORES;  
   public user: User[] = USERS;
   public part: Part[]= [];
+  public recording: Recording[] =[];
 
   public eventCount:number;
 
@@ -106,7 +107,7 @@ export class EnsembleService extends BaseService {
 
 
   //Saving 
-  async save(eventPosition:string, newEvent:Event)
+  async saveEvent(eventPosition:string, newEvent:Event)
   {
     //add the new event
     this.event.push(newEvent);
@@ -116,6 +117,10 @@ export class EnsembleService extends BaseService {
     this.localStorageService.set((eventPosition.toString()), this.event);
     console.log("After NEW, EVENT ID 5: " + this.localStorageService.get("5"));
     
+  }
+
+  async saveRecording(recordingPosition:string, newRecording:Recording){
+
   }
 
 }

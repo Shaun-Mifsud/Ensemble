@@ -43,11 +43,17 @@ export interface Score {
     parts?: Part[];
 }
 
+export interface Recording{
+    id:number;
+    partID:number;
+}
+
 export interface Part {
     partID: number;
     partFamiliy: string;
     partName: string;
     partPath: string;
+    recordingID?: number;
 }
 
 export interface User {

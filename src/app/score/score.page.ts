@@ -31,6 +31,7 @@ export class ScorePage implements OnInit {
   ngOnInit() {
     //get ID the user selected from URL
     this.scoreID=parseInt(this.route.snapshot.params['scoreID']);
+    
 
     //get score by scoreID
     this.selectedScore=this.ensembleService.getScoreByID(this.scoreID);
@@ -95,6 +96,7 @@ export class ScorePage implements OnInit {
   async recordingPopover(ev:any) {
     const popover = await this.popoverController.create({
       component: RecordingPopComponent,
+      componentProps: {scoreID:this.scoreID, selectedPart:this.selectedPart},
       cssClass: 'recordingPopover',
       event:ev,
       translucent: true
