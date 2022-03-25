@@ -35,13 +35,18 @@ export class AllEventsPage implements OnInit {
   constructor(public ensembleService: EnsembleService,
               private modalCtrl:ModalController) { 
 
-    this.todaysDate= format(parseISO(this.dateValue),'dd MMMM yyyy');
+    this.todaysDate= this.dateValue;
     this.selectedDate= this.todaysDate;
     
   }
   
   setToday(){
-    this.dateValue= format(parseISO(this.todaysDate),'dd MMMM yyyy');
+    const today = new Date();
+    this.dateValue = `${today.getFullYear()}-${(today.getMonth() + 1).toString().padStart(2, '0')}-${today.getDate().toString().padStart(2, '0')}`;
+    this.todaysDate=this.dateValue;
+    console.log("date value: ",this.dateValue);
+    
+    //this.dateValue= format(parseISO(this.todaysDate),'dd MMMM yyyy');
   }
 
   dateChanged(value){

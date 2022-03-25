@@ -6,6 +6,11 @@ export interface Ensemble {
     description?: string;
 }
 
+export interface Location{
+    lat:number;
+    lng:number;
+}
+
 export interface Event {
     id: number;
     ensembleID?: number;
@@ -13,7 +18,7 @@ export interface Event {
     name: string;
     description: string;
     type: string;
-    location?: string;
+    location?: Location[];
     date: string; 
     time: string;
 }

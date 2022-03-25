@@ -205,6 +205,32 @@
 
   <!--recordings-->
   <div *ngIf="selectedtab =='recordings'">
+        <!--Full score-->
+        <ion-list lines="none">
+          <!--list header-->
+          <ion-item>
+            <h2>Full Score</h2>
+          </ion-item>
+    
+          <ion-item>
+            <h6>Type</h6>
+          </ion-item>
+    
+          <ion-item>
+          <!--full score card-->
+            <ion-card  class="pieceCard" color="light">
+              <ion-card-content>
+                <ion-grid>
+                  <ion-row>
+                    <ion-col size="11"><h1>Full Score</h1></ion-col>
+                    <ion-col size="1">popover</ion-col>
+                  </ion-row>
+                </ion-grid>
+              </ion-card-content>
+            </ion-card>
+          </ion-item>
+    
+        </ion-list>
     
   </div>
 
