@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { EnsembleService } from '../services/ensemble.service';
-import { Part, Score } from '../struct/ensemble';
+import { Part, Recording, Score } from '../struct/ensemble';
 
 import { ModalController } from '@ionic/angular';
 import { NewEventComponent } from '../components/new-event/new-event.component';
@@ -22,6 +22,7 @@ export class ScoreDetailsPage implements OnInit {
   public scoreEvents: any; 
   public parts: Part[];
   public selectedPart:number;
+  public recordings:Recording | undefined;
 
   //variables used to contain each respective part from the selected score
   //categories variables
@@ -145,7 +146,7 @@ export class ScoreDetailsPage implements OnInit {
     async showModal(){
       const modal = await this.modalCtrl.create({
         component:NewEventComponent,
-        componentProps: {ensembleID:this.selectedScore.ensembleID, ensembleEvent:this.ensembleService.getEventsLengh()},
+        componentProps: {ensembleID:this.selectedScore.ensembleID, ensembleEvent:this.ensembleService.getEventsLength()},
         cssClass:'eventModal'
       })
   

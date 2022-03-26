@@ -41,7 +41,7 @@ export class ScorePage implements OnInit {
       this.partID=parseInt(this.route.snapshot.params['scorePart']);
       console.log('PARTID: ', this.partID);
 
-      this.selectedPart = this.selectedScore.parts[this.partID];
+      this.selectedPart = this.selectedScore.parts[this.partID]; // <-- can this be an issue since the index and partID is 1 number different ?
       
 
       if(this.selectedScore.type == "static"){

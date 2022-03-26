@@ -60,7 +60,7 @@ export class EnsemblePage implements OnInit {
     this.ensembleEvent = this.ensembleService.getEventsByEnsembleID(this.ensembleID);
 
     // get all events count
-    this.eventCount = this.ensembleService.getEventsLengh();
+    this.eventCount = this.ensembleService.getEventsLength();
 
     // get all scores by ensemble
     this.ensembleScore = this.ensembleService.getScoresByEnsembleID(this.ensembleID);

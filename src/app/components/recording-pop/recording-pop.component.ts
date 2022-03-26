@@ -4,7 +4,7 @@ import {EnsembleService} from 'src/app/services/ensemble.service';
 declare var $: any;
 import * as RecordRTC from 'recordrtc';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Part } from 'src/app/struct/ensemble';
+import { Part, Recording } from 'src/app/struct/ensemble';
 
 @Component({
   selector: 'app-recording-pop',
@@ -16,11 +16,15 @@ export class RecordingPopComponent implements OnInit {
   @Input() scoreID:number;
   @Input() selectedPart: Part;
 
-  record:any;
+  tempRecord:any;
+  recordingCount:number;
+  recordingName:string;
+  currentRecording:Recording = {id:0,partID:0,name:'',urlPath:''};
   url:any;
   error:any
-
   recording=false;
+
+  partID:number;
 
 
 
@@ -52,8 +56,8 @@ export class RecordingPopComponent implements OnInit {
 
     //Start Actuall Recording
     var StereoAudioRecorder = RecordRTC.StereoAudioRecorder;
-    this.record = new StereoAudioRecorder(stream, options);
-    this.record.record();
+    this.tempRecord = new StereoAudioRecorder(stream, options);
+    this.tempRecord.record();
   }
 
   /**
@@ -61,7 +65,7 @@ export class RecordingPopComponent implements OnInit {
   */
   stopRecording() {
     this.recording = false;
-    this.record.stop(this.processRecording.bind(this));
+    this.tempRecord.stop(this.processRecording.bind(this));
   }
 
   /**
@@ -72,9 +76,29 @@ export class RecordingPopComponent implements OnInit {
     this.url = URL.createObjectURL(blob);
     console.log("blob: ", blob);
     console.log("url: ", this.url);
+    console.log('view: ', this.tempRecord.view);
+    console.log('newRecord: ', this.tempRecord);
+    
 
-    //saving recording
-    //this.ensembleService.saveRecording("Recording",);
+    // * saving recording *//
+
+    //store recordingID
+    this.currentRecording.id= this.recordingCount +1;
+    //store partID
+    this.currentRecording.partID= this.partID;
+    //store name
+    this.currentRecording.name='recordingName';
+    //store url
+    this.currentRecording.urlPath= this.url;
+
+    //save
+    this.ensembleService.saveRecording("Recording",this.currentRecording);
+
+    //reset temporary variable
+    this.currentRecording = {id:0,partID:0,name:'',urlPath:''};
+    this.recordingCount= this.ensembleService.getRecordingsLength();
+
+    console.log("recording count after save: ",this.recordingCount);
 
   }
 
@@ -92,6 +116,11 @@ export class RecordingPopComponent implements OnInit {
 
   ngOnInit() {
     console.log("Score id: ",this.scoreID);
+    this.partID=this.selectedPart.partID;
+
+    this.recordingCount= this.ensembleService.getRecordingsLength();
+    console.log("recording Count ngOnInit: ",this.recordingCount);
+    
     
   }
 

@@ -18,7 +18,8 @@ import {format, parseISO} from 'date-fns';
 })
 export class EnsembleService extends BaseService {
 
-  private STORAGE_KEY: string = "Events";
+  private STORAGE_KEY_Events: string = "Events";
+  private STORAGE_KEY_Recordings: string = "Recordings";
 
   public ensemble: Ensemble[] = ENSEMBLES;
   public event: Event[] = [];
@@ -28,11 +29,12 @@ export class EnsembleService extends BaseService {
   public recording: Recording[] =[];
 
   public eventCount:number;
+  public recordingLength:number;
 
   async init()
   {
-    this.event = await this.localStorageService.get(this.STORAGE_KEY) || EVENTS;
-    console.log("hello");
+    this.event = await this.localStorageService.get(this.STORAGE_KEY_Events) || EVENTS;
+    console.log("hello from ensemble service");
     
   }
 
@@ -83,7 +85,7 @@ export class EnsembleService extends BaseService {
     
   }
 
-  getEventsLengh(): number{
+  getEventsLength(): number{
     return this.eventCount = Object.keys(this.event).length;
   }
 
@@ -105,8 +107,13 @@ export class EnsembleService extends BaseService {
     
   }
 
+  //recording
+  getRecordingsLength(){
+    return this.recordingLength= Object.keys(this.recording).length;
+  }
 
-  //Saving 
+
+  //Save event
   async saveEvent(eventPosition:string, newEvent:Event)
   {
     //add the new event
@@ -119,8 +126,13 @@ export class EnsembleService extends BaseService {
     
   }
 
+  //save recording
   async saveRecording(recordingPosition:string, newRecording:Recording){
+    //add the new recording
+    this.recording.push(newRecording);
 
+    //write to local storage
+    this.localStorageService.set((recordingPosition.toString()),this.recording);
   }
 
 }

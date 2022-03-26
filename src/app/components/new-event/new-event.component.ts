@@ -39,9 +39,9 @@ export class NewEventComponent implements OnInit {
       this.newEvent.ensembleID = this.ensembleID;
     
     //getting number of events
-    this.eventCount = this.ensembleService.getEventsLengh() +1;
+    this.eventCount = this.ensembleService.getEventsLength();
     //setting the new ID
-    this.newEvent.id = this.eventCount;
+    this.newEvent.id = this.eventCount +1;
 
   }
 

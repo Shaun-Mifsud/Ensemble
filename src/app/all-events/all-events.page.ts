@@ -27,7 +27,7 @@ export class AllEventsPage implements OnInit {
     this.eventsByDate= this.ensembleService.getEventsByDate(this.dateValue);
 
     // get all events count
-    this.eventCount = this.ensembleService.getEventsLengh();
+    this.eventCount = this.ensembleService.getEventsLength();
     
     
   }
