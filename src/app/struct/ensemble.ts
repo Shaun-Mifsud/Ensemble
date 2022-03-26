@@ -63,6 +63,7 @@ export interface User {
 
 export interface Recording {
     id: number;
+    scoreID:number;
     partID:number;
     name: string;
     urlPath: string;

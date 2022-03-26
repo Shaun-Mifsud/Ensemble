@@ -19,7 +19,7 @@ export class RecordingPopComponent implements OnInit {
   tempRecord:any;
   recordingCount:number;
   recordingName:string;
-  currentRecording:Recording = {id:0,partID:0,name:'',urlPath:''};
+  currentRecording:Recording = {id:0,scoreID:0,partID:0,name:'',urlPath:''};
   url:any;
   error:any
   recording=false;
@@ -84,6 +84,8 @@ export class RecordingPopComponent implements OnInit {
 
     //store recordingID
     this.currentRecording.id= this.recordingCount +1;
+    //save scoreID
+    this.currentRecording.scoreID= this.scoreID;
     //store partID
     this.currentRecording.partID= this.partID;
     //store name
@@ -92,10 +94,10 @@ export class RecordingPopComponent implements OnInit {
     this.currentRecording.urlPath= this.url;
 
     //save
-    this.ensembleService.saveRecording("Recording",this.currentRecording);
+    this.ensembleService.saveRecording("Recordings",this.currentRecording);
 
     //reset temporary variable
-    this.currentRecording = {id:0,partID:0,name:'',urlPath:''};
+    this.currentRecording = {id:0,scoreID:0,partID:0,name:'',urlPath:''};
     this.recordingCount= this.ensembleService.getRecordingsLength();
 
     console.log("recording count after save: ",this.recordingCount);
@@ -115,8 +117,9 @@ export class RecordingPopComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("Score id: ",this.scoreID);
     this.partID=this.selectedPart.partID;
+
+    console.log("Score id: ",this.scoreID);
 
     this.recordingCount= this.ensembleService.getRecordingsLength();
     console.log("recording Count ngOnInit: ",this.recordingCount);

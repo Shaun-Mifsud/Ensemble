@@ -216,6 +216,11 @@
             <h6>Type</h6>
           </ion-item>
 
+          <ion-item>
+            <audio controls *ngFor="let recording of recordings">
+              <source src={{recording.urlPath}} type="audio/wav">
+            </audio>
+          </ion-item>
     
           <ion-item>
           <!--full score card-->

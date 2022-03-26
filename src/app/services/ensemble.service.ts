@@ -8,6 +8,8 @@ import { SCORES } from '../struct/data/scores.data';
 import { ENSEMBLES } from '../struct/data/ensemble.data';
 import { USERS } from '../struct/data/user.data';
 import { EVENTS } from '../struct/data/events.data';
+import { RECORDINGS } from '../struct/data/recordings.data';
+
 import { BaseService } from './base.service';
 
 import {format, parseISO} from 'date-fns';
@@ -34,6 +36,9 @@ export class EnsembleService extends BaseService {
   async init()
   {
     this.event = await this.localStorageService.get(this.STORAGE_KEY_Events) || EVENTS;
+
+    this.recording = await this.localStorageService.get(this.STORAGE_KEY_Recordings) || RECORDINGS;
+
     console.log("hello from ensemble service");
     
   }
@@ -110,6 +115,10 @@ export class EnsembleService extends BaseService {
   //recording
   getRecordingsLength(){
     return this.recordingLength= Object.keys(this.recording).length;
+  }
+
+  getRecordingsByScoreID(IDvalue: number){
+    return this.recording.filter(r => r.scoreID == IDvalue);
   }
 
 
