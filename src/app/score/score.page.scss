@@ -5,3 +5,19 @@
 ion-row{
     position: relative;
 }
+
+#pageSelector{
+    position: absolute;
+
+    height: 100vh;
+    width: 100%;
+    z-index: 1000;
+
+    ion-col{
+        padding: 100% 0 100% 0;
+    }
+}
+
+
+
+

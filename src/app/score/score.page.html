@@ -1,24 +1,35 @@
 <ion-content [fullscreen]="true">
     
-  <div class="pdf-container">
+  <div *ngIf="selectedScore.type == 'static'" class="pdf-container">
+    <div id="pageSelector">
+      <ion-grid>
+        <ion-row>
+          <ion-col (click)="back();" size="6"></ion-col>
+          <ion-col (click)="forward();" size="6"></ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
     <pdf-viewer
     [src]="pdfSrc"
     [rotation]="rotation"
     [original-size]="false"
-    [show-all]="true"
+    [show-all]="false"
     [fit-to-page]="false"
-    [zoom]="1"
+    [zoom]="zoom"
     [zoom-scale]="'page-width'"
     [stick-to-page]="false"
     [render-text]="true"
     [external-link-target]="'blank'"
     [autoresize]="true"
     [show-borders]="false"
-    [page]="1"
+    [page]="currentPage"
+    (pages-initialized)="pageInitialized($event)"
     ></pdf-viewer>
   </div>
-  
+
   <div id="sheetmusic"></div>
+
 
 </ion-content>
 
@@ -50,7 +61,7 @@
       </ion-col>     
 
       <ion-col>
-        <ion-icon name="settings"></ion-icon>
+        <ion-icon name="information-circle"></ion-icon>
       </ion-col>
 
     </ion-row>
@@ -82,7 +93,7 @@
       </ion-col>
 
       <ion-col>
-        <ion-icon name="settings"></ion-icon>
+        <ion-icon name="information-circle"></ion-icon>
       </ion-col>
 
     </ion-row>

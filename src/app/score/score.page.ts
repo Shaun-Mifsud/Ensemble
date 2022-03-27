@@ -26,7 +26,11 @@ export class ScorePage implements OnInit {
   public selectedPart: Part | undefined;
 
   public pdfSrc: any;
-  public rotation:number = 0;
+  public rotation = 0;
+  public zoom=1;
+  public zoomScale = 'page-width';
+  public currentPage:number= 1;
+  public noOfPages:number;
 
   constructor(private route:ActivatedRoute,
               public ensembleService:EnsembleService,
@@ -95,9 +99,34 @@ export class ScorePage implements OnInit {
       
       .then(() => embed.useTrack({ id: 'aflat' }))
       .catch(error => console.error(error));
+
     }
     
   }
+
+  back(){
+    if(this.currentPage !=1){
+      this.currentPage = this.currentPage-1;
+    }
+
+  }
+
+  forward(){
+    if(this.currentPage !=this.noOfPages){
+      this.currentPage = this.currentPage+1;
+    }
+  }
+
+  pageInitialized(e: CustomEvent) {
+    console.log('(pages-initialized)', e);
+    //this.noOfPages= ;
+    console.log(this.noOfPages);
+    
+  }
+
+  
+
+
   //recording popover
   async recordingPopover(ev:any) {
     const popover = await this.popoverController.create({
