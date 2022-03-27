@@ -57,8 +57,8 @@ export class MapComponent {
     event= event.latLng.toJSON();
 
     if(this.writeMap){
-      this.chosenLat=event.lat;
-      this.chosenLng=event.lng;
+      this.chosenLat= event.lat;
+      this.chosenLng= event.lng;
   
       this.markerPosition=[{ lat: this.chosenLat, lng: this.chosenLng }];
   
@@ -89,16 +89,20 @@ export class MapComponent {
         return;
       }
 
+      this.location= undefined;
+
       this.location = this.selectedEvent.location;
+      console.log("location: ", this.location);
       
-      this.markerPosition=[{ lat: this.location.lat, lng: this.location.lng }];
+      
+      //this.markerPosition=[{ lat: Object.values(this.location.filter(l => l.lat)), lng: this.location.lng }];
 
       console.log("marker pos, ",this.markerPosition);
       
       
       this.options={...this.options,
         gestureHandling:this.gestureHandling,
-        center:{ lat: this.location.lat, lng: this.location.lng },
+        center:{ lat: this.location[0].lat, lng: this.location[0].lng },
       }
 
       

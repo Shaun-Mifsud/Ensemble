@@ -1,0 +1,29 @@
+<ion-toolbar class="Toolbar">
+  <ion-label>
+    <h1>Metronome</h1>
+  </ion-label>
+
+  <ion-buttons slot="end">
+    <ion-toggle color="primary"></ion-toggle>
+  </ion-buttons>
+</ion-toolbar>
+
+<ion-content>
+  <h3>Time Signature</h3>
+
+  <ion-item (click)="showPicker()">
+    <ion-card color="light">
+      <ion-chip>{{noOfBeats}}</ion-chip>
+      <ion-chip>{{beatValue}}</ion-chip>
+    </ion-card>
+  </ion-item>
+
+  <ion-item>
+    <ion-range min="35" max="200" step="1" value="60" pin="true" color="primary">
+      <span slot="start" class="iconify" data-icon="mdi:metronome"></span>
+      <span slot="end" class="iconify" data-icon="mdi:metronome"></span>
+    </ion-range>
+  </ion-item>
+
+
+</ion-content>

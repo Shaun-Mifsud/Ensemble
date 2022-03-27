@@ -92,13 +92,8 @@ export class ScoreDetailsPage implements OnInit {
       this.recordings= this.ensembleService.getRecordingsByScoreID(this.scoreID);
       console.log("recordings: ",this.recordings);
 
-      
-
-      //get recording PATH per instrument PART
-      //this.urlPath= Object.values(this.recordings.filter(f => f.urlPath));
       console.log('URL path: ',this.urlPath);
       
-
       //categories variables console output 
       console.log("Strings: ",this.strings);
       console.log("Woodwind: ",this.woodwind);

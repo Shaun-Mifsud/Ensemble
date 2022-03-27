@@ -1,11 +1,14 @@
 import { LEADING_TRIVIA_CHARS } from '@angular/compiler/src/render3/view/template';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute} from '@angular/router';
-import { PopoverController } from '@ionic/angular';
+import { ModalController, PopoverController } from '@ionic/angular';
 
 import Embed from 'flat-embed';
+import { MetronomeComponent } from '../components/metronome/metronome.component';
+import { PageScaleComponent } from '../components/page-scale/page-scale.component';
 
 import { RecordingPopComponent } from '../components/recording-pop/recording-pop.component';
+import { TunerComponent } from '../components/tuner/tuner.component';
 import { EnsembleService } from '../services/ensemble.service';
 import { Part, Score } from '../struct/ensemble';
 
@@ -23,10 +26,13 @@ export class ScorePage implements OnInit {
   public selectedPart: Part | undefined;
 
   public pdfSrc: any;
+  public rotation:number = 0;
 
   constructor(private route:ActivatedRoute,
               public ensembleService:EnsembleService,
-              public popoverController:PopoverController ) { }
+              public popoverController:PopoverController,
+              private modalCtrl:ModalController,
+            ) { }
 
   ngOnInit() {
     //get ID the user selected from URL
@@ -107,6 +113,50 @@ export class ScorePage implements OnInit {
     console.log('onDidDismiss resolved with role', role);
   }
   
-  // recording
+  // metronome modal
+  async showMetornomeModal(){
+    const modal = await this.modalCtrl.create({
+      component:MetronomeComponent,
+      cssClass:'metronomeModal',
+    })
+
+    await modal.present();
+  }
+
+  //tuner modal
+  async showTunerPopover(ev:any){
+    const popover = await this.popoverController.create({
+      component: TunerComponent,
+      cssClass: 'tunerPopover',
+      event:ev,
+      translucent: true
+    });
+    await popover.present();
+  
+    const { role } = await popover.onDidDismiss();
+    console.log('onDidDismiss resolved with role', role);
+  }
+
+  //page options
+  async pageOptions(ev:any){
+    const popover = await this.popoverController.create({
+      component: PageScaleComponent,
+      componentProps:{rotation: this.rotation},
+      cssClass: 'pageScalePopover',
+      event:ev,
+      translucent: true,
+    });
+    await popover.present();
+  
+
+  
+  }
+  //rotate
+  updateRotation(event){
+    console.log("updateRotation(event)");
+    
+    this.rotation= event.rotation;
+  }
+
   
 }

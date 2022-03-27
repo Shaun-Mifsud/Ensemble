@@ -11,6 +11,9 @@ import { ComponentsModule } from './components/components.module';
 import { AppComponent } from './app.component';
 import { NewEventComponent } from './components/new-event/new-event.component';
 import { RecordingPopComponent } from './components/recording-pop/recording-pop.component';
+import { MetronomeComponent } from './components/metronome/metronome.component';
+import { PageScaleComponent } from './components/page-scale/page-scale.component';
+import { TunerComponent } from './components/tuner/tuner.component';
 
 import { FormsModule } from '@angular/forms';
 import { EnsembleService } from './services/ensemble.service';
@@ -20,7 +23,7 @@ import { BaseService } from './services/base.service';
 
 
 @NgModule({
-    declarations: [AppComponent, NewEventComponent, RecordingPopComponent],
+    declarations: [AppComponent, NewEventComponent, RecordingPopComponent,MetronomeComponent,PageScaleComponent,TunerComponent],
     imports: [BrowserModule, IonicModule.forRoot({ mode: 'md' }), AppRoutingModule, FormsModule, ComponentsModule],
     providers: [
         { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
