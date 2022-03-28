@@ -18,7 +18,7 @@ export interface Event {
     name: string;
     description: string;
     type: string;
-    location?: Location[];
+    location?: Location;
     date: string; 
     time: string;
 }

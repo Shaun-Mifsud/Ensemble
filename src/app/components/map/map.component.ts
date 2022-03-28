@@ -28,7 +28,6 @@ export class MapComponent {
 
   public eventID:any;
   public selectedEvent: Event | undefined;
-  public location:any;
     
   options: google.maps.MapOptions = {}
 
@@ -88,23 +87,17 @@ export class MapComponent {
         console.log("Event not found!");
         return;
       }
-
-      this.location= undefined;
-
-      this.location = this.selectedEvent.location;
-      console.log("location: ", this.location);
       
-      
-      //this.markerPosition=[{ lat: Object.values(this.location.filter(l => l.lat)), lng: this.location.lng }];
+      this.markerPosition=[{ lat: this.selectedEvent.location.lat, lng: this.selectedEvent.location.lng  }];
 
-      console.log("marker pos, ",this.markerPosition);
       
       
       this.options={...this.options,
         gestureHandling:this.gestureHandling,
-        center:{ lat: this.location[0].lat, lng: this.location[0].lng },
+        center:{ lat: this.selectedEvent.location.lat, lng: this.selectedEvent.location.lng },
       }
-
+      
+      console.log("marker pos, ",this.markerPosition);
       
     }
     

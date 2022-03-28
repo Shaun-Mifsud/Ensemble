@@ -22,13 +22,13 @@ export class PageScaleComponent implements OnInit {
 
 
   rotateLeft(){
-    //this.newRotation.emit({rotation: this.rotation - 90})
-    this.tools.getRotation(this.rotation  - 90);
+    this.newRotation.emit({rotation: this.rotation - 90})
+    //this.tools.getRotation(this.rotation  - 90);
   }
   
   rotateRight(){
-    //this.newRotation.emit({rotation: this.rotation + 90})
-    this.tools.getRotation(this.rotation  + 90);
+    this.newRotation.emit({rotation: this.rotation + 90})
+    //this.tools.getRotation(this.rotation  + 90);
 
   }
 }
