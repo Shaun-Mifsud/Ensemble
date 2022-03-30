@@ -1,5 +1,4 @@
-import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
-import { ScorePage } from 'src/app/score/score.page';
+import { Component, Input, OnInit } from '@angular/core';
 import { ToolsService } from 'src/app/services/tools.service';
 
 @Component({
@@ -8,27 +7,30 @@ import { ToolsService } from 'src/app/services/tools.service';
   styleUrls: ['./page-scale.component.scss'],
 })
 export class PageScaleComponent implements OnInit {
+  
+  @Input() rotation:number;
+  subscription: any; 
 
   constructor(public tools:ToolsService){
 
   }
 
-  @Input() rotation:number;
 
-  @Output() newRotation= new EventEmitter();
+  ngOnInit() { 
 
-  ngOnInit() { }
-
+  }
 
 
   rotateLeft(){
-    this.newRotation.emit({rotation: this.rotation - 90})
-    //this.tools.getRotation(this.rotation  - 90);
+    console.log("rotate left");
+    
+    this.tools.emitRotationChangeEvent('l',this.rotation);
+    
   }
   
   rotateRight(){
-    this.newRotation.emit({rotation: this.rotation + 90})
-    //this.tools.getRotation(this.rotation  + 90);
-
+    this.tools.emitRotationChangeEvent('r',this.rotation);
   }
+
+  
 }

@@ -10,6 +10,7 @@ import { PageScaleComponent } from '../components/page-scale/page-scale.componen
 import { RecordingPopComponent } from '../components/recording-pop/recording-pop.component';
 import { TunerComponent } from '../components/tuner/tuner.component';
 import { EnsembleService } from '../services/ensemble.service';
+import { ToolsService } from '../services/tools.service';
 import { Part, Score } from '../struct/ensemble';
 
 @Component({
@@ -18,6 +19,8 @@ import { Part, Score } from '../struct/ensemble';
   styleUrls: ['./score.page.scss'],
 })
 export class ScorePage implements OnInit {
+
+  subscription:any;
 
   public scoreID:any;
   public partID:any;
@@ -34,9 +37,11 @@ export class ScorePage implements OnInit {
 
   constructor(private route:ActivatedRoute,
               public ensembleService:EnsembleService,
+              public tools:ToolsService,
               public popoverController:PopoverController,
               private modalCtrl:ModalController,
-            ) { }
+            ) 
+  { }
 
   ngOnInit() {
     //get ID the user selected from URL
@@ -61,6 +66,11 @@ export class ScorePage implements OnInit {
         console.log("Selected score: ", this.selectedScore);
         
       } 
+
+      // page options
+      this.subscription= this.tools.getRotationChangeEmitter()
+      .subscribe(rotation => this.selectedRotation(rotation));
+
   }
         
     
@@ -117,11 +127,8 @@ export class ScorePage implements OnInit {
     }
   }
 
-  pageInitialized(e: CustomEvent) {
-    console.log('(pages-initialized)', e);
-    //this.noOfPages= ;
-    console.log(this.noOfPages);
-    
+  pageInitialized(e: any) {
+    console.log('(pages-initialized)', e.source._pages.length);
   }
 
   
@@ -175,17 +182,24 @@ export class ScorePage implements OnInit {
       event:ev,
       translucent: true,
     });
-    await popover.present();
-  
+    
+    await popover.present();  
+    
+    
+  } 
+
+  //rotation
+  selectedRotation(rotation:number){
+    this.rotation= rotation;
+    console.log("currently in selectedRotation func");
+    
+  }
 
   
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
-  //rotate
-  updateRotation(event){
-    console.log("updateRotation(event)");
-    
-    this.rotation= event.rotation;
-  }
+  
 
   
 }
