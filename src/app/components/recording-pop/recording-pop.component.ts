@@ -5,6 +5,7 @@ declare var $: any;
 import * as RecordRTC from 'recordrtc';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Part, Recording } from 'src/app/struct/ensemble';
+import { isThisQuarter } from 'date-fns';
 
 @Component({
   selector: 'app-recording-pop',
@@ -19,7 +20,12 @@ export class RecordingPopComponent implements OnInit {
   tempRecord:any;
   recordingCount:number;
   recordingName:string;
-  currentRecording:Recording = {id:0,scoreID:0,partID:0,name:'',urlPath:''};
+  base64:any;
+
+  currentRecording:Recording = {id:0,scoreID:0,partID:0,name:'',base64:''};
+  recordings:Recording[] = this.ensembleService.recording;
+
+  audioSrc:any;
   url:any;
   error:any
   recording=false;
@@ -31,7 +37,7 @@ export class RecordingPopComponent implements OnInit {
   constructor(private domSanitizer: DomSanitizer,
               public ensembleService:EnsembleService) {
   }
-
+  
 
   initiateRecording() {
     this.recording = true;
@@ -72,13 +78,14 @@ export class RecordingPopComponent implements OnInit {
   * processRecording Do what ever you want with blob
   * @param  {any} blob Blog
   */
-  processRecording(blob) {
-    this.url = URL.createObjectURL(blob);
+  async processRecording(blob) {
+    this.url = URL.createObjectURL(blob);    
     console.log("blob: ", blob);
-    console.log("url: ", this.url);
+    console.log(" url: ",this.url);
     console.log('view: ', this.tempRecord.view);
     console.log('newRecord: ', this.tempRecord);
     
+    this.base64 = await this.blobToBase64(blob) as string;
 
     // * saving recording *//
 
@@ -91,22 +98,44 @@ export class RecordingPopComponent implements OnInit {
     //store name
     this.currentRecording.name='recordingName';
     //store url
-    this.currentRecording.urlPath= this.url;
+    this.currentRecording.base64= this.base64;
 
     //save
     this.ensembleService.saveRecording("Recordings",this.currentRecording);
 
-    //reset temporary variable
-    this.currentRecording = {id:0,scoreID:0,partID:0,name:'',urlPath:''};
+    //reset the temporary variable
+    this.currentRecording = {id:0,scoreID:0,partID:0,name:'',base64:''};
+
+    //get the new recording count
     this.recordingCount= this.ensembleService.getRecordingsLength();
 
-    console.log("recording count after save: ",this.recordingCount);
+  }
 
+  playSound(index:number){
+    var sound = new Audio(this.recordings[index].base64);
+    sound.play();
+  }
+
+  blobToBase64(blob) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+
+      // if there's an error, reject
+      reader.onerror = reject;
+
+      reader.onloadend = () => resolve(reader.result);
+
+      reader.readAsDataURL(blob);
+      console.log('base64 in function:', reader);
+    });
+
+    
   }
 
 
   sanitize(url: string) {
-    return this.domSanitizer.bypassSecurityTrustUrl(url);
+    console.log('url: ',url);
+    this.domSanitizer.bypassSecurityTrustResourceUrl(url);
   }
   
   /**
@@ -123,8 +152,6 @@ export class RecordingPopComponent implements OnInit {
 
     this.recordingCount= this.ensembleService.getRecordingsLength();
     console.log("recording Count ngOnInit: ",this.recordingCount);
-    
-    
   }
 
   }

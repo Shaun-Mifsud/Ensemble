@@ -66,5 +66,5 @@ export interface Recording {
     scoreID:number;
     partID:number;
     name: string;
-    urlPath: string;
+    base64: string;
 }

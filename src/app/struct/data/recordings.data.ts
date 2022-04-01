@@ -6,6 +6,6 @@ export const RECORDINGS: Recording[] = [
         scoreID:1,
         partID:1,
         name:'hard coded recording',
-        urlPath:''
+        base64:''
 
     }]
