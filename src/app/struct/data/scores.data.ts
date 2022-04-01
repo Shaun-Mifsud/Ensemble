@@ -184,7 +184,8 @@ export const SCORES: Score[] =[
             partID:1,
             partFamiliy:'string',
             partName:'Violin I',
-            partPath:"/assets/pdf/sympNo5/violin1.pdf"
+            partPath:"/assets/pdf/sympNo5/violin1.pdf",
+            recordingID:21
         },
         {
             partID:2,
@@ -196,7 +197,8 @@ export const SCORES: Score[] =[
             partID:3,
             partFamiliy:'string',
             partName:'Viola',
-            partPath:"/assets/pdf/sympNo5/viola.pdf"
+            partPath:"/assets/pdf/sympNo5/viola.pdf",
+            recordingID:22
         },
         {
             partID:4,

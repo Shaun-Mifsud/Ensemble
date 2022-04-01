@@ -121,6 +121,10 @@ export class EnsembleService extends BaseService {
     return this.recording.filter(r => r.scoreID == IDvalue);
   }
 
+  getRecordingByPart(IDvalue:number):any{
+    return this.recording.filter(r => r.id == IDvalue);
+  }
+
 
   //Save event
   async saveEvent(eventPosition:string, newEvent:Event)

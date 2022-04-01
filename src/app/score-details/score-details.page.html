@@ -117,7 +117,7 @@
           <ion-card-content>
             <ion-grid>
               <ion-row>
-                <ion-col (click)="partSelect(instrInSection);" size="11"><h1>{{instrInSection}}</h1></ion-col>
+                <ion-col (click)="partSelect(instrInSection.partName);" size="11"><h1>{{instrInSection.partName}}</h1></ion-col>
                 <ion-col size="1">{{i}}popover</ion-col>
               </ion-row>
             </ion-grid>
@@ -142,7 +142,7 @@
           <ion-card-content>
             <ion-grid>
               <ion-row>
-                <ion-col (click)="partSelect(instrInSection);" size="11"><h1>{{instrInSection}}</h1></ion-col>
+                <ion-col (click)="partSelect(instrInSection.partName);" size="11"><h1>{{instrInSection.partName}}</h1></ion-col>
                 <ion-col size="1">{{i}}popover</ion-col>
               </ion-row>
             </ion-grid>
@@ -167,7 +167,7 @@
           <ion-card-content>
             <ion-grid>
               <ion-row>
-                <ion-col (click)="partSelect(instrInSection);" size="11"><h1>{{instrInSection}}</h1></ion-col>
+                <ion-col (click)="partSelect(instrInSection.partName);" size="11"><h1>{{instrInSection.partName}}</h1></ion-col>
                 <ion-col size="1">popover</ion-col>
               </ion-row>
             </ion-grid>
@@ -192,7 +192,7 @@
           <ion-card-content>
             <ion-grid>
               <ion-row>
-                <ion-col (click)="partSelect(instrInSection);" size="11"><h1>{{instrInSection}}</h1></ion-col>
+                <ion-col (click)="partSelect(instrInSection.partName);" size="11"><h1>{{instrInSection.partName}}</h1></ion-col>
                 <ion-col size="1">{{i}}popover</ion-col>
               </ion-row>
             </ion-grid>
@@ -205,38 +205,83 @@
 
   <!--recordings-->
   <div *ngIf="selectedtab =='recordings'">
-        <!--Full score-->
-        <ion-list lines="none">
-          <!--list header-->
-          <ion-item>
-            <h2>Full Score</h2>
-          </ion-item>
-    
-          <ion-item>
-            <h6>Type</h6>
-          </ion-item>
+    <!--Full score-->
+    <ion-list lines="none">
+      <!--list header-->
+      <ion-item>
+        <h2>Full Score</h2>
+      </ion-item>
 
-          <ion-item>
-            <audio controls *ngFor="let recording of recordings">
-              <source src='{{recording.urlPath}}' type="audio/wav">
-            </audio>
-          </ion-item>
-    
-          <ion-item>
-          <!--full score card-->
-            <ion-card  class="pieceCard" color="light">
-              <ion-card-content>
-                <ion-grid>
+      <ion-item>
+        <h6>Type</h6>
+      </ion-item>
+
+      <ion-item>
+      <!--full score accordion-->
+        <ion-card  class="recCard" color="light">
+          <ion-accordion-group>
+            <ion-accordion value="fullScore">
+
+              <ion-item slot="header">
+                <ion-card-content>
+                  <h1>Full Score</h1>
+                </ion-card-content>
+              </ion-item>
+
+              <ion-list slot="content">
+                <ion-item>yo</ion-item>
+                <ion-item>yo</ion-item>
+                <ion-item>yo</ion-item>
+                <ion-item>yo</ion-item>
+              </ion-list>
+          </ion-accordion>
+        </ion-accordion-group>
+        </ion-card>
+      </ion-item>
+
+    </ion-list>
+
+    <!--strings-->
+    <ion-list *ngIf="checkParts('strings') && checkRecording('strings');" lines="none">
+      <ion-item>
+        <h2>Strings</h2>
+      </ion-item>
+
+      <ion-item>
+        <h6>Instrument</h6>
+      </ion-item>
+
+      <ion-item *ngFor="let instrInSection of strings; let i = index">
+      <!--piece card-->
+        <ion-card class="recCard" color="light">
+          <!--accordion-->
+          <ion-accordion-group>
+            <ion-accordion>
+              <ion-item slot="header">
+                <ion-card-content>
+                  <h1>{{instrInSection.partName}}</h1>
+                </ion-card-content>
+              </ion-item>
+
+              <!--list of recordings-->
+              <ion-list slot="content">
+                <ion-item>
                   <ion-row>
-                    <ion-col size="11"><h1>Full Score</h1></ion-col>
-                    <ion-col size="1">popover</ion-col>
+                    <ion-col size="10"></ion-col>
+                    <ion-col size="2" (click)="playRec(9999999);">
+                      <ion-icon name="play"></ion-icon>
+                    </ion-col>
                   </ion-row>
-                </ion-grid>
-              </ion-card-content>
-            </ion-card>
-          </ion-item>
-    
-        </ion-list>
+                </ion-item>
+              </ion-list>
+
+          </ion-accordion>
+        </ion-accordion-group>
+        </ion-card>
+      </ion-item>
+    </ion-list>
+
+
     
   </div>
 

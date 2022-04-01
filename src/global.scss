@@ -279,6 +279,32 @@ ion-segment-button{
 
 }
 
+//ALL cards for each recording in the list
+.recCard{
+
+    width: 100%;
+
+    ion-card-content{
+        padding: 0.5vh 0.5vh 0.5vh 1vh;
+    }
+
+
+    ion-row{
+        position: relative;
+        width: 100%;
+
+        ion-icon{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            height: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+
+
+}
+
 //specific cards
 
 .recent{

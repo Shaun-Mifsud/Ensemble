@@ -8,6 +8,7 @@ import { Part, Recording, Score } from '../struct/ensemble';
 import { ModalController } from '@ionic/angular';
 import { NewEventComponent } from '../components/new-event/new-event.component';
 
+
 @Component({
   selector: 'app-score-details',
   templateUrl: './score-details.page.html',
@@ -28,10 +29,12 @@ export class ScoreDetailsPage implements OnInit {
 
   //variables used to contain each respective part from the selected score
   //categories variables
-  public strings:string[] = [];
-  public woodwind:string[] = [];
-  public brass:string[] = [];
-  public percussion:string[] = [];
+  public strings:Part[] = [];
+  public stringRec:Recording[]=[];
+  public woodwind:Part[] = [];
+  public brass:Part[] = [];
+  public percussion:Part[] = [];
+
 
   constructor(private route: ActivatedRoute,
               private router:Router,
@@ -62,30 +65,47 @@ export class ScoreDetailsPage implements OnInit {
       //get partFamily and place them in categories variables aggording to family
       //string
       let stringList = Object.values(this.parts.filter(f => f.partFamiliy == 'string'));
+      console.log("string list: ",stringList);
+    
 
       for(let list in stringList){
-        this.strings.push(stringList[list].partName);
+        this.strings.push(stringList[list]);
       }
+
+      stringList.forEach(strings => {
+
+        console.log("for each ID",strings.partID);
+        
+        
+        if(strings.recordingID != null){
+          console.log("Recording no ", strings.recordingID, " Found !");
+          this.stringRec[this.stringRec.length]=this.ensembleService.getRecordingByPart(strings.recordingID);
+        }      
+        
+      });
+
+      console.log("stringrec: ",this.stringRec);
+
 
       //brass
       let brassList = Object.values(this.parts.filter(f => f.partFamiliy == 'brass'));
 
       for(let list in brassList){
-        this.brass.push(brassList[list].partName);
+        this.brass.push(brassList[list]);
       }
 
       //woodwind
       let woodwindList = Object.values(this.parts.filter(f => f.partFamiliy == 'woodwind'));
 
       for(let list in woodwindList){
-        this.woodwind.push(woodwindList[list].partName);
+        this.woodwind.push(woodwindList[list]);
       }
 
       //percussion
       let percussionList = Object.values(this.parts.filter(f => f.partFamiliy == 'percussion'));
 
       for(let list in percussionList){
-        this.percussion.push(percussionList[list].partName);
+        this.percussion.push(percussionList[list]);
       }
 
       //get recording by selected scoreID
@@ -108,7 +128,7 @@ export class ScoreDetailsPage implements OnInit {
   partSelect(instrInPart:string){
     // get selectedPart index from partName
     this.selectedPart = this.parts.findIndex((p) => p.partName == instrInPart);
-    console.log("selected part ID: ", this.selectedPart);
+    console.log("selected part Index: ", this.selectedPart);
     
     //navigate by selectedPart
     this.router.navigate(['/score', this.scoreID, this.selectedPart]);
@@ -148,6 +168,47 @@ export class ScoreDetailsPage implements OnInit {
 
     }    
   }
+
+  //check if recording is avialable on selected part
+  checkRecording(partName:string):boolean{
+    switch(partName){
+      case 'strings':{
+        if(this.strings.length < 1){
+          return false;
+        }
+        else true;
+      }
+
+      case 'woodwind':{
+
+      }
+      case 'brass':{
+        if(this.brass.length < 1){
+          return false;
+        }
+        else return true;
+
+      }
+      case 'percussion':{
+        if(this.percussion.length < 1){
+          return false;
+        }
+        else return true;
+      }
+
+    }    
+  }
+
+  //play recording of selected recording by part
+  playRec(partID:number){
+    var sound = new Audio(this.recordings[partID].base64);
+    sound.play();
+    
+    console.log("played: ",this.recordings[partID].partID);
+    
+  }
+
+
 
     //event model
     async showModal(){
