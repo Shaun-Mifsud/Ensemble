@@ -20,7 +20,8 @@ import { Part, Score } from '../struct/ensemble';
 })
 export class ScorePage implements OnInit {
 
-  subscription:any;
+  rotationSubscription:any;
+  zoomScaleSubscription:any;
 
   public scoreID:any;
   public partID:any;
@@ -31,7 +32,7 @@ export class ScorePage implements OnInit {
   public pdfSrc: any;
   public rotation = 0;
   public zoom=1;
-  public zoomScale = 'page-width';
+  public zoomScale:'page-width'|'page-fit'|'page-height';
   public currentPage:number= 1;
   public noOfPages:number;
 
@@ -66,14 +67,8 @@ export class ScorePage implements OnInit {
         console.log("Selected score: ", this.selectedScore);
         
       } 
-
-      // page options
-      this.subscription= this.tools.getRotationChangeEmitter()
-      .subscribe(rotation => this.selectedRotation(rotation));
-
   }
-        
-    
+
     if(this.selectedScore.type == "interactive"){
       console.log("interactive score");
       
@@ -185,19 +180,39 @@ export class ScorePage implements OnInit {
     
     await popover.present();  
     
+    // page options
+    //rotation
+    this.rotationSubscription= this.tools.getRotationChangeEmitter()
+    .subscribe(rotation => this.selectedRotation(rotation));
+
+    this.zoomScale="page-width";
+
+    //zoom scale
+    this.zoomScaleSubscription= this.tools.geZoomScaleChangeEmitter()
+    .subscribe(zoomScale => this.selectedZoomScale(zoomScale));
+
+    await popover.onDidDismiss().then(res=> this.ngOnDestroy(), error => console.log("Error: ",error));
     
   } 
 
-  //rotation
+  //rotation from subscription
   selectedRotation(rotation:number){
     this.rotation= rotation;
     console.log("currently in selectedRotation func");
+  }
+
+  //zoom scale from subscription
+  selectedZoomScale(zoomScale:any){    
+    this.zoomScale=zoomScale;
+    console.log("selecged zoom scale fun: ",this.zoomScale);
     
   }
 
   
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+   
+    this.rotationSubscription.unsubscribe();
+    this.zoomScaleSubscription.unsubscribe();
   }
   
 

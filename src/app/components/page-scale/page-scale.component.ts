@@ -21,15 +21,22 @@ export class PageScaleComponent implements OnInit {
   }
 
 
+  //rotation
   rotateLeft(){
     console.log("rotate left");
     
-    this.tools.emitRotationChangeEvent('l',this.rotation);
+    this.tools.emitRotationChangeEvent('l');
     
   }
   
   rotateRight(){
-    this.tools.emitRotationChangeEvent('r',this.rotation);
+    this.tools.emitRotationChangeEvent('r');
+  }
+
+  //zoom scale
+  zoomScale(selection:string){
+    this.tools.emitScaleChangeEvent(selection);
+    
   }
 
   
