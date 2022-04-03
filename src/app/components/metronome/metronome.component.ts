@@ -1,18 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { PickerOptions } from '@ionic/core';
 import { PickerController } from '@ionic/angular';
+
+import  SlideRuler  from 'slider-ruler/slide-ruler';
 
 @Component({
   selector: 'app-metronome',
   templateUrl: './metronome.component.html',
   styleUrls: ['./metronome.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
+
 export class MetronomeComponent implements OnInit {
+
+  @ViewChild('slideRuler', { read: ElementRef, static:false }) slideRuler;
 
   public noOfBeats:number= 4 ;
   public beatValue:number= 4;
 
-  ngOnInit() {}
+
+  ngOnInit() {
+    this._renderSlideRuler();
+  }
 
 
   constructor(private pickerCtrl: PickerController) {}
@@ -62,20 +71,27 @@ export class MetronomeComponent implements OnInit {
 
     };
 
-    let picker = await this.pickerCtrl.create(opts);
-    picker.present();
+  }
+  //slider ruler
+  _renderSlideRuler(){
+    console.log("slider: ",this.slideRuler);
+    
+    return new SlideRuler (
+          {
+            el: this.slideRuler.nativeElement,
+            maxValue: 32,
+            minValue: 250,
+            currentValue: 60,
+            handleValue: this.handleValue,
+            precision: 1
+          }
+        );
+  }
 
-    const dismiss = await picker.onDidDismiss();
-    if (dismiss.role === "done") {
-      this.noOfBeats= dismiss.data.noOfBeats.value;
-      this.beatValue= dismiss.data.beatValue.value;
-
-      console.log("number of beats : ",this.noOfBeats);
-      console.log("beat value: ",this.beatValue);
-      
-    }
+  handleValue(value) {
+    console.log(value); //SlideRuler return value
+  }
     
 
-  }
 }
   

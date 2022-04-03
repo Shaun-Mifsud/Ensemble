@@ -1,17 +1,21 @@
+<ion-toolbar>
+  <ion-toggle color="primary" slot="end" [checked]="btnCheck" (ionChange)="getBtnValue($event)"></ion-toggle>
+</ion-toolbar>
+
 <ion-list>
-  <ion-item> 
+  <ion-item [class.selected]=" 'C4' === currentlySelected" (click)="playNote('C4');"> 
     <ion-label><h1>C</h1></ion-label>
   </ion-item>
 
-  <ion-item> 
+  <ion-item [class.selected]=" 'D#4' === currentlySelected" (click)="playNote('D#4');"> 
     <ion-label><h1>E♭</h1></ion-label>
   </ion-item>
 
-  <ion-item> 
+  <ion-item [class.selected]=" 'A5' === currentlySelected"  (click)="playNote('A5');"> 
     <ion-label><h1>A</h1></ion-label>
   </ion-item>
 
-  <ion-item> 
+  <ion-item [class.selected]=" 'A#5' === currentlySelected"  (click)="playNote('A#5');"> 
     <ion-label><h1>B♭</h1></ion-label>
   </ion-item>
 </ion-list>

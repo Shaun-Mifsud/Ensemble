@@ -392,18 +392,20 @@ ion-item-option{
 
 //metronome modal
 .metronomeModal::part(content){
+    width: 100%;
+    height: 25%;
+
     color: var(--ion-color-primary);
-
     background-color: var(--ion-color-light);
-
+    
+    position: absolute;
+    bottom:56px;
+    transform: translate(-8%, -8%);
+    
     ion-backdrop{
         opacity: 0;
     }
-
-    position: absolute;
-    bottom:8%;
-    transform: translate(-8%, -8%);
-
+    
 }
 
 //time signature picker

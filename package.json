@@ -29,7 +29,9 @@
     "ng2-pdf-viewer": "^6.4.0",
     "recordrtc": "^5.6.2",
     "rxjs": "~6.6.0",
+    "slide-ruler": "^1.2.1",
     "swiper": "^8.0.7",
+    "tone": "^14.7.77",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"
   },
