@@ -15,7 +15,7 @@ import { isThisQuarter } from 'date-fns';
 export class RecordingPopComponent implements OnInit {
 
   @Input() scoreID:number;
-  @Input() selectedPart: Part;
+  @Input() selectedPart: Part | undefined;
 
   tempRecord:any;
   recordingCount:number;
@@ -95,6 +95,8 @@ export class RecordingPopComponent implements OnInit {
     this.currentRecording.scoreID= this.scoreID;
     //store partID
     this.currentRecording.partID= this.partID;
+    console.log("current recording part id: ",this.currentRecording.partID);
+    
     //store name
     this.currentRecording.name='recordingName';
     //store url
@@ -111,10 +113,6 @@ export class RecordingPopComponent implements OnInit {
 
   }
 
-  playSound(index:number){
-    var sound = new Audio(this.recordings[index].base64);
-    sound.play();
-  }
 
   blobToBase64(blob) {
     return new Promise((resolve, reject) => {
@@ -146,9 +144,9 @@ export class RecordingPopComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.partID=this.selectedPart.partID;
-
-    console.log("Score id: ",this.scoreID);
+    if(this.selectedPart){
+      this.partID=this.selectedPart.partID;
+    }
 
     this.recordingCount= this.ensembleService.getRecordingsLength();
     console.log("recording Count ngOnInit: ",this.recordingCount);

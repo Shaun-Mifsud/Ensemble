@@ -122,7 +122,7 @@ export class EnsembleService extends BaseService {
   }
 
   getRecordingByPart(IDvalue:number):any{
-    return this.recording.filter(r => r.id == IDvalue);
+    return this.recording.filter(r => r.partID == IDvalue);
   }
 
 

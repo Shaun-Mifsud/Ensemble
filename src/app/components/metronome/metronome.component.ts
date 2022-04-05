@@ -13,7 +13,7 @@ import  SlideRuler  from 'slider-ruler/slide-ruler';
 
 export class MetronomeComponent implements OnInit {
 
-  @ViewChild('slideRuler', { read: ElementRef, static:false }) slideRuler;
+  @ViewChild('slideRuler', { read: ElementRef, static:true }) slideRuler;
 
   public noOfBeats:number= 4 ;
   public beatValue:number= 4;

@@ -48,7 +48,7 @@ export interface Part {
     partFamiliy: string;
     partName: string;
     partPath: string;
-    recordingID?: number;
+    recordings?: Recording[];
 }
 
 export interface User {

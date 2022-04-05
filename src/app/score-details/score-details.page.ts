@@ -29,8 +29,8 @@ export class ScoreDetailsPage implements OnInit {
 
   //variables used to contain each respective part from the selected score
   //categories variables
+  // public orchestra: { name: string, parts: Part[], rec }
   public strings:Part[] = [];
-  public stringRec:Recording[]=[];
   public woodwind:Part[] = [];
   public brass:Part[] = [];
   public percussion:Part[] = [];
@@ -69,23 +69,10 @@ export class ScoreDetailsPage implements OnInit {
     
 
       for(let list in stringList){
-        this.strings.push(stringList[list]);
+        const instrument = stringList[list];
+        instrument.recordings = this.ensembleService.getRecordingByPart(instrument.partID) || [];
+        this.strings.push(instrument);
       }
-
-      stringList.forEach(strings => {
-
-        console.log("for each ID",strings.partID);
-        
-        
-        if(strings.recordingID != null){
-          console.log("Recording no ", strings.recordingID, " Found !");
-          this.stringRec[this.stringRec.length]=this.ensembleService.getRecordingByPart(strings.recordingID);
-        }      
-        
-      });
-
-      console.log("stringrec: ",this.stringRec);
-
 
       //brass
       let brassList = Object.values(this.parts.filter(f => f.partFamiliy == 'brass'));
@@ -108,21 +95,26 @@ export class ScoreDetailsPage implements OnInit {
         this.percussion.push(percussionList[list]);
       }
 
-      //get recording by selected scoreID
-      this.recordings= this.ensembleService.getRecordingsByScoreID(this.scoreID);
-      console.log("recordings: ",this.recordings);
-
-      console.log('URL path: ',this.urlPath);
-      
-      //categories variables console output 
-      console.log("Strings: ",this.strings);
-      console.log("Woodwind: ",this.woodwind);
-      console.log("Brass: ",this.brass);
-      console.log("Percussion: ",this.percussion);
+      this.getRecordings();
 
         }
       }
 
+  
+    getRecordings(){
+        //get recording by selected scoreID
+        this.recordings= this.ensembleService.getRecordingsByScoreID(this.scoreID);
+          
+        console.log("recordings: ",this.recordings);
+  
+        console.log('URL path: ',this.urlPath);
+        
+        //categories variables console output 
+        console.log("Strings: ",this.strings);
+        console.log("Woodwind: ",this.woodwind);
+        console.log("Brass: ",this.brass);
+        console.log("Percussion: ",this.percussion);
+    }
 
   //To navigate to score page by the part selected by the user
   partSelect(instrInPart:string){
@@ -200,11 +192,13 @@ export class ScoreDetailsPage implements OnInit {
   }
 
   //play recording of selected recording by part
-  playRec(partID:number){
-    var sound = new Audio(this.recordings[partID].base64);
+  playRec(recording:Recording){
+    // console.log("part ID in playREc func: ",partID);
+    
+    var sound = new Audio(recording.base64); // TO BE CHANGED
     sound.play();
     
-    console.log("played: ",this.recordings[partID].partID);
+    // console.log("played: ",this.recordings[partID].partID);
     
   }
 
