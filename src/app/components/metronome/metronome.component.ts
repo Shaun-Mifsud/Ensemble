@@ -79,11 +79,11 @@ export class MetronomeComponent implements OnInit {
     return new SlideRuler (
           {
             el: this.slideRuler.nativeElement,
-            maxValue: 32,
-            minValue: 250,
+            maxValue: 250,
+            minValue: 32,
             currentValue: 60,
             handleValue: this.handleValue,
-            precision: 1
+            precision: 1    
           }
         );
   }

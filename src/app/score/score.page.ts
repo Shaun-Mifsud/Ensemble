@@ -1,5 +1,5 @@
 import { LEADING_TRIVIA_CHARS } from '@angular/compiler/src/render3/view/template';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { ActivatedRoute} from '@angular/router';
 import { ModalController, PopoverController } from '@ionic/angular';
 
@@ -13,12 +13,15 @@ import { EnsembleService } from '../services/ensemble.service';
 import { ToolsService } from '../services/tools.service';
 import { Part, Score } from '../struct/ensemble';
 
+
+
 @Component({
   selector: 'app-score',
   templateUrl: './score.page.html',
   styleUrls: ['./score.page.scss'],
 })
 export class ScorePage implements OnInit {
+
 
   rotationSubscription:any;
   zoomScaleSubscription:any;
@@ -44,7 +47,13 @@ export class ScorePage implements OnInit {
             ) 
   { }
 
+  
+    handleValue(value) {
+      console.log(value); //SlideRuler return value
+    }
+
   ngOnInit() {
+
     //get ID the user selected from URL
     this.scoreID=parseInt(this.route.snapshot.params['scoreID']);
     
