@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@an
 import { PickerOptions } from '@ionic/core';
 import { PickerController } from '@ionic/angular';
 
-import  SlideRuler  from 'slider-ruler/slide-ruler';
+import  SlideRuler  from 'slide-ruler';
 
 @Component({
   selector: 'app-metronome',

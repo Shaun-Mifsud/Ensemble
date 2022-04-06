@@ -103,8 +103,8 @@ export class ScoreDetailsPage implements OnInit {
 
       this.getRecordings();
 
-        }
-      }
+    }
+  }
 
   
     getRecordings(){
@@ -137,6 +137,11 @@ export class ScoreDetailsPage implements OnInit {
     //navigate by selectedPart
     this.router.navigate(['/score', this.scoreID, this.selectedPart]);
 
+  }
+
+  getArrayWithRecordings(array: Part[]): Part[]
+  {
+    return array.filter(a => a.recordings != null && a.recordings.length > 0) || [];
   }
 
   //To display only the family of instruments that are available in the score
