@@ -70,11 +70,9 @@
       
     </ion-row>
   </ion-grid>  
-</ion-header>
-
-<ion-content [fullscreen]="true">
+  
   <!--segment nav-->
-  <ion-segment color="secondary" [(ngModel)]="selectedtab">
+  <ion-segment [(ngModel)]="selectedtab">
     <ion-segment-button value="posts" layout="icon-start">
       <ion-label>Posts</ion-label>
       <ion-icon name="chatbox-ellipses"></ion-icon>
@@ -84,13 +82,15 @@
       <ion-label>Events</ion-label>
       <ion-icon name="calendar-clear"></ion-icon>
     </ion-segment-button>
-
+    
     <ion-segment-button value="scores" layout="icon-start">
       <ion-label>Scores</ion-label>
       <ion-icon name="library"></ion-icon>
     </ion-segment-button>
   </ion-segment>
-
+</ion-header>
+  
+<ion-content [fullscreen]="true">
   <!--posts-->
   <div *ngIf="selectedtab =='posts'">
     <div>

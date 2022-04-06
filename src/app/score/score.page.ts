@@ -48,7 +48,6 @@ export class ScorePage implements OnInit {
     //get ID the user selected from URL
     this.scoreID=parseInt(this.route.snapshot.params['scoreID']);
     
-
     //get score by scoreID
     this.selectedScore=this.ensembleService.getScoreByID(this.scoreID);
 

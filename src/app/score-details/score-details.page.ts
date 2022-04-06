@@ -74,24 +74,30 @@ export class ScoreDetailsPage implements OnInit {
         this.strings.push(instrument);
       }
 
-      //brass
-      let brassList = Object.values(this.parts.filter(f => f.partFamiliy == 'brass'));
-
-      for(let list in brassList){
-        this.brass.push(brassList[list]);
-      }
-
       //woodwind
       let woodwindList = Object.values(this.parts.filter(f => f.partFamiliy == 'woodwind'));
 
       for(let list in woodwindList){
+        const instrument = woodwindList[list];
+        instrument.recordings = this.ensembleService.getRecordingByPart(instrument.partID) || [];
         this.woodwind.push(woodwindList[list]);
+      }
+
+      //brass
+      let brassList = Object.values(this.parts.filter(f => f.partFamiliy == 'brass'));
+
+      for(let list in brassList){
+        const instrument = brassList[list];
+        instrument.recordings = this.ensembleService.getRecordingByPart(instrument.partID) || [];
+        this.brass.push(brassList[list]);
       }
 
       //percussion
       let percussionList = Object.values(this.parts.filter(f => f.partFamiliy == 'percussion'));
 
       for(let list in percussionList){
+        const instrument = percussionList[list];
+        instrument.recordings = this.ensembleService.getRecordingByPart(instrument.partID) || [];
         this.percussion.push(percussionList[list]);
       }
 
@@ -114,6 +120,12 @@ export class ScoreDetailsPage implements OnInit {
         console.log("Woodwind: ",this.woodwind);
         console.log("Brass: ",this.brass);
         console.log("Percussion: ",this.percussion);
+        
+        console.log("string rec: ",Object.values(this.strings.filter(f => f.recordings)).length);
+        console.log("woodwind rec: ",Object.values(this.woodwind.filter(f => f.recordings)).length);
+        console.log("brass rec: ",Object.values(this.brass.filter(f => f.recordings)).length);
+        console.log("percussion rec: ",Object.values(this.percussion.filter(f => f.recordings)).length);
+        
     }
 
   //To navigate to score page by the part selected by the user
@@ -162,30 +174,38 @@ export class ScoreDetailsPage implements OnInit {
   }
 
   //check if recording is avialable on selected part
-  checkRecording(partName:string):boolean{
+  checkRecording(partName:string):boolean{    
     switch(partName){
       case 'strings':{
-        if(this.strings.length < 1){
-          return false;
+        if(Object.values(this.strings.filter(f => f.recordings)).length > 0){          
+          console.log("String REC found !");          
+          return true;
         }
-        else true;
+        else  false;
       }
 
-      case 'woodwind':{
+      case 'woodwind':{        
+        if(Object.values(this.woodwind.filter(f => f.recordings)).length > 0){          
+          console.log("woodwind REC found !");          
+          return true;
+        }
+        else  false;
 
       }
       case 'brass':{
-        if(this.brass.length < 1){
-          return false;
+        if(Object.values(this.brass.filter(f => f.recordings)).length > 0){          
+          console.log("Brass REC found !");          
+          return true;
         }
-        else return true;
+        else  false;
 
       }
       case 'percussion':{
-        if(this.percussion.length < 1){
-          return false;
+        if(Object.values(this.percussion.filter(f => f.recordings)).length > 0){          
+          console.log("percussion REC found !");          
+          return true;
         }
-        else return true;
+        else  false;
       }
 
     }    
@@ -193,29 +213,26 @@ export class ScoreDetailsPage implements OnInit {
 
   //play recording of selected recording by part
   playRec(recording:Recording){
-    // console.log("part ID in playREc func: ",partID);
+    var sound = new Audio(recording.base64); 
+    console.log("Part ID of the audio played: ",recording.partID);
+    console.log("sound playing: ",sound);
     
-    var sound = new Audio(recording.base64); // TO BE CHANGED
     sound.play();
-    
-    // console.log("played: ",this.recordings[partID].partID);
-    
+
   }
 
+  //event model
+  async showModal(){
+    const modal = await this.modalCtrl.create({
+      component:NewEventComponent,
+      componentProps: {ensembleID:this.selectedScore.ensembleID, ensembleEvent:this.ensembleService.getEventsLength()},
+      cssClass:'eventModal'
+    })
 
+    await modal.present();
+  }
 
-    //event model
-    async showModal(){
-      const modal = await this.modalCtrl.create({
-        component:NewEventComponent,
-        componentProps: {ensembleID:this.selectedScore.ensembleID, ensembleEvent:this.ensembleService.getEventsLength()},
-        cssClass:'eventModal'
-      })
-  
-      await modal.present();
-    }
-  
-    async close(){
-      await this.modalCtrl.dismiss();
-    }
+  async close(){
+    await this.modalCtrl.dismiss();
+  }
 }
