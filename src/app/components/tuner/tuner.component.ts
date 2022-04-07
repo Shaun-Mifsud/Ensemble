@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import * as Tone from 'tone';
-import { Oscillator, Synth, Volume } from 'tone';
 
 @Component({
   selector: 'app-tuner',

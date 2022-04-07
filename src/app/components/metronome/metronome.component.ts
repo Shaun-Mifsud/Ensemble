@@ -3,6 +3,9 @@ import { PickerOptions } from '@ionic/core';
 import { PickerController } from '@ionic/angular';
 
 import  SlideRuler  from 'slide-ruler';
+import * as Tone from 'tone';
+import { LEADING_TRIVIA_CHARS } from '@angular/compiler/src/render3/view/template';
+import { isThisQuarter } from 'date-fns';
 
 @Component({
   selector: 'app-metronome',
@@ -15,10 +18,10 @@ export class MetronomeComponent implements OnInit {
 
   @ViewChild('slideRuler', { read: ElementRef, static:true }) slideRuler;
 
-  public noOfBeats:number= 4;
-  public beatValue:number= 4;
+  public noOfBeats:number = 4;
+  public beatValue:number = 4;
   public btnCheck: boolean = false;
-  public soundIsPlaying: boolean = false;
+  public barCounter:number;
 
 
   ngOnInit() {
@@ -134,18 +137,50 @@ export class MetronomeComponent implements OnInit {
   }
 
   handleValue(value) {
-    console.log(value); 
+    //this.selectedBpm=value;
+    Tone.Transport.bpm.value = value;
   }
 
   getBtnValue(value){
     if(value.detail.checked){
       this.btnCheck=true;
+      this.setMetronome();
+      this.start();
+      console.log('true');
     }
     
     else{
       this.btnCheck=false;
-      this.soundIsPlaying=false;
+      this.stop();
     }
   }
+
+  //sound
+  setMetronome(){
+    var metronome = new Tone.Player("assets/sounds/metronome/woodblock.wav").toDestination();
+		Tone.Transport.bpm.value=60;
+
+
+    //this will start the player on every quarter note
+    Tone.Transport.scheduleRepeat(function(time){
+        metronome.start(time);
+    }, "4n");
+
+  }
+
+  start() {
+    Tone.Transport.start();
+  }
+
+  stop() {
+    Tone.Transport.stop();
+
+    //this.metronome=undefined;
+    
+    this.barCounter= 0;
+  }
+
+
+
   
 }
