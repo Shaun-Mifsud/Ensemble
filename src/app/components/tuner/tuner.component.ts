@@ -24,7 +24,7 @@ export class TunerComponent implements OnInit {
   playNote(selectedNote:string){
 
     //change background colour on ion-item which is currently selected 
-    this.currentlySelected=selectedNote;
+    this.currentlySelected= selectedNote;
 
     this.btnCheck=true;
 

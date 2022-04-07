@@ -131,7 +131,7 @@ export class ScorePage implements OnInit {
   }
 
   pageInitialized(e: any) {
-    console.log('(pages-initialized)', e.source._pages.length);
+    this.noOfPages= e.source._pages.length;
   }
 
   
@@ -212,13 +212,12 @@ export class ScorePage implements OnInit {
   //zoom scale from subscription
   selectedZoomScale(zoomScale:any){    
     this.zoomScale=zoomScale;
-    console.log("selecged zoom scale fun: ",this.zoomScale);
+    console.log("selecged zoom scale func: ",this.zoomScale);
     
   }
 
   
   ngOnDestroy() {
-   
     this.rotationSubscription.unsubscribe();
     this.zoomScaleSubscription.unsubscribe();
   }

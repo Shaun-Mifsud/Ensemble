@@ -4,19 +4,16 @@
   </ion-label>
   
   <ion-buttons slot="end">
-    <ion-toggle color="primary"></ion-toggle>
+    <ion-toggle color="primary" [checked]="btnCheck" (ionChange)="getBtnValue($event)"></ion-toggle>
   </ion-buttons>
 </ion-toolbar>
 
 <ion-content>
-  <h3>Time Signature</h3>
   
-  <ion-item (click)="showPicker()">
-    <ion-card color="light">
-      <ion-chip>{{noOfBeats}}</ion-chip>
-      <ion-chip>{{beatValue}}</ion-chip>
-    </ion-card>
-  </ion-item>
+  <div id="timeSigniture">
+    <ion-card color="light" (click)="showPicker('beats')">{{noOfBeats}}</ion-card>
+    <ion-card color="light" (click)="showPicker('value')">{{beatValue}}</ion-card>
+  </div>
   
   <ion-item>
     <div #slideRuler></div>

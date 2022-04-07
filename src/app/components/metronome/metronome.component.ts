@@ -15,8 +15,10 @@ export class MetronomeComponent implements OnInit {
 
   @ViewChild('slideRuler', { read: ElementRef, static:true }) slideRuler;
 
-  public noOfBeats:number= 4 ;
+  public noOfBeats:number= 4;
   public beatValue:number= 4;
+  public btnCheck: boolean = false;
+  public soundIsPlaying: boolean = false;
 
 
   ngOnInit() {
@@ -27,51 +29,94 @@ export class MetronomeComponent implements OnInit {
   constructor(private pickerCtrl: PickerController) {}
 
 
-  async showPicker(){
-    let opts: PickerOptions = {
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel'
-        },
-        {
-          text: 'Done',
-          role:'done'
+  async showPicker(selected:string){
+    
+    if(selected =='beats'){
+      let beatsOpts: PickerOptions = {
+        buttons: [
+          {
+            text: 'Cancel',
+            role: 'cancel'
+          },
+          {
+            text: 'Done',
+            role:'done',
+          }
+        ],
+        columns: [
+          {
+            name: 'noOfBeats',
+            options: [
+              { text: '1', value: '1'},
+              { text: '2', value: '2'},
+              { text: '3', value: '3'},
+              { text: '4', value: '4'},
+              { text: '5', value: '5'},
+              { text: '6', value: '6'},
+              { text: '7', value: '7'},
+              { text: '8', value: '8'},
+              { text: '9', value: '9'},
+              { text: '10', value: '10'},
+              { text: '11', value: '11'},
+              { text: '12', value: '12'}
+            ]
+          }
+        ],
+        cssClass:'timeSignaturePicker',
+  
+      };
+      
+      const picker = await this.pickerCtrl.create(beatsOpts);
+      await picker.present();
+  
+      const dismiss = await picker.onDidDismiss();
+        if (dismiss.role === "done") {
+          this.noOfBeats= dismiss.data.noOfBeats.value;
+    
+          console.log("number of beats : ",this.noOfBeats);
+          console.log("beat value: ",this.beatValue);
+          
         }
-      ],
-      columns: [
-        {
-          name: 'noOfBeats',
-          options: [
-            { text: '1', value: '1'},
-            { text: '2', value: '2'},
-            { text: '3', value: '3'},
-            { text: '4', value: '4'},
-            { text: '5', value: '5'},
-            { text: '6', value: '6'},
-            { text: '7', value: '7'},
-            { text: '7', value: '8'},
-            { text: '9', value: '9'},
-            { text: '10', value: '10'},
-            { text: '11', value: '11'},
-            { text: '12', value: '12'}
-          ]
-        },
-        {
-          name: 'beatValue',
-          options: [
-            { text: '2', value: '2'},
-            { text: '4', value: '4'},
-            { text: '8', value: '8'},
-            { text: '16', value: '16'}
-          ]
+    }
+    else{
+      let ValueOpts: PickerOptions = {
+        buttons: [
+          {
+            text: 'Cancel',
+            role: 'cancel'
+          },
+          {
+            text: 'Done',
+            role:'done',
+          }
+        ],
+        columns: [
+          {
+            name: 'beatValue',
+            options: [
+              { text: '2', value: '2'},
+              { text: '4', value: '4'},
+              { text: '8', value: '8'},
+              { text: '16', value: '16'}
+            ]
+          }
+        ],
+        cssClass:'timeSignaturePicker',
+  
+      };
+      
+      const picker = await this.pickerCtrl.create(ValueOpts);
+      await picker.present();
+  
+      const dismiss = await picker.onDidDismiss();
+        if (dismiss.role === "done") {
+          this.beatValue= dismiss.data.beatValue.value;
         }
-      ],
-      cssClass:'timeSignaturePicker',
+    }
 
-    };
 
   }
+
   //slider ruler
   _renderSlideRuler(){
     console.log("slider: ",this.slideRuler);
@@ -89,9 +134,18 @@ export class MetronomeComponent implements OnInit {
   }
 
   handleValue(value) {
-    console.log(value); //SlideRuler return value
+    console.log(value); 
   }
-    
 
-}
+  getBtnValue(value){
+    if(value.detail.checked){
+      this.btnCheck=true;
+    }
+    
+    else{
+      this.btnCheck=false;
+      this.soundIsPlaying=false;
+    }
+  }
   
+}
