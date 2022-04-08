@@ -4,8 +4,7 @@ import { PickerController } from '@ionic/angular';
 
 import  SlideRuler  from 'slide-ruler';
 import * as Tone from 'tone';
-import { LEADING_TRIVIA_CHARS } from '@angular/compiler/src/render3/view/template';
-import { isThisQuarter } from 'date-fns';
+
 
 @Component({
   selector: 'app-metronome',
@@ -21,7 +20,8 @@ export class MetronomeComponent implements OnInit {
   public noOfBeats:number = 4;
   public beatValue:number = 4;
   public btnCheck: boolean = false;
-  public barCounter:number;
+  public soundIsPlaying:boolean= false;
+  public barCounter:number=0;
 
 
   ngOnInit() {
@@ -131,7 +131,7 @@ export class MetronomeComponent implements OnInit {
             minValue: 32,
             currentValue: 60,
             handleValue: this.handleValue,
-            precision: 1    
+            precision: 0.5,    
           }
         );
   }
@@ -142,30 +142,35 @@ export class MetronomeComponent implements OnInit {
   }
 
   getBtnValue(value){
-    if(value.detail.checked){
+    if(value.detail.checked){   
+      this.startMetronome();
       this.btnCheck=true;
-      this.setMetronome();
-      this.start();
-      console.log('true');
     }
     
     else{
       this.btnCheck=false;
+      this.soundIsPlaying=false;
       this.stop();
     }
   }
 
   //sound
-  setMetronome(){
+  startMetronome(){
     var metronome = new Tone.Player("assets/sounds/metronome/woodblock.wav").toDestination();
 		Tone.Transport.bpm.value=60;
-
 
     //this will start the player on every quarter note
     Tone.Transport.scheduleRepeat(function(time){
         metronome.start(time);
-    }, "4n");
+        
+        this.barCounter= this.barCounter + 1;
+        console.log(this.barCounter);
+        
+      }, "4n");
+      
 
+    Tone.Transport.start();
+    this.soundIsPlaying= true;
   }
 
   start() {
@@ -173,14 +178,14 @@ export class MetronomeComponent implements OnInit {
   }
 
   stop() {
-    Tone.Transport.stop();
 
-    //this.metronome=undefined;
-    
+    Tone.Transport.stop();
     this.barCounter= 0;
   }
 
 
+}
+
 
   
-}
+
