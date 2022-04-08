@@ -78,12 +78,17 @@ export class MetronomeComponent implements OnInit {
       const dismiss = await picker.onDidDismiss();
         if (dismiss.role === "done") {
           this.noOfBeats= dismiss.data.noOfBeats.value;
-    
-          console.log("number of beats : ",this.noOfBeats);
-          console.log("beat value: ",this.beatValue);
           
+          if(this.soundIsPlaying){
+            this.stop();
+            this.startMetronome(this.noOfBeats,this.beatValue);
+          }
+          else{
+            this.startMetronome(this.noOfBeats,this.beatValue);
+          }
         }
     }
+
     else{
       let ValueOpts: PickerOptions = {
         buttons: [
@@ -117,6 +122,14 @@ export class MetronomeComponent implements OnInit {
       const dismiss = await picker.onDidDismiss();
         if (dismiss.role === "done") {
           this.beatValue= dismiss.data.beatValue.value;
+
+          if(this.soundIsPlaying){
+            this.stop();
+            this.startMetronome(this.noOfBeats,this.beatValue);
+          }
+          else{
+            this.startMetronome(this.noOfBeats,this.beatValue);
+          }
         }
     }
 
@@ -159,8 +172,10 @@ export class MetronomeComponent implements OnInit {
   
   //sound
   startMetronome(noOfBeats:number, beatValue:number){
+    console.log('no Of Beats: ',noOfBeats);
+    console.log('beat Value: ',beatValue);
     
-    var barCount:number=1;
+    var barCount:number=0;
 
 		Tone.Transport.bpm.value=60;
     Tone.Transport.start();
@@ -181,12 +196,12 @@ export class MetronomeComponent implements OnInit {
       barCount = barCount + 1;
       console.log("bar count: ", barCount);
       
-      if(barCount == noOfBeats +1){
-        barCount=1;
+      if(barCount == noOfBeats){
+        barCount=0;
       }
 
       if(barCount  == 1){ 
-        console.log("bar counter ", barCount);
+        console.log("bar counter is 1");
 
         var firstBeat = new Howl({
           src: ['assets/sounds/metronome/woodblockFirstBeat.wav']
@@ -206,6 +221,7 @@ export class MetronomeComponent implements OnInit {
 
   stop() {
     Tone.Transport.cancel();
+    this.soundIsPlaying =false;
   }
 
 }
