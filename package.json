@@ -27,6 +27,7 @@
     "date-fns": "^2.28.0",
     "flat-embed": "^1.4.0",
     "fs-web": "^1.0.1",
+    "howler": "^2.2.3",
     "musicFlat": "file:",
     "ng2-pdf-viewer": "^6.4.0",
     "recordrtc": "^5.6.2",

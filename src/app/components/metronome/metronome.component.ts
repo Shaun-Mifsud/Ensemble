@@ -4,6 +4,7 @@ import { PickerController } from '@ionic/angular';
 
 import  SlideRuler  from 'slide-ruler';
 import * as Tone from 'tone';
+import {Howl, Howler} from 'howler'; 
 
 
 @Component({
@@ -21,15 +22,17 @@ export class MetronomeComponent implements OnInit {
   public beatValue:number = 4;
   public btnCheck: boolean = false;
   public soundIsPlaying:boolean= false;
-  public barCounter:number=0;
+  
 
 
   ngOnInit() {
     this._renderSlideRuler();
+
   }
 
 
-  constructor(private pickerCtrl: PickerController) {}
+  constructor(private pickerCtrl: PickerController) {
+  }
 
 
   async showPicker(selected:string){
@@ -137,13 +140,13 @@ export class MetronomeComponent implements OnInit {
   }
 
   handleValue(value) {
-    //this.selectedBpm=value;
     Tone.Transport.bpm.value = value;
   }
 
   getBtnValue(value){
     if(value.detail.checked){   
-      this.startMetronome();
+      this.startMetronome(this.noOfBeats,this.beatValue);
+      Tone.start();
       this.btnCheck=true;
     }
     
@@ -153,23 +156,47 @@ export class MetronomeComponent implements OnInit {
       this.stop();
     }
   }
-
+  
   //sound
-  startMetronome(){
-    var metronome = new Tone.Player("assets/sounds/metronome/woodblock.wav").toDestination();
+  startMetronome(noOfBeats:number, beatValue:number){
+    
+    var barCount:number=1;
+
 		Tone.Transport.bpm.value=60;
+    Tone.Transport.start();
+
+    var sound = new Howl({
+      src: ['assets/sounds/metronome/woodblock.wav'],
+      onplayerror: function() {
+        sound.once('unlock', function() {
+          sound.play();
+
+        });
+      }
+    });
 
     //this will start the player on every quarter note
-    Tone.Transport.scheduleRepeat(function(time){
-        metronome.start(time);
-        
-        this.barCounter= this.barCounter + 1;
-        console.log(this.barCounter);
-        
+    Tone.Transport.scheduleRepeat(function(){
+      sound.play();    
+      barCount = barCount + 1;
+      console.log("bar count: ", barCount);
+      
+      if(barCount == noOfBeats +1){
+        barCount=1;
+      }
+
+      if(barCount  == 1){ 
+        console.log("bar counter ", barCount);
+
+        var firstBeat = new Howl({
+          src: ['assets/sounds/metronome/woodblockFirstBeat.wav']
+        });
+
+        firstBeat.play();
+      }
+      
       }, "4n");
       
-
-    Tone.Transport.start();
     this.soundIsPlaying= true;
   }
 
@@ -178,11 +205,8 @@ export class MetronomeComponent implements OnInit {
   }
 
   stop() {
-
-    Tone.Transport.stop();
-    this.barCounter= 0;
+    Tone.Transport.cancel();
   }
-
 
 }
 
