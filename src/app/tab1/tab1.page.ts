@@ -15,6 +15,7 @@ Swiper.use([Pagination]);
   encapsulation: ViewEncapsulation.None
 })
 export class Tab1Page implements OnInit, AfterContentChecked {
+  
   @ViewChild('siwper') swiper: SwiperComponent;
 
   constructor(

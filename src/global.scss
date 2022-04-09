@@ -40,21 +40,33 @@ body{
     
 }
 
-
-
-h1{
-    font-weight: 550 !important;
+//content
+ion-content{
+    --padding-start: 2rem;
+    --padding-end: 2rem;
 }
 
+//ion-item
+ion-item{
+    ion-card{
+        margin-left:0;
+        margin-right:0;
+    }
+}
+
+ion-item::part(native){
+    padding-inline-start: 0;
+}
 
 //header
 ion-header{
-    padding: 2%;
+    padding: 2rem;
     min-height: 12.75%;
     background-color: #F2F7FF;    
 
     h1{
         font-size: 2.2em;
+        font-weight: 700;
     }
 }
 
@@ -74,7 +86,7 @@ ion-searchbar{
 ion-tab-bar{
     background: transparent !important;
     border: 0;
-    margin: 0 50px 0 50px;
+    margin: 0 2rem 0 2rem;
     height: 84px;
     
     ion-tab-button{
@@ -139,6 +151,12 @@ ion-tab-button{
 }
 
 
+.events,.ensemblePost,.recentPlaylists{
+    h2{
+        font-weight: 600;
+    }
+}
+
 
 //cards
 ion-card{
@@ -149,6 +167,7 @@ ion-card{
 
 //event card
 .events{
+
     ion-card{
         position: relative;
         background-image: url(assets/images/mpo.jpg);
@@ -235,7 +254,16 @@ ion-datetime{
 
 //ensemble post
 .ensemblePost{
-    color: var(--ion-color-primary);
+    ion-card{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+
+        padding-left: 1rem;
+        padding-right: 1rem;
+        color: var(--ion-color-primary);
+        min-height: 200px;
+    }
 
     ion-avatar{
         max-height: 100%;
