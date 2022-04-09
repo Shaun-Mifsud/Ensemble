@@ -27,11 +27,11 @@
       <!--events title & button-->
       <ion-row>
         <ion-col size="10">
-          <span class="iconify" data-icon="mdi:music-box-multiple" style="color: #0b1a33;"></span>
-  
-          <span>
+          <ion-item lines="none">
+            <span class="iconify" data-icon="mdi:music-box-multiple" style="color: #0b1a33;"></span>
             <h2>Upcoming Events</h2>
-          </span>
+          </ion-item>
+
         </ion-col>
   
         <ion-col size="2">
@@ -77,11 +77,11 @@
       <!--update title & button-->
       <ion-row>
         <ion-col size="10">
-          <span class="iconify" data-icon="mdi:music-box-multiple" style="color: #0b1a33;"></span>
-
-          <span>
+          <ion-item lines="none">
+            <span class="iconify" data-icon="mdi:music-box-multiple" style="color: #0b1a33;"></span>
             <h2>Ensemble Update</h2>
-          </span>
+          </ion-item>
+
         </ion-col>
 
         <ion-col size="2">
@@ -108,6 +108,8 @@
             <ion-col size="12">
                 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minus porro, voluptatibus quia quisquam
                   magni cupiditate officiis amet ex minima necessitatibus saepe, natus perspiciatis ut corporis?
+                  Voluptatem maxime unde placeat ratione. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minus porro, voluptatibus quia quisquam
+                  magni cupiditate officiis amet ex minima necessitatibus saepe, natus perspiciatis ut corporis?
                   Voluptatem maxime unde placeat ratione.
                 </p>
             </ion-col>
@@ -122,10 +124,10 @@
       <!--playlist title & button-->
       <ion-row>
         <ion-col size="10">
-          <span class="iconify" data-icon="ic:round-library-music"></span>
-          <span>
+          <ion-item lines="none">
+            <span class="iconify" data-icon="ic:round-library-music"></span>
             <h2>Recent playlist</h2>
-          </span>
+          </ion-item>
         </ion-col>
 
         <ion-col size="2">
@@ -196,14 +198,14 @@
                       <h1>{{score.name}}</h1>
                     </ion-col>
                     <ion-col size="2">
-                      <h4>{{score.composer}}</h4>
+                      <h3>{{score.composer}}</h3>
                     </ion-col>
                     <ion-col size="2">
-                      <h4>{{score.instruments}}</h4>
+                      <h3>{{score.instruments}}</h3>
                     </ion-col>
                     <ion-col size="2">
-                      <h4>{{ensembleService.getEnsembleByID(score.ensembleID)?
-                        ensembleService.getEnsembleByID(score.ensembleID).name : 'Personal' }}</h4>
+                      <h3>{{ensembleService.getEnsembleByID(score.ensembleID)?
+                        ensembleService.getEnsembleByID(score.ensembleID).name : 'Personal' }}</h3>
                       </ion-col>
                     </ion-row>
                   </ion-grid>
