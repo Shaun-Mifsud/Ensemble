@@ -72,22 +72,72 @@ ion-searchbar{
 
 //tabs
 ion-tab-bar{
-    background-color: #ffff;
+    background: transparent !important;
+    border: 0;
+    margin: 0 50px 0 50px;
+    height: 84px;
     
     ion-tab-button{
-        background-color: #fff;
+        margin:0 3rem 0 3rem;
 
-        ion-icon{
-            color:var(--ion-color-primary);
-            font-size: 26px;
+        ion-card{
+            background-color: #f2f7ff00; //transparent
+            box-shadow: none;
+            
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            padding: 4px;
+
+            width: 100%;
+            height: 100%;
+
+            ion-icon{
+                color:var(--ion-color-primary);
+                font-size: 26px;
+            }
+    
+            #circleIcon{
+                color:var(--ion-color-primary);
+                font-size: 40px;
+            }
         }
 
+    }
+}
+
+//tabs icons
+ion-tab-button{
+    .iconify{
+        color:var(--ion-color-primary);
+        font-size: 26px;
+    }
+}
+
+// selected tab
+.tab-selected{
+    
+    ion-card{
+        color: var(--ion-color-secondary-dark);
+        background-color: var(--ion-color-secondary-tint);
+        
+        .iconify{
+            color: var(--ion-color-secondary-dark);
+        }
+        
+        ion-icon{
+            color: var(--ion-color-secondary-dark);
+        }
+        
         #circleIcon{
-            color:var(--ion-color-primary);
-            font-size: 40px;
+            color: var(--ion-color-secondary-dark);
         }
     }
 }
+
 
 
 //cards
@@ -227,34 +277,6 @@ ion-datetime{
     color: var(--ion-color-secondary);
 }
 
-
-//tabs icons
-ion-tab-button{
-    .iconify{
-        color:var(--ion-color-primary);
-        font-size: 26px;
-    }
-}
-
-
-// selected tab
-.tab-selected{
-    color: var(--ion-color-danger);
-    background-color: var(--ion-tab--background-color-active);
-
-    .iconify{
-        color:var(--ion-color-danger);
-    }
-
-    ion-icon{
-        color:var(--ion-color-danger);
-    }
-
-    #circleIcon{
-        color:var(--ion-color-danger);
-    }
-}
-
 //segments
 ion-segment{
     .segment-button-checked{
@@ -311,10 +333,6 @@ ion-segment{
     h2, #listHeader, .iconify{
         color: var(--ion-color-success);
     }
-    .pieceCard{
-        border-left: 10px solid var(--ion-color-success);
-    }
-
 }
 
 ion-item-option{
@@ -329,9 +347,6 @@ ion-item-option{
 .favorites{
     h2, #listHeader, .iconify{
         color: var(--ion-color-tertiary);
-    }
-    .pieceCard{
-        border-left: 10px solid var(--ion-color-tertiary);
     }
 }
 
