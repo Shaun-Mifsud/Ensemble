@@ -168,21 +168,13 @@
 
 
         <!--list header-->
-        <ion-item>
+        <ion-item class="listHeader">
           <ion-grid>
             <ion-row>
-              <ion-col size="6">
-                <h6>Piece Title</h6>
-              </ion-col>
-              <ion-col size="2">
-                <h6>Composer</h6>
-              </ion-col>
-              <ion-col size="2">
-                <h6>Instrumentation</h6>
-              </ion-col>
-              <ion-col size="2">
-                <h6>Ensemble</h6>
-              </ion-col>
+              <ion-col size="6"><h6>Piece Title</h6></ion-col>
+              <ion-col size="2"><h6>Composer</h6></ion-col>
+              <ion-col size="2"><h6>Instrumentation</h6></ion-col>
+              <ion-col size="2"><h6>Ensemble</h6></ion-col>
             </ion-row>
           </ion-grid>
         </ion-item>
@@ -197,6 +189,7 @@
                     <ion-col size="6">
                       <h1>{{score.name}}</h1>
                     </ion-col>
+
                     <ion-col size="2">
                       <h3>{{score.composer}}</h3>
                     </ion-col>
