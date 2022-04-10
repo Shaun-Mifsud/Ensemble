@@ -104,10 +104,6 @@ export class EnsembleService extends BaseService {
   {    
     return this.score.filter(e => e.ensembleID == IDvalue);
   }
-
-  getScoresByComposer(composer:string): any{
-    return this.score.filter(c => c.composer == composer);
-  }
   
   //User
   getUserByID(IDvalue: number): User | undefined

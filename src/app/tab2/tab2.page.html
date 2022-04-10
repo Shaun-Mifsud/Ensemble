@@ -79,14 +79,14 @@
     </ion-accordion-group>
   </div>
 
-  <!--composers-->
-  <div class="allScores">
+  <!--for each composer-->
+  <div class="allScores" *ngFor="let composer of composers"> <!--class to be CHANGED-->
     <ion-accordion-group value="allScores">
       <ion-accordion value="allScores">
         <ion-item slot="header">
           <span class="iconify" data-icon="ic:round-library-music"></span>
           <span>
-              <h2>composer</h2>
+              <h2>{{composer.composer}}</h2>
             </span>
         </ion-item>
 
@@ -103,7 +103,7 @@
               </ion-grid>
           </ion-item>
 
-          <ion-item-sliding *ngFor="let score of ensembleService.getScoresByComposer('Shaun Mifsud'); let i = index;" [routerLink]="['/score-detail/', score.id]">
+          <ion-item-sliding *ngFor="let score of composer.score; let i = index;" [routerLink]="['/score-detail/', score.id]">
             <ion-item>
             <!--piece card-->
               <ion-card class="pieceCard" color="light">
