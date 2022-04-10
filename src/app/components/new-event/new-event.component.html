@@ -8,75 +8,81 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content color="light" [fullscreen]="true">
+<ion-content [fullscreen]="true">
     <ion-grid class="eventFields">
-        <ion-row>
-            <!--name-->
-            <ion-col size="6">
-                <ion-item fill="solid">
-                    <ion-label position="floating">Name</ion-label>
-                    <ion-input clearInput [(ngModel)]="newEvent.name"></ion-input>
-                </ion-item>
-            </ion-col>
+        <div id="newEventSection">
+            <ion-row>
+                <!--name-->
+                <ion-col size="6">
+                    <ion-item fill="solid">
+                        <ion-label position="floating">Name</ion-label>
+                        <ion-input clearInput [(ngModel)]="newEvent.name"></ion-input>
+                    </ion-item>
+                </ion-col>
 
-            <!--type-->
-            <ion-col size="6">
-                <ion-item>
-                    <ion-label position="floating">Type</ion-label>
-                        <ion-select interface="popover" [(ngModel)]="newEvent.type">
-                            <ion-select-option value="Performance">Performance</ion-select-option>
-                            <ion-select-option value="Rehearsal">Rehearsal</ion-select-option>
-                        </ion-select>
-                </ion-item>
-            </ion-col>
-        </ion-row> 
+                <!--type-->
+                <ion-col size="6">
+                    <ion-item>
+                        <ion-label position="floating">Type</ion-label>
+                            <ion-select interface="popover" [(ngModel)]="newEvent.type">
+                                <ion-select-option value="Performance">Performance</ion-select-option>
+                                <ion-select-option value="Rehearsal">Rehearsal</ion-select-option>
+                            </ion-select>
+                    </ion-item>
+                </ion-col>
+            </ion-row> 
 
-        <!--ensemble-->
-        <ion-row>
-            <ion-col size="12" *ngIf="!hasEnsemble">
-                <ion-item>
-                    <ion-label position="floating">Ensemble</ion-label>
-                        <ion-select interface="popover" [(ngModel)]="newEvent.ensembleID">
-                            <ion-select-option value=0>Personal</ion-select-option>
-                            <ion-select-option *ngFor="let ensemble of ensembleService.ensemble" value={{ensemble.id}}>{{ensemble.name}}</ion-select-option>
-                        </ion-select>
-                </ion-item>
-            </ion-col>
-        </ion-row>
+            <!--ensemble-->
+            <ion-row>
+                <ion-col size="12" *ngIf="!hasEnsemble">
+                    <ion-item>
+                        <ion-label position="floating">Ensemble</ion-label>
+                            <ion-select interface="popover" [(ngModel)]="newEvent.ensembleID">
+                                <ion-select-option value=0>Personal</ion-select-option>
+                                <ion-select-option *ngFor="let ensemble of ensembleService.ensemble" value={{ensemble.id}}>{{ensemble.name}}</ion-select-option>
+                            </ion-select>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
 
-        <!--Details-->
-        <ion-row>
-            <ion-col size="12">
-                <ion-item fill="solid">
-                    <ion-label position="floating">Details</ion-label>
-                    <ion-input id="details" type="text" inputmode="description" [(ngModel)]="newEvent.description"></ion-input>
-                </ion-item>
-            </ion-col>
-        </ion-row>
+            <!--Details-->
+            <ion-row>
+                <ion-col size="12">
+                    <ion-item fill="solid">
+                        <ion-label position="floating">Details</ion-label>
+                        <ion-input id="details" type="text" inputmode="description" [(ngModel)]="newEvent.description"></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+        </div>
         
         <!--location-->
-        <ion-row>
-            <ion-col size="12">
-                <h3>Location</h3>
-                
-                <app-map [writeMap]=true (chosenLocation)="getLocation($event)" ></app-map>
-            </ion-col>
-        </ion-row>
+        <div class="newEventSection">
+            <ion-row>
+                <ion-col size="12">
+                    <h3>Location</h3>
+                    
+                    <app-map [writeMap]=true (chosenLocation)="getLocation($event)" ></app-map>
+                </ion-col>
+            </ion-row>
+        </div>
         
-        <ion-row>
-            <!--date & time-->
-            <ion-col size="12">
-                <h3>Date</h3>
-                <ion-datetime 
-                #datetime
-                [value]="dateValue"
-                presentation="date-time"
-                size="cover"
-                [min]="currentYear"
-                max="2099"
-                (ionChange)="dateChanged(datetime.value);"></ion-datetime>
-            </ion-col>
-        </ion-row>
+        <!--date & time-->
+        <div class="newEventSection">
+            <ion-row>
+                <ion-col size="12">
+                    <h3>Date</h3>
+                    <ion-datetime 
+                    #datetime
+                    [value]="dateValue"
+                    presentation="date-time"
+                    size="cover"
+                    [min]="currentYear"
+                    max="2099"
+                    (ionChange)="dateChanged(datetime.value);"></ion-datetime>
+                </ion-col>
+            </ion-row>
+        </div>
 
         <ion-row>
             <ion-col size="12">
