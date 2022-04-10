@@ -31,13 +31,18 @@
 body{
     //text color
     color: var(--ion-color-text);
-
+    
     //background treble 
     background: url(assets/images/treble.svg) no-repeat #ECF0FF;
     background-attachment: fixed;
     background-position: 130% 100%; 
     background-size: 42%;
     
+}
+
+//swiper
+.swiper-pagination-bullet-active {
+    background-color: var(--ion-color-primary) !important;
 }
 
 //content
@@ -152,7 +157,8 @@ ion-tab-bar{
 }
 
 
-.events,.ensemblePost,.recentPlaylists{
+.events,.ensemblePost,.recentPlaylists,.favoritesScores,.scoresByComposer,.allScores
+,.recentScores{
     h2{
         color: var(--ion-color-text);
         margin-left: 1rem;
@@ -260,6 +266,7 @@ ion-datetime{
 
 //ensemble post
 .ensemblePost{
+
     ion-card{
         display: flex;
         flex-direction: column;
@@ -282,17 +289,6 @@ ion-datetime{
         color: var(--ion-color-tertiary);
     }
 }
-
-//recent Playlists
-.recentPlaylists{
-
-    ion-chip{
-        margin-right: 2rem;
-        width: 10rem;
-        height: 4rem;
-    }
-}
-
 
 //icons
 .iconify{
@@ -377,9 +373,9 @@ ion-segment{
 
 }
 
-// * specific cards *
+// * specific sections *
 
-.recentScores, .favoritesScores, .allScores{
+.recentScores, .favoritesScores, .allScores, .scoresByComposer, .recentPlaylists{
     margin-top: 1rem;
     border-radius: var(--card-border);
     padding: 1rem;
@@ -389,8 +385,40 @@ ion-segment{
 .recentScores{
     background-color: var(--ion-color-success-light);
 
+    //swiper
+    .swiper-pagination-bullet-active {
+        background-color: var(--ion-color-success) !important;
+    }
+
+
     h2, .iconify{
         color: var(--ion-color-success);
+    }
+
+    ion-text{
+        color: var(--ion-color-text);
+    }
+
+    ion-card{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+
+        ion-card-title, ion-card-subtitle{
+            color: var(--ion-color-text);
+        }
+    }
+
+    #eventCardDetails{
+        margin-top: 1em;
+        text-align: center;
+        background-color: var(--ion-color-success-light);
+        border-radius:var(--card-border);
+        
+        #ensembleName{
+            color: var(--ion-color-success);
+            padding: 0.5em;
+        }
     }
 }
 
@@ -403,6 +431,16 @@ ion-segment{
     }
 }
 
+//scores by composer
+.scoresByComposer{
+    background-color: var(--ion-color-tertiary-light);
+
+    h2, .iconify{
+        color: var(--ion-color-primary);
+    }
+}
+
+
 //all scores
 .allScores{
     background-color: var(--ion-color-primary-light);
@@ -410,6 +448,33 @@ ion-segment{
     h2, .iconify{
         color: var(--ion-color-primary);
     }
+}
+
+//recent playlist on tab1
+.recentPlaylists{
+    background-color: var(--ion-color-primary-light);
+    h2, .iconify{
+        color: var(--ion-color-primary);
+    }
+}
+
+//categories  on tab1
+.categories{
+    ion-col{
+        display: flex;
+        justify-content: space-between;
+
+        ion-chip{
+            margin-right: 2rem;
+            width: 10rem;
+            height: 4rem;
+        }
+    }
+
+    h2, .iconify{
+        color: var(--ion-color-primary);
+    }
+
 }
 
 

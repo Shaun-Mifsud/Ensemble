@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
-import { Compressor } from 'tone';
+import { Component, ViewChild } from '@angular/core';
 import { EnsembleService } from '../services/ensemble.service';
-import { Score } from '../struct/ensemble';
+
+import { SwiperComponent } from 'swiper/angular';
+import Swiper, { SwiperOptions, Pagination } from 'swiper';
+Swiper.use([Pagination]);
 
 
 @Component({
@@ -10,6 +12,8 @@ import { Score } from '../struct/ensemble';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
+
+  @ViewChild('siwper') swiper: SwiperComponent;
 
   public composerName: string[];
   public composers:[{composer:string, score:any[] }] = [{composer:'random composer',score:['random score']}];
@@ -20,9 +24,11 @@ export class Tab2Page {
 
     let score = this.ensembleService.score;
 
+    //get every unique composer name
     this.composerName = score.map(item => item.composer)
       .filter((value, index, self) => self.indexOf(value) === index)
 
+      //for each composer, push 'scores' of that composer to 'composers'
       for(var i = 0; i < this.composerName.length; i++){
         this.composers.push({composer:this.composerName[i], score: score.filter(c => c.composer == this.composerName[i])});
       } 
@@ -32,7 +38,17 @@ export class Tab2Page {
     
   }
 
+      //swiper
+  ngAfterContentChecked() {
+    if (this.swiper) {
+      this.swiper.updateSwiper({});
+    }
+  }
 
-    
+  config: SwiperOptions = {
+    slidesPerView: 3,
+    pagination: true,
+
+  }    
 
 }

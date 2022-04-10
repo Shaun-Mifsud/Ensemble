@@ -118,23 +118,9 @@
     </ion-grid>
   </div>
 
-  <!--recent Playlists-->
-  <div class="recentPlaylists">
+  <!--cateogries-->
+  <div class="categories">
     <ion-grid>
-      <!--playlist title & button-->
-      <ion-row>
-        <ion-col size="10">
-          <ion-item lines="none">
-            <span class="iconify" data-icon="ic:round-library-music"></span>
-            <h2>Recent playlist</h2>
-          </ion-item>
-        </ion-col>
-
-        <ion-col size="2">
-          <ion-button routerLink="../tab2" routerDirection="forward">View Playlists</ion-button>
-        </ion-col>
-      </ion-row>
-
       <ion-row>
         <ion-col size="12">
           <ion-chip color="tertiary">
@@ -156,65 +142,77 @@
             <ion-icon name="star"></ion-icon>
             <ion-label>Summer Exam</ion-label>
           </ion-chip>
-
         </ion-col>
       </ion-row>
 
     </ion-grid>
+  </div>
 
-    <!--recently viewed-->
-    <div class="recent">
-      <ion-list lines="none">
+  <!--recently Playlist-->
+  <div class="recentPlaylists">
+    <!--playlist title & button-->
+    <ion-row>
+      <ion-col size="10">
+        <ion-item lines="none">
+          <span class="iconify" data-icon="ic:round-library-music"></span>
+          <h2>Recent playlist</h2>
+        </ion-item>
+      </ion-col>
 
+      <ion-col size="2">
+        <ion-button routerLink="../tab2" routerDirection="forward">View Playlists</ion-button>
+      
+      </ion-col>
+    </ion-row>
+    
+    <ion-list lines="none">
+      <!--list header-->
+      <ion-item class="listHeader">
+        <ion-grid>
+          <ion-row>
+            <ion-col size="6"><h6>Piece Title</h6></ion-col>
+            <ion-col size="2"><h6>Composer</h6></ion-col>
+            <ion-col size="2"><h6>Instrumentation</h6></ion-col>
+            <ion-col size="2"><h6>Ensemble</h6></ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
 
-        <!--list header-->
-        <ion-item class="listHeader">
-          <ion-grid>
-            <ion-row>
-              <ion-col size="6"><h6>Piece Title</h6></ion-col>
-              <ion-col size="2"><h6>Composer</h6></ion-col>
-              <ion-col size="2"><h6>Instrumentation</h6></ion-col>
-              <ion-col size="2"><h6>Ensemble</h6></ion-col>
-            </ion-row>
-          </ion-grid>
+      <ion-item-sliding *ngFor="let score of ensembleService.score | slice:0:3; let i = index;">
+        <!--piece card-->
+        <ion-item>
+          <ion-card [routerLink]="['/score-detail/', score.id]" class="pieceCard" color="light">
+            <ion-card-content>
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="6">
+                    <h1>{{score.name}}</h1>
+                  </ion-col>
+
+                  <ion-col size="2">
+                    <h3>{{score.composer}}</h3>
+                  </ion-col>
+                  <ion-col size="2">
+                    <h3>{{score.instruments}}</h3>
+                  </ion-col>
+                  <ion-col size="2">
+                    <h3>{{ensembleService.getEnsembleByID(score.ensembleID)?
+                      ensembleService.getEnsembleByID(score.ensembleID).name : 'Personal' }}</h3>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </ion-card-content>
+            </ion-card>
         </ion-item>
 
-        <ion-item-sliding *ngFor="let score of ensembleService.score | slice:0:3; let i = index;">
-          <!--piece card-->
-          <ion-item>
-            <ion-card [routerLink]="['/score-detail/', score.id]" class="pieceCard" color="light">
-              <ion-card-content>
-                <ion-grid>
-                  <ion-row>
-                    <ion-col size="6">
-                      <h1>{{score.name}}</h1>
-                    </ion-col>
+        <ion-item-options>
+          <ion-item-option>
+            <ion-icon name="trash"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
 
-                    <ion-col size="2">
-                      <h3>{{score.composer}}</h3>
-                    </ion-col>
-                    <ion-col size="2">
-                      <h3>{{score.instruments}}</h3>
-                    </ion-col>
-                    <ion-col size="2">
-                      <h3>{{ensembleService.getEnsembleByID(score.ensembleID)?
-                        ensembleService.getEnsembleByID(score.ensembleID).name : 'Personal' }}</h3>
-                      </ion-col>
-                    </ion-row>
-                  </ion-grid>
-                </ion-card-content>
-              </ion-card>
-          </ion-item>
-
-          <ion-item-options>
-            <ion-item-option>
-              <ion-icon name="trash"></ion-icon>
-            </ion-item-option>
-          </ion-item-options>
-        </ion-item-sliding>
-
-      </ion-list>
-    </div>
+    </ion-list>
   </div>
 
 

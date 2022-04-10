@@ -23,7 +23,35 @@
 <ion-content [fullscreen]="true">
   <!--recently viewed-->
   <div class="recentScores">
+    <ion-item lines="none">
+      <span class="iconify" data-icon="ic:round-library-music"></span>
+      <span>
+          <h2>Recent</h2>
+        </span>
+    </ion-item>
 
+    <swiper #swiper [config]="config">
+      <ng-template swiperSlide *ngFor="let score of ensembleService.score">
+        <!--card 1, 2, etc.. -->
+        <ion-card [routerLink]="['/score-detail/', score.id]">
+          <ion-card-content>
+            <ion-card-title>{{score.name}}</ion-card-title>
+            <ion-card-subtitle>{{score.composer}}</ion-card-subtitle>
+
+            <ion-row id="eventCardDetails">
+              <ion-col size="12">
+                <ion-text id="ensembleName">{{ensembleService.getEnsembleByID(score.ensembleID) ? 
+                  ensembleService.getEnsembleByID(score.ensembleID).name : 'Personal' }}
+                </ion-text>
+              </ion-col>
+            </ion-row>
+
+          </ion-card-content>
+        </ion-card>
+
+      </ng-template>
+
+    </swiper>
   </div>
 
 
@@ -80,9 +108,9 @@
   </div>
 
   <!--for each composer-->
-  <div class="allScores" *ngFor="let composer of composers"> <!--class to be CHANGED-->
-    <ion-accordion-group value="allScores">
-      <ion-accordion value="allScores">
+  <div class="scoresByComposer" *ngFor="let composer of composers"> <!--class to be CHANGED-->
+    <ion-accordion-group>
+      <ion-accordion>
         <ion-item slot="header">
           <span class="iconify" data-icon="ic:round-library-music"></span>
           <span>
