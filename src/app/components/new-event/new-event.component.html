@@ -1,7 +1,7 @@
 <ion-header color="light">
     <ion-toolbar>
         <h2>Add Event</h2>
-        <h5>{{hasEnsemble? 'Create a new event for' + '(ensemble name)': 'Create new event'}} </h5>
+        <h5>{{hasEnsemble? 'Create a new event for ' + ensembleName : 'Create new event'}} </h5>
         <ion-button slot="end" fill="clear" (click)="handleButtonClick()">
             <ion-icon slot="icon-only" name="close"></ion-icon>
         </ion-button>
@@ -10,8 +10,13 @@
 
 <ion-content [fullscreen]="true">
     <ion-grid class="eventFields">
-        <div id="newEventSection">
+        <div class="newEventSection">
             <ion-row>
+                
+                <ion-col size="12">
+                    <h2>Details</h2>
+                    <p>What is the event about?</p>
+                </ion-col>
                 <!--name-->
                 <ion-col size="6">
                     <ion-item fill="solid">
@@ -50,7 +55,7 @@
                 <ion-col size="12">
                     <ion-item fill="solid">
                         <ion-label position="floating">Details</ion-label>
-                        <ion-input id="details" type="text" inputmode="description" [(ngModel)]="newEvent.description"></ion-input>
+                        <ion-input id="detailsInput" type="text" inputmode="description" [(ngModel)]="newEvent.description"></ion-input>
                     </ion-item>
                 </ion-col>
             </ion-row>
@@ -60,7 +65,8 @@
         <div class="newEventSection">
             <ion-row>
                 <ion-col size="12">
-                    <h3>Location</h3>
+                    <h2>Location</h2>
+                    <p>Where will the event take place?</p>
                     
                     <app-map [writeMap]=true (chosenLocation)="getLocation($event)" ></app-map>
                 </ion-col>
@@ -71,7 +77,8 @@
         <div class="newEventSection">
             <ion-row>
                 <ion-col size="12">
-                    <h3>Date</h3>
+                    <h2>Date</h2>
+                    <p>When will the event occur?</p>
                     <ion-datetime 
                     #datetime
                     [value]="dateValue"
@@ -86,7 +93,7 @@
 
         <ion-row>
             <ion-col size="12">
-                <ion-button (click)="save()" class="ion-float-end" fill="solid" color="success">Create Event</ion-button>
+                <ion-button (click)="save()" class="ion-float-end" fill="solid" color="primary">Create Event</ion-button>
             </ion-col>
         </ion-row>
     </ion-grid>

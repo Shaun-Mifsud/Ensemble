@@ -1,3 +1,7 @@
+ion-header{
+    color: #D7E2FF;
+}
+
 .eventFields{
     padding:2rem;
 
@@ -12,24 +16,33 @@
 
     .newEventSection{
         background-color: var(--ion-color-primary-light);
+        margin-top: 1rem;
+        border-radius: var(--card-border);
+        padding: 0.5rem;
     }
 }
 
 
 ion-col{
-    padding: 2rem;
+    padding: 0 1rem 1rem 1rem;
 }
 
-.details{
-    min-height: 2rem;
+#detailsInput{
+    min-height: 6rem;
 }
 
-ion-header{
-    color: #D7E2FF;
-}
 
 h2{
     font-weight: 600;
 }
+
+h2,h5,p{
+    color:var(--ion-color-text);
+}
+
+ion-button{
+    margin-top: 1rem;
+}
+
 
 

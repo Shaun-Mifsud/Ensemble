@@ -158,7 +158,7 @@ ion-tab-bar{
 
 
 .events,.ensemblePost,.recentPlaylists,.favoritesScores,.scoresByComposer,.allScores
-,.recentScores{
+,.recentScores,.accountFields{
     h2{
         color: var(--ion-color-text);
         margin-left: 1rem;
@@ -172,6 +172,18 @@ ion-card{
     background-color: var(--ion-color-light);
 
     border-radius: var(--card-border);
+}
+
+//chips
+ion-chip{
+    font-size: 1rem;
+    margin-right: 2rem;
+    width: 10rem;
+    height: 4rem;
+
+    ion-label{
+        font-weight: 550;
+    }
 }
 
 //event card
@@ -376,7 +388,7 @@ ion-segment{
 // * specific sections *
 
 .recentScores, .favoritesScores, .allScores, .scoresByComposer, .recentPlaylists
-,.newEventSection{
+,.accountFields{
     margin-top: 1rem;
     border-radius: var(--card-border);
     padding: 1rem;
@@ -465,11 +477,6 @@ ion-segment{
         display: flex;
         justify-content: space-between;
 
-        ion-chip{
-            margin-right: 2rem;
-            width: 10rem;
-            height: 4rem;
-        }
     }
 
     h2, .iconify{
@@ -505,12 +512,30 @@ ion-item-option{
     background-color: var(--ion-color-tertiary-light);
 }
 
-//esnemble cards
+//ensemble cards
 #ensemble{
     display: flex;
     flex-direction: column;
     height: 100%;
-    min-height: 20vh;
+    
+    ion-card{
+        min-height: 26vh;
+        position: relative;
+
+        border: 2px solid var(--ion-color-primary-light);
+
+        #colorGradient{
+            position: absolute;
+            height: 100%;
+            width: 100%;
+        }
+
+        ion-avatar{
+            margin-top: 1rem;
+            position: relative;
+        }
+    }
+
 }
 
 #newEnsemble{
@@ -524,13 +549,16 @@ ion-item-option{
     min-height: 20vh;
     margin-top: 3em;
 
+    color: var(--ion-color-primary);
+    
+    h2{
+        font-weight: 550;
+    }
+
     ion-icon{
-    color: var(--ion-color-primary-verylight);
+        color: var(--ion-color-primary);
     }   
 
-    h1{
-        text-align: center;
-    }
 }
 
 //new event modal

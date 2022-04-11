@@ -17,6 +17,7 @@ export class NewEventComponent implements OnInit {
   @Input() hasEnsemble:boolean;
   
   public newEvent: Event = {id:0, name: '',ensembleID:0,description:'',type:'',date:'',time:''};
+  public ensembleName:string;
 
   dateValue= format(new Date(), 'yyyy-MM-dd') + 'T09:00:00.000Z'; 
   todaysDate='';
@@ -36,12 +37,17 @@ export class NewEventComponent implements OnInit {
 
   ngOnInit() {
     //selecting ensemble to save in    
-      this.newEvent.ensembleID = this.ensembleID;
+    this.newEvent.ensembleID = this.ensembleID;
     
     //getting number of events
     this.eventCount = this.ensembleService.getEventsLength();
     //setting the new ID
     this.newEvent.id = this.eventCount +1;
+
+    //set header by ensemble name
+    if(this.hasEnsemble){
+      this.ensembleName = this.ensembleService.getEnsembleByID(this.ensembleID).name;
+    }
 
   }
 

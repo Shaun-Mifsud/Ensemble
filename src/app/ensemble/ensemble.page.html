@@ -26,7 +26,7 @@
         <ion-row>
           <ion-col size="12">
             <h3>Admins</h3>
-            <ion-avatar>
+            <ion-avatar id="ensembleAdminAvatar">
               <img src="/assets/images/userPic.jpg" alt="admin profile image">
             </ion-avatar>
           </ion-col>
@@ -93,29 +93,34 @@
 <ion-content [fullscreen]="true">
   <!--posts-->
   <div *ngIf="selectedtab =='posts'">
-    <div>
+    <div class="ensemblePost">
       <ion-grid>
         <!--posts-->
-        <ion-row>
-          <ion-col size="1">
-            <ion-avatar>
-              <img src="{{selectedEnsemble.picture}}">
-            </ion-avatar>
-          </ion-col>
-
-          <ion-col size="11">
-            <ion-card color="light">
-              <ion-card-header>
-                <ion-card-title>(ensemble name)</ion-card-title>
-                <ion-text color="success">(date/time)</ion-text>
-              </ion-card-header>
-
-              <ion-card-content>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minus porro, voluptatibus quia quisquam magni cupiditate officiis amet ex minima necessitatibus saepe, natus perspiciatis ut corporis? Voluptatem maxime unde placeat ratione.</p>
-              </ion-card-content>
-            </ion-card>
-          </ion-col>
-        </ion-row>
+        <ion-card>
+          <ion-row>
+            <ion-col size="1">
+              <ion-avatar>
+                <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+              </ion-avatar>
+            </ion-col>
+  
+            <ion-col size="11">
+              <h1>(person's name)</h1>
+              <ion-text color="success">(post's date & time)</ion-text>
+            </ion-col>
+          </ion-row>
+  
+            <ion-row>
+              <ion-col size="12">
+                  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minus porro, voluptatibus quia quisquam
+                    magni cupiditate officiis amet ex minima necessitatibus saepe, natus perspiciatis ut corporis?
+                    Voluptatem maxime unde placeat ratione. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minus porro, voluptatibus quia quisquam
+                    magni cupiditate officiis amet ex minima necessitatibus saepe, natus perspiciatis ut corporis?
+                    Voluptatem maxime unde placeat ratione.
+                  </p>
+              </ion-col>
+            </ion-row>
+        </ion-card>
       </ion-grid>
     </div>
   </div>

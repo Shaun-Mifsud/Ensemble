@@ -27,16 +27,17 @@
       <!--ensemble cards-->
       <ion-row>
         <!--card 1-->
-        <ion-col size="4" *ngFor="let ensemble of ensembleService.ensemble; let i = index" [routerLink]="['./', ensemble.id]">
-          <ion-card id="ensemble" color="light">
+        <ion-col id="ensemble" size="4" *ngFor="let ensemble of ensembleService.ensemble; let i = index" [routerLink]="['./', ensemble.id]">
+          <ion-card>                        
+            <div id="colorGradient"></div>
             <ion-avatar>
               <img src="{{ensemble.picture}}" alt="ensemble profile image">
             </ion-avatar>
-
+            
             <ion-card-header>
               <ion-card-title class="ion-text-center">{{ensemble.name}}</ion-card-title>
             </ion-card-header>
-
+            
             <ion-card-content>
               <ion-grid>
                 <ion-row class="ion-text-center">
@@ -69,15 +70,14 @@
       </ion-row>
 
       <!--Join new ensemble card-->
-
       <ion-row>
         <ion-col size="4">
-          <ion-card id="newEnsemble" color="light">
+          <ion-card id="newEnsemble">
             <ion-card-content>
               <ion-icon name="add"></ion-icon>
-
               <h2>Join ensemble</h2>
             </ion-card-content>
+
           </ion-card>
         </ion-col>
       </ion-row>

@@ -47,6 +47,7 @@
             <ion-card [routerLink]="['../','tab4',event.ensembleID,event.id]">
               <div id="colorGradient"></div>
               <div id="colorFilter"></div>
+              
               <ion-card-content>
                 <ion-card-title>{{event.name}}</ion-card-title>
                 <ion-card-subtitle>{{ensembleService.getEnsembleByID(event.ensembleID).name}}</ion-card-subtitle>
