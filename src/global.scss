@@ -97,6 +97,11 @@ ion-tab-bar{
     
     ion-tab-button{
         
+        //tablet
+        @media screen and (min-width:750px){
+            margin:0;
+        }
+
         margin:0 3rem 0 3rem;
         
         .iconify{
@@ -220,13 +225,14 @@ ion-chip{
             bottom: 0%;
             width: 100%;
 
-            ion-card-title, ion-card-subtitle{       
+            ion-card-title{       
                 color: #ffff;
                 font-size: 1.4rem;
                 font-weight: 800;
             }
             
             ion-card-subtitle{
+                color: #ffff;
                 font-size: 1rem;
                 font-weight: 200;
             }
@@ -253,6 +259,22 @@ ion-chip{
 
     }
 
+    //tablet
+    @media screen and (max-width:950px){
+        ion-card{
+            min-height: 15rem;
+            
+            ion-card-content{
+                ion-card-title, ion-card-subtitle{
+                    font-size: 1rem;
+                }
+            }
+
+            #type,#date{
+                font-size: 0.7rem;
+            }
+        }
+    }
 }
 
 //all events

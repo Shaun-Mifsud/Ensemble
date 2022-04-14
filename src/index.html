@@ -22,12 +22,31 @@
 
 <body>
   <app-root></app-root>
+  
+  <script>
+
+    (function() {
+    
+    var redirect = sessionStorage.redirect;
+    
+    delete sessionStorage.redirect;
+    
+    
+    
+    if (redirect && redirect != location.href)
+    
+    history.replaceState(null, null, redirect);
+    
+    })();
+    
+  </script>
+
+  <!--iconify-->
+  <script src="https://code.iconify.design/2/2.1.2/iconify.min.js"></script>
+
+  <!--google maps-->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1cflArMiJ1-wcyMK_hR8yPXlDuwwSikc"></script>
 </body>
 
-<!--iconify-->
-<script src="https://code.iconify.design/2/2.1.2/iconify.min.js"></script>
-
-<!--google maps-->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1cflArMiJ1-wcyMK_hR8yPXlDuwwSikc"></script>
 
 </html>
