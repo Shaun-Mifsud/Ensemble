@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EnsembleService } from '../services/ensemble.service';
 import { Ensemble,Event,Score,User } from '../struct/ensemble';
+import { DomSanitizer } from '@angular/platform-browser';
+import { ModalController } from '@ionic/angular';
+import { imageComponent } from '../components/image/image.component';
 
 
 @Component({
@@ -16,13 +19,17 @@ export class EventPage implements OnInit {
 
   public selectedEnsemble: Ensemble | undefined;
   public selectedEvent: Event | undefined;
+  public eventPic: any;
 
   constructor(    
-    private router:Router, 
+    private router: Router, 
     private route: ActivatedRoute,
-    public ensembleService:EnsembleService) { 
+    public ensembleService: EnsembleService,
+    private domSanitizer: DomSanitizer,
+    private modalCTRL: ModalController) { 
 
     }
+    
 
   ngOnInit() {
     // event navigation
@@ -47,6 +54,11 @@ export class EventPage implements OnInit {
           return;
         }
 
+        //sanitize event image if available
+        this.eventPic = this.domSanitizer.bypassSecurityTrustResourceUrl(this.selectedEvent.image);
+        console.log("event pic: ", this.eventPic);
+        
+
         //get ensemble by ID
         this.ensembleID=parseInt(this.route.snapshot.params['ensembleId']);
         console.log("ensemble ID in event: "+ this.ensembleID);
@@ -58,6 +70,17 @@ export class EventPage implements OnInit {
           console.log("Ensemble not found!");
           return;
         }
+    
+  }
+
+  async showImageModal(){
+    const imageModal = await this.modalCTRL.create({
+      component:imageComponent,
+      componentProps:{eventImage:this.selectedEvent.image},
+      cssClass:'imageModal'
+    })
+
+    await imageModal.present();
     
   }
 

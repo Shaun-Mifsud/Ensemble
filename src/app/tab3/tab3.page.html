@@ -47,7 +47,9 @@
         <ion-card [routerLink]="['/tabs','tab4',event.ensembleID,event.id]">
           <ion-card-content>
             <ion-row>
-              <ion-col size="2">(event img)</ion-col>
+              <ion-col size="2">
+                <img src="{{event.image}}" alt="">
+              </ion-col>
 
               <ion-col size="6">
                 <ion-card-title>{{event.name}}</ion-card-title>

@@ -130,7 +130,7 @@ _handleReaderLoaded(readerEvt) {
   //saving new event
   async save(){
     this.newEvent.location = this.chosenLocation;
-    this.newEvent.picture = this.imageSource;
+    this.newEvent.image = this.imageSource;
     
     //save new event
     this.ensembleService.saveEvent("Events",this.newEvent);

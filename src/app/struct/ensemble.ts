@@ -17,7 +17,7 @@ export interface Event {
     scoreID?: number;
     name: string;
     description: string;
-    picture?: string;
+    image?: string;
     type: string;
     location?: Location;
     date: string; 
