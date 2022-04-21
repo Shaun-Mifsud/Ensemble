@@ -22,6 +22,7 @@ import { BaseService } from './services/base.service';
 
 
 
+
 @NgModule({
     declarations: [AppComponent, NewEventComponent, RecordingPopComponent,MetronomeComponent,PageScaleComponent,TunerComponent],
     imports: [BrowserModule, IonicModule.forRoot({ mode: 'md' }), AppRoutingModule, FormsModule, ComponentsModule],

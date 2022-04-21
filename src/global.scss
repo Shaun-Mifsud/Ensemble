@@ -203,8 +203,8 @@ ion-chip{
 
     ion-card{
         position: relative;
-        background-image: url(assets/images/mpo.jpg);
         background-color: red;
+        background-image: url(assets/images/mpoLogo.png);
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center center;
@@ -215,6 +215,7 @@ ion-chip{
             position: absolute;
             height: 100%;
             width: 100%;
+            z-index: 1;
         }
 
         #colorGradient{
@@ -222,9 +223,21 @@ ion-chip{
             position: absolute;
             height: 100%;
             width: 100%;
+            z-index: 1;
+        }
+
+        #cardImage{
+            img{             
+                width: 150%;
+                height: 100%;
+                object-fit: cover;
+                position: absolute;
+                z-index: 0;
+            }
         }
         
         ion-card-content{
+            z-index: 2;
             position: absolute;
             bottom: 0%;
             width: 100%;

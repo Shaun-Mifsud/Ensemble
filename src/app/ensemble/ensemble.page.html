@@ -141,6 +141,11 @@
             <ion-card [routerLink]="['./',event.id]">
               <div id="colorGradient"></div>
               <div id="colorFilter"></div>
+
+              <div id="cardImage">
+                <img src="{{event.picture}}">
+              </div>
+
               <ion-card-content>
                 <ion-card-title>{{event.name}}</ion-card-title>
                 <ion-card-subtitle>{{ensembleService.getEnsembleByID(event.ensembleID).name}}</ion-card-subtitle>

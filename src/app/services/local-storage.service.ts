@@ -8,7 +8,16 @@ export class LocalStorageService {
   constructor() { }
   
   public set(key: string, value: any) {
-    localStorage.setItem(key, JSON.stringify(value));
+    try {
+      localStorage.setItem(key, JSON.stringify(value));
+    }
+
+    catch (e) {
+        console.log("Local Storage is full, Please empty data",e);
+        // fires When localstorage gets full
+        // you can handle error here or empty the local storage
+    }
+    
   }
     
   public get(key: string){ 

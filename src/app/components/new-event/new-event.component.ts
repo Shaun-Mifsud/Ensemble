@@ -1,8 +1,8 @@
 import { Component, Input, NgModule, OnInit } from '@angular/core';
-import {ModalController, AlertController} from '@ionic/angular';
+import { ModalController, AlertController } from '@ionic/angular';
 import { Event } from 'src/app/struct/ensemble';
 import { EnsembleService } from 'src/app/services/ensemble.service';
-import {format, parseISO} from 'date-fns';
+import { format, parseISO } from 'date-fns';
 
 
 @Component({
@@ -27,9 +27,13 @@ export class NewEventComponent implements OnInit {
 
   currentYear= new Date().getFullYear();
 
-  constructor(private ModalCtrl:ModalController,
+  //image
+  imageBase64 = '';
+  imageSource = '';
+
+  constructor(private ModalCtrl: ModalController,
               public alertController: AlertController,
-              public ensembleService:EnsembleService) 
+              public ensembleService: EnsembleService) 
     {
       //setting todays date
       this.setToday();
@@ -68,6 +72,27 @@ export class NewEventComponent implements OnInit {
     //get time only and set to new event
     this.newEvent.time = format(parseISO(value),'HH:mm:ss');    
   }
+
+  //image
+  handleFileSelect(evt){
+    var files = evt.target.files;
+    var file = files[0];
+
+  if (files && file) {
+      var reader = new FileReader();
+
+      reader.onload =this._handleReaderLoaded.bind(this);
+
+      reader.readAsBinaryString(file);
+  }
+}
+
+//image
+_handleReaderLoaded(readerEvt) {
+  var binaryString = readerEvt.target.result;
+      this.imageBase64= btoa(binaryString);
+      this.imageSource ='data:image/jpeg;base64,' + this.imageBase64;      
+}
   
   //Alert
   async handleButtonClick(){
@@ -105,6 +130,7 @@ export class NewEventComponent implements OnInit {
   //saving new event
   async save(){
     this.newEvent.location = this.chosenLocation;
+    this.newEvent.picture = this.imageSource;
     
     //save new event
     this.ensembleService.saveEvent("Events",this.newEvent);
