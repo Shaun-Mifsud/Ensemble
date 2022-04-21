@@ -26,9 +26,6 @@ const routes: Routes = [
   {
     path: 'score-detail',
     loadChildren: () => import('./score-details/score-details.module').then( m => m.ScoreDetailsPageModule)
-  },  {
-    path: 'all-events',
-    loadChildren: () => import('./all-events/all-events.module').then( m => m.AllEventsPageModule)
   }
 
 ];

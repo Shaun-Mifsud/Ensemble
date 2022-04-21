@@ -1,4 +1,9 @@
-//not working
-body{
-    background-color: red !important;
+#noEvents{
+    display: flex;
+    flex-direction: column;
+    
+    justify-content: center;
+    align-items: center;
+
+    height: 45%;
 }

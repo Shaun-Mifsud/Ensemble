@@ -90,7 +90,6 @@ export class NewEventComponent implements OnInit {
     
     alert.present();
 
-
   }
 
   //modal close
@@ -100,8 +99,7 @@ export class NewEventComponent implements OnInit {
 
   //get location from the output of map component
   getLocation(event){
-    this.chosenLocation=event;    
-    
+    this.chosenLocation=event;   
   }
   
   //saving new event

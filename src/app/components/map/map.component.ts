@@ -61,7 +61,8 @@ export class MapComponent {
   
       this.markerPosition=[{ lat: this.chosenLat, lng: this.chosenLng }];
   
-      console.log("pos: ",event);
+      this.chosenLocation.emit({lat:this.chosenLat, lng:this.chosenLng});
+      //console.log("pos: ",event);
     }
     
   }
