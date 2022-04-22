@@ -19,16 +19,16 @@ export class RecordingPopComponent implements OnInit {
 
   tempRecord:any;
   recordingCount:number;
-  recordingName:string;
+  newRecordingName:string;
   base64:any;
 
   currentRecording:Recording = {id:0,scoreID:0,partID:0,name:'',base64:''};
-  recordings:Recording[] = this.ensembleService.recording;
+  recordings:Recording[];
 
   audioSrc:any;
   url:any;
   error:any
-  recording=false;
+  isRecording=false;
 
   partID:number;
 
@@ -37,10 +37,35 @@ export class RecordingPopComponent implements OnInit {
   constructor(private domSanitizer: DomSanitizer,
               public ensembleService:EnsembleService) {
   }
+
+  ngOnInit() {
+    if(this.selectedPart){
+      this.partID=this.selectedPart.partID;
+    }
+
+    //recording length
+    this.recordingCount= this.ensembleService.getRecordingsLength();
+    console.log("recording Count ngOnInit: ",this.recordingCount);
+
+    //get recordings by partID
+    this.recordings= this.ensembleService.getRecordingByPart(this.scoreID, this.selectedPart.partID);
+    //console.log('recording in score: ',this.recordings.map(n => n.name));
+    
+
+  }
+
+//play recording of selected recording by part
+playRec(recording:Recording){
+  var sound = new Audio(recording.base64); 
+  console.log("Part ID of the audio played: ",recording.partID);
+  console.log("sound playing: ",sound);
   
+  sound.play();
+
+}
 
   initiateRecording() {
-    this.recording = true;
+    this.isRecording = true;
     let mediaConstraints = {
     video: false,
     audio: true
@@ -70,7 +95,7 @@ export class RecordingPopComponent implements OnInit {
   * Stop recording.
   */
   stopRecording() {
-    this.recording = false;
+    this.isRecording = false;
     this.tempRecord.stop(this.processRecording.bind(this));
   }
 
@@ -98,7 +123,7 @@ export class RecordingPopComponent implements OnInit {
     console.log("current recording part id: ",this.currentRecording.partID);
     
     //store name
-    this.currentRecording.name='recordingName';
+    this.currentRecording.name= this.newRecordingName;
     //store url
     this.currentRecording.base64= this.base64;
 
@@ -143,13 +168,4 @@ export class RecordingPopComponent implements OnInit {
     this.error = 'Can not play audio in your browser';
   }
 
-  ngOnInit() {
-    if(this.selectedPart){
-      this.partID=this.selectedPart.partID;
-    }
-
-    this.recordingCount= this.ensembleService.getRecordingsLength();
-    console.log("recording Count ngOnInit: ",this.recordingCount);
-  }
-
-  }
+}

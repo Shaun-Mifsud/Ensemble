@@ -1,13 +1,13 @@
 <ion-list>
-  <ion-item [routerLink]="['/','score-detail',scoreID]"> 
-    <ion-label>Recordings</ion-label>
+  <ion-item *ngFor="let recording of recordings"> 
+    <ion-label (click)="playRec(recording)">{{recording.name}}</ion-label>
   </ion-item>
 
   <ion-item (click)="initiateRecording();">
     <ion-label>New recording</ion-label>
   </ion-item>
 
-  <ion-item *ngIf="recording" (click)="stopRecording();">
+  <ion-item *ngIf="isRecording" (click)="stopRecording();">
     <ion-label>Stop recording</ion-label>
   </ion-item>
 
