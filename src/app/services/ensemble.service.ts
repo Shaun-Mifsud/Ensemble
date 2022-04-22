@@ -40,6 +40,7 @@ export class EnsembleService extends BaseService {
     this.recording = await this.localStorageService.get(this.STORAGE_KEY_Recordings) || RECORDINGS;
 
     console.log("hello from ensemble service");
+    console.log("recording ensemble service: ",this.recording);
     
     
   }
@@ -119,14 +120,17 @@ export class EnsembleService extends BaseService {
   }
 
   getRecordingsByScoreID(IDvalue: number){
-    console.log("recording ensemble service: ",this.recording);
     console.log("scoreID ensemble service: ",IDvalue);
     
     return this.recording.filter(r => r.scoreID == IDvalue);
   }
 
-  getRecordingByPart(IDvalue:number):any{
-    return this.recording.filter(r => r.partID == IDvalue);
+  getRecordingByPart(scoreID:number,IDvalue:number):any{
+    const currentRecording=this.recording.filter(r => r.scoreID == scoreID);
+    console.log('current recording: ',currentRecording);
+    
+
+    return currentRecording.filter(r => r.partID == IDvalue);
   }
 
 
