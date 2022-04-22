@@ -41,6 +41,7 @@ export class EnsembleService extends BaseService {
 
     console.log("hello from ensemble service");
     
+    
   }
 
 
@@ -118,6 +119,9 @@ export class EnsembleService extends BaseService {
   }
 
   getRecordingsByScoreID(IDvalue: number){
+    console.log("recording ensemble service: ",this.recording);
+    console.log("scoreID ensemble service: ",IDvalue);
+    
     return this.recording.filter(r => r.scoreID == IDvalue);
   }
 

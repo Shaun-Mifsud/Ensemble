@@ -2,7 +2,7 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button color="primary" defaultHref="home"></ion-back-button>
+      <ion-back-button color="primary" defaultHref="tabs/tab2"></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 
@@ -291,7 +291,7 @@
         <h6>Instrument</h6>
       </ion-item>
 
-      <ion-item *ngFor="let instrInSection of woodwind; let i = index">
+      <ion-item *ngFor="let instrInSection of getArrayWithRecordings(woodwind);">
         <!--piece card-->
         <ion-card class="recCard" color="light">
           <div *ngIf="instrInSection.recordings.length > 0">
@@ -324,7 +324,7 @@
     </ion-list>
 
     <!--brass-->
-    <ion-list *ngIf="checkParts('brass') && checkRecording('brass');" lines="none">
+    <ion-list *ngIf="checkParts('brass')  && checkRecording('brass');" lines="none">
       <ion-item>
         <h2>Brass</h2>
       </ion-item>
@@ -333,7 +333,7 @@
         <h6>Instrument</h6>
       </ion-item>
 
-      <ion-item *ngFor="let instrInSection of brass; let i = index">
+      <ion-item *ngFor="let instrInSection of getArrayWithRecordings(brass);">
         <!--piece card-->
         <ion-card class="recCard" color="light">
           <div *ngIf="instrInSection.recordings.length > 0">
@@ -366,7 +366,7 @@
     </ion-list>
 
     <!--percussion-->
-    <ion-list *ngIf="checkParts('percussion') && checkRecording('percussion');" lines="none">
+    <ion-list *ngIf="checkParts('percussion')  && checkRecording('percussion');" lines="none">
       <ion-item>
         <h2>Percussion</h2>
       </ion-item>
@@ -375,7 +375,7 @@
         <h6>Instrument</h6>
       </ion-item>
 
-      <ion-item *ngFor="let instrInSection of percussion; let i = index">
+      <ion-item *ngFor="let instrInSection of getArrayWithRecordings(percussion);">
         <!--piece card-->
         <ion-card class="recCard" color="light">
           <div *ngIf="instrInSection.recordings.length > 0">

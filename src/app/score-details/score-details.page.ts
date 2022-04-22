@@ -42,18 +42,16 @@ export class ScoreDetailsPage implements OnInit {
               private modalCtrl:ModalController) { }
 
   ngOnInit() {
-
-    console.log("route is: " + this.route);
     
     //get scoreID from URL
     this.scoreID=parseInt(this.route.snapshot.params['scoreID']);
+    console.log("Selected score ID: "+ this.scoreID);
     
     //get score by ID
     this.selectedScore=this.ensembleService.getScoreByID(this.scoreID);
-    console.log("Selected score ID: "+ this.scoreID);
 
     //get parts from selectedscore
-    this.parts=this.selectedScore.parts;
+    this.parts= this.selectedScore.parts;
     console.log("All parts: ", this.parts);
 
     //get events by scoreID
@@ -63,10 +61,10 @@ export class ScoreDetailsPage implements OnInit {
 
     if(this.selectedScore.type == 'static'){
       //get partFamily and place them in categories variables aggording to family
+
       //string
       let stringList = Object.values(this.parts.filter(f => f.partFamiliy == 'string'));
-      console.log("string list: ",stringList);
-    
+      console.log("string list: ",stringList);    
 
       for(let list in stringList){
         const instrument = stringList[list];
@@ -105,13 +103,12 @@ export class ScoreDetailsPage implements OnInit {
 
     }
   }
-
   
     getRecordings(){
         //get recording by selected scoreID
         this.recordings= this.ensembleService.getRecordingsByScoreID(this.scoreID);
           
-        console.log("recordings: ",this.recordings);
+        console.log("recordings by score: ",this.recordings);
   
         console.log('URL path: ',this.urlPath);
         
@@ -121,10 +118,10 @@ export class ScoreDetailsPage implements OnInit {
         console.log("Brass: ",this.brass);
         console.log("Percussion: ",this.percussion);
         
-        console.log("string rec: ",Object.values(this.strings.filter(f => f.recordings)).length);
-        console.log("woodwind rec: ",Object.values(this.woodwind.filter(f => f.recordings)).length);
-        console.log("brass rec: ",Object.values(this.brass.filter(f => f.recordings)).length);
-        console.log("percussion rec: ",Object.values(this.percussion.filter(f => f.recordings)).length);
+        console.log("string rec: ", this.strings.filter(f => f.recordings.length) );
+        console.log("woodwind rec: ", this.woodwind.filter(f => f.recordings.length));
+        console.log("brass rec: ", this.brass.filter(f => f.recordings.length));
+        console.log("percussion rec: ", this.percussion.filter(f => f.recordings.length));
         
     }
 
@@ -141,6 +138,7 @@ export class ScoreDetailsPage implements OnInit {
 
   getArrayWithRecordings(array: Part[]): Part[]
   {
+
     return array.filter(a => a.recordings != null && a.recordings.length > 0) || [];
   }
 
@@ -182,39 +180,43 @@ export class ScoreDetailsPage implements OnInit {
   checkRecording(partName:string):boolean{    
     switch(partName){
       case 'strings':{
-        if(Object.values(this.strings.filter(f => f.recordings)).length > 0){          
-          console.log("String REC found !");          
+        //console.log("Strings recoridings filter: ", this.strings.filter(f => f.recordings.length >= 1));
+
+        if(this.strings.filter(f => f.recordings.length >= 1).length >=1){          
+          console.log("String REC found !");   
           return true;
         }
         else  false;
       }
 
       case 'woodwind':{        
-        if(Object.values(this.woodwind.filter(f => f.recordings)).length > 0){          
-          console.log("woodwind REC found !");          
+        //console.log("woodings recoridings filter: ",this.woodwind.filter(f => f.recordings.length >= 1));
+        
+        if(this.woodwind.filter(f => f.recordings.length >= 1).length >=1){          
+          console.log("Woodwind REC found !");   
           return true;
         }
         else  false;
 
       }
       case 'brass':{
-        if(Object.values(this.brass.filter(f => f.recordings)).length > 0){          
-          console.log("Brass REC found !");          
+        if(this.brass.filter(f => f.recordings.length >= 1).length >=1){          
+          console.log("brass REC found !");   
           return true;
         }
         else  false;
 
       }
       case 'percussion':{
-        if(Object.values(this.percussion.filter(f => f.recordings)).length > 0){          
-          console.log("percussion REC found !");          
+        if(this.percussion.filter(f => f.recordings.length >= 1).length >=1){          
+          console.log("percussion REC found !");   
           return true;
         }
         else  false;
       }
 
     }    
-  }
+  } 
 
   //play recording of selected recording by part
   playRec(recording:Recording){
