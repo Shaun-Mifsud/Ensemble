@@ -2,8 +2,9 @@
   <ion-item *ngFor="let recording of recordings"> 
     <ion-label (click)="playRec(recording)">{{recording.name}}</ion-label>
   </ion-item>
+</ion-list>
 
-  <ion-item (click)="initiateRecording();">
+  <ion-item id="recording Buttons" (click)="initiateRecording();">
     <ion-label>New recording</ion-label>
   </ion-item>
 
@@ -17,5 +18,3 @@
       type="audio/wav">
     </audio>
 </ion-item>
-
-</ion-list>

@@ -634,6 +634,19 @@ ion-item-option{
     
 }
 
+//recording modal
+.recordingModal::part(content){
+    width: 40%;
+
+    border-radius: var(--card-border);
+    
+    color: var(--ion-color-primary);
+    background-color: var(--ion-color-light);
+    
+    position: absolute;
+    bottom:56px;
+
+}
 
 //metronome modal
 app-metronome.ion-page{
@@ -649,7 +662,7 @@ app-metronome.ion-page{
 }
 
 .metronomeModal::part(backdrop),
-.recordingPopover::part(backdrop),
+.recordingModal::part(backdrop),
 .tunerPopover::part(backdrop),
 .pageScalePopover::part(backdrop){
     background-color: var(--backdrop-primary-color);
@@ -709,7 +722,7 @@ app-metronome.ion-page{
 }
 
 // recording, tuner and pageScale popovers
-.recordingPopover,.tunerPopover,.pageScalePopover{
+.recordingModal,.tunerPopover,.pageScalePopover{
     color: var(--ion-color-primary);
 
     ion-label{

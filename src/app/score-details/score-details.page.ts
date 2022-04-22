@@ -231,7 +231,7 @@ export class ScoreDetailsPage implements OnInit {
   }
 
   //event model
-  async showModal(){
+  async eventModal(){
     const modal = await this.modalCtrl.create({
       component:NewEventComponent,
       componentProps: {ensembleID:this.selectedScore.ensembleID, ensembleEvent:this.ensembleService.getEventsLength()},

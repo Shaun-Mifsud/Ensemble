@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { RecordingPopComponent } from './recording-pop.component';
+import { RecordingComponent } from './recording.component';
 
-describe('RecordingPopComponent', () => {
-  let component: RecordingPopComponent;
-  let fixture: ComponentFixture<RecordingPopComponent>;
+describe('RecordingComponent', () => {
+  let component: RecordingComponent;
+  let fixture: ComponentFixture<RecordingComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ RecordingPopComponent ],
+      declarations: [ RecordingComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(RecordingPopComponent);
+    fixture = TestBed.createComponent(RecordingComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

@@ -6,13 +6,14 @@ import * as RecordRTC from 'recordrtc';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Part, Recording } from 'src/app/struct/ensemble';
 import { isThisQuarter } from 'date-fns';
+import { ModalController } from '@ionic/angular';
 
 @Component({
-  selector: 'app-recording-pop',
-  templateUrl: './recording-pop.component.html',
-  styleUrls: ['./recording-pop.component.scss'],
+  selector: 'app-recording',
+  templateUrl: './recording.component.html',
+  styleUrls: ['./recording.component.scss'],
 })
-export class RecordingPopComponent implements OnInit {
+export class RecordingComponent implements OnInit {
 
   @Input() scoreID:number;
   @Input() selectedPart: Part | undefined;
@@ -32,10 +33,11 @@ export class RecordingPopComponent implements OnInit {
 
   partID:number;
 
-
+  sound= new Audio;
 
   constructor(private domSanitizer: DomSanitizer,
-              public ensembleService:EnsembleService) {
+              public ensembleService:EnsembleService,
+              private modalCtrl2:ModalController) {
   }
 
   ngOnInit() {
@@ -49,18 +51,26 @@ export class RecordingPopComponent implements OnInit {
 
     //get recordings by partID
     this.recordings= this.ensembleService.getRecordingByPart(this.scoreID, this.selectedPart.partID);
-    //console.log('recording in score: ',this.recordings.map(n => n.name));
+    console.log('recording in score: ',this.recordings);
     
 
   }
 
 //play recording of selected recording by part
 playRec(recording:Recording){
-  var sound = new Audio(recording.base64); 
-  console.log("Part ID of the audio played: ",recording.partID);
-  console.log("sound playing: ",sound);
-  
-  sound.play();
+
+  if(this.sound){
+    this.sound.src=recording.base64;
+    this.sound.play();
+
+    console.log("Part ID of the audio played: ",recording.partID);
+    console.log("sound playing: ",this.sound);
+  }
+
+  else{
+    this.sound.pause();
+    this.sound.currentTime = 0;
+  }
 
 }
 
@@ -127,6 +137,8 @@ playRec(recording:Recording){
     //store url
     this.currentRecording.base64= this.base64;
 
+    this.recordingNameModal();
+
     //save
     this.ensembleService.saveRecording("Recordings",this.currentRecording);
 
@@ -166,6 +178,17 @@ playRec(recording:Recording){
   */
   errorCallback(error) {
     this.error = 'Can not play audio in your browser';
+  }
+
+  //recording name popover
+  async recordingNameModal() {
+    const modal = await this.modalCtrl2.create({
+      component: null,
+      componentProps: {currentRecording:this.currentRecording},
+      cssClass: 'recordingNameModal',
+    });
+      await modal.present();
+
   }
 
 }

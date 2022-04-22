@@ -7,7 +7,7 @@ import Embed from 'flat-embed';
 import { MetronomeComponent } from '../components/metronome/metronome.component';
 import { PageScaleComponent } from '../components/page-scale/page-scale.component';
 
-import { RecordingPopComponent } from '../components/recording-pop/recording-pop.component';
+import { RecordingComponent } from '../components/recording/recording.component';
 import { TunerComponent } from '../components/tuner/tuner.component';
 import { EnsembleService } from '../services/ensemble.service';
 import { ToolsService } from '../services/tools.service';
@@ -137,20 +137,22 @@ export class ScorePage implements OnInit {
   
 
 
-  //recording popover
-  async recordingPopover(ev:any) {
-    const popover = await this.popoverController.create({
-      component: RecordingPopComponent,
+  //recording modal
+  async recordingModal() {
+    const modal = await this.modalCtrl.create({
+      component: RecordingComponent,
       componentProps: {scoreID:this.scoreID, selectedPart:this.selectedPart},
-      cssClass: 'recordingPopover',
-      event:ev,
-      translucent: true
+      cssClass: 'recordingModal',
     });
-    await popover.present();
-  
-    const { role } = await popover.onDidDismiss();
-    console.log('onDidDismiss resolved with role', role);
+    await modal.present();
+
+    modal.onDidDismiss().then(() => {
+      console.log("dismissed");
+      
+    });
   }
+
+
   
   // metronome modal
   async showMetornomeModal(){
