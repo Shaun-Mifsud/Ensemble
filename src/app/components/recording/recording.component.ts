@@ -36,12 +36,20 @@ export class RecordingComponent implements OnInit {
 
   sound= new Audio;
 
+  start = true;     // flags that you want the countdown to start
+  stopIn = 500000;    // how long the timer should run
+  stopTime = 0;     // used to hold the stop time
+  stop = false;     // flag to indicate that stop time has been reached
+  timeTillStop = 0; // holds the display time
+
   constructor(private domSanitizer: DomSanitizer,
               public ensembleService:EnsembleService,
               private modalCtrl2:ModalController) {
-  }
+                
+              }
+              
 
-  ngOnInit() {
+    ngOnInit() {
     if(this.selectedPart){
       this.partID=this.selectedPart.partID;
     }
@@ -75,8 +83,13 @@ playRec(recording:Recording){
 
 }
 
+  startCountdown(){
+    requestAnimationFrame(this.update.bind(this));  // start the countdown
+  }
+
   initiateRecording() {
     this.isRecording = true;
+
     let mediaConstraints = {
     video: false,
     audio: true
@@ -190,8 +203,39 @@ playRec(recording:Recording){
 
   }
 
+//countdown
+// main update function
+update(timer){
+
+  if(this.start){  // do we need to start the timer
+    this.stopTime = timer + this.stopIn; // yes the set the stoptime
+    this.start = false;             // clear the start flag
+  }
+  else{                         // waiting for stop
+      if(timer >= this.stopTime){     // has stop time been reached?
+        this.stop = true;           // yes the flag to stop
+      }
+  }
+
+  this.timeTillStop = this.stopTime - timer;      // for display of time till stop
+  // log() should be whatever you use to display the time.
+  console.log("time: ",Math.floor(this.timeTillStop / 1000) );  // to display in 1/100th seconds
+
+  if(!this.stop){
+      requestAnimationFrame(this.update.bind(this)); // continue animation until stop 
+  }
+
+  else{
+    console.log("countdown end");
+    this.initiateRecording();
+  }
+}
+
+
+
   ngOnDestroy(){
     this.currentRecording = {id:0,scoreID:0,partID:0,name:'',base64:''};
+    this.stop= true;
   }
 
 }
