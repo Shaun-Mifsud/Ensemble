@@ -24,7 +24,7 @@ export class ScoreDetailsPage implements OnInit {
   public parts: Part[];
   public selectedPart:number;
 
-  public recordings: Recording[];
+  //public recordings: Recording[];
   public urlPath:string[] | undefined;
 
   //variables used to contain each respective part from the selected score
@@ -108,9 +108,9 @@ export class ScoreDetailsPage implements OnInit {
   
     getRecordings(){
         //get recording by selected scoreID
-        this.recordings= this.ensembleService.getRecordingsByScoreID(this.scoreID);
+        //this.recordings= this.ensembleService.getRecordingsByScoreID(this.scoreID);
           
-        console.log("recordings by score: ",this.recordings);
+        //console.log("recordings by score: ",this.recordings);
   
         console.log('URL path: ',this.urlPath);
         

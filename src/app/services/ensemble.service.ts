@@ -119,16 +119,14 @@ export class EnsembleService extends BaseService {
     return this.recordingLength= Object.keys(this.recording).length;
   }
 
-  getRecordingsByScoreID(IDvalue: number){
+/*   getRecordingsByScoreID(IDvalue: number){
     console.log("scoreID ensemble service: ",IDvalue);
     
     return this.recording.filter(r => r.scoreID == IDvalue);
-  }
+  } */
 
   getRecordingByPart(scoreID:number,IDvalue:number):any{
-    const currentRecording=this.recording.filter(r => r.scoreID == scoreID);
-    console.log('current recording: ',currentRecording);
-    
+    const currentRecording= this.recording.filter(r => r.scoreID == scoreID);
 
     return currentRecording.filter(r => r.partID == IDvalue);
   }
