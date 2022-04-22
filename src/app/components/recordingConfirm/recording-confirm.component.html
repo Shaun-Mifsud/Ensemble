@@ -1,0 +1,9 @@
+<ion-item id="nameInput" fill="solid">
+  <ion-label position="floating">Name</ion-label>
+  <ion-input clearInput [(ngModel)]="recordingName"></ion-input>
+
+</ion-item>
+
+<ion-footer id="saveButton">
+  <ion-button expand="full" color="primary" (click)="confirm();">Save</ion-button>
+</ion-footer>

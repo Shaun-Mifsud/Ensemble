@@ -35,6 +35,9 @@ export class ScoreDetailsPage implements OnInit {
   public brass:Part[] = [];
   public percussion:Part[] = [];
 
+  // Audio
+  sound= new Audio;
+  isPlaying= false;
 
   constructor(private route: ActivatedRoute,
               private router:Router,
@@ -220,15 +223,30 @@ export class ScoreDetailsPage implements OnInit {
     }    
   } 
 
-  //play recording of selected recording by part
+  // play rec
   playRec(recording:Recording){
-    var sound = new Audio(recording.base64); 
-    console.log("Part ID of the audio played: ",recording.partID);
-    console.log("sound playing: ",sound);
-    
-    sound.play();
 
+    if(!this.isPlaying){
+      this.sound.src=recording.base64;
+      this.sound.play();
+      this.isPlaying=true;
+      
+      console.log("Part ID of the audio played: ",recording.partID);
+      console.log("sound playing: ",this.sound);
+
+      this.sound.onended= () =>{
+        this.isPlaying=false;
+      }
+    }
+    
+    else{
+      this.sound.pause();
+      this.sound.currentTime = 0;
+      this.isPlaying=false;
+    }
+  
   }
+
 
   //event model
   async eventModal(){

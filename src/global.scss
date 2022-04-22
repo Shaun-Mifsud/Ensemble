@@ -648,6 +648,26 @@ ion-item-option{
 
 }
 
+//recording confirm
+.recordingConfirmModal::part(content){
+    width: 40%;
+    height: 10%;
+
+    border-radius: var(--card-border);
+    
+    color: var(--ion-color-primary);
+    background-color: var(--ion-color-light);
+    padding: 0 2em 0 2em;
+    
+    position: absolute;
+    bottom:50%;
+}
+
+#nameInput, #saveButton{
+    padding: 1em 2em 1em 2em;
+}
+
+
 //metronome modal
 app-metronome.ion-page{
     

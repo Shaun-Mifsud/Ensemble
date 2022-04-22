@@ -7,6 +7,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Part, Recording } from 'src/app/struct/ensemble';
 import { isThisQuarter } from 'date-fns';
 import { ModalController } from '@ionic/angular';
+import { RecordingConfirmComponent } from '../recordingConfirm/recording-confirm.component';
 
 @Component({
   selector: 'app-recording',
@@ -137,10 +138,8 @@ playRec(recording:Recording){
     //store url
     this.currentRecording.base64= this.base64;
 
-    this.recordingNameModal();
-
-    //save
-    this.ensembleService.saveRecording("Recordings",this.currentRecording);
+    //open recording confirm modal and save there
+    this.recordingconfirmModal();
 
     //reset the temporary variable
     this.currentRecording = {id:0,scoreID:0,partID:0,name:'',base64:''};
@@ -180,15 +179,19 @@ playRec(recording:Recording){
     this.error = 'Can not play audio in your browser';
   }
 
-  //recording name popover
-  async recordingNameModal() {
+  //recording confirm modal
+  async recordingconfirmModal() {
     const modal = await this.modalCtrl2.create({
-      component: null,
+      component: RecordingConfirmComponent,
       componentProps: {currentRecording:this.currentRecording},
-      cssClass: 'recordingNameModal',
+      cssClass: 'recordingConfirmModal',
     });
       await modal.present();
 
+  }
+
+  ngOnDestroy(){
+    this.currentRecording = {id:0,scoreID:0,partID:0,name:'',base64:''};
   }
 
 }
