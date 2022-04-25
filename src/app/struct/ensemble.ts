@@ -14,7 +14,7 @@ export interface Location{
 export interface Event {
     id: number;
     ensembleID?: number;
-    scoreID?: number;
+    scores?: number[];
     name: string;
     description: string;
     image?: string;
@@ -69,3 +69,10 @@ export interface Recording {
     name: string;
     base64: string;
 }
+
+export interface fullScoreRecording {
+    id: number;
+    scoreID: number;
+    recordingParts: Recording[];
+}
+

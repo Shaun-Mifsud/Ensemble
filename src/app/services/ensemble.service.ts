@@ -103,9 +103,10 @@ export class EnsembleService extends BaseService {
   }
 
   getScoresByEnsembleID(IDvalue: number): any
-  {    
+  {
     return this.score.filter(e => e.ensembleID == IDvalue);
   }
+
   
   //User
   getUserByID(IDvalue: number): User | undefined

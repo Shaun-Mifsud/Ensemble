@@ -37,7 +37,7 @@ export class RecordingComponent implements OnInit {
   sound= new Audio;
 
   start = true;     // flags that you want the countdown to start
-  stopIn = 500000;    // how long the timer should run
+  stopIn = 2000;    // how long the timer should run
   stopTime = 0;     // used to hold the stop time
   stop = false;     // flag to indicate that stop time has been reached
   timeTillStop = 0; // holds the display time
