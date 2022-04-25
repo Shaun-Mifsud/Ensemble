@@ -74,13 +74,16 @@ export class EventPage implements OnInit {
 
         //get scores by event
         this.eventScores=[];
-        
-        for( var i = 0; i < this.selectedEvent.scores.length; i++){
-          console.log("in loop: ",i);
-          
-          this.eventScores.push(this.ensembleService.getScoreByID(this.selectedEvent.scores[i]));
+
+        if(this.selectedEvent.scores){
+
+          for( var i = 0; i < this.selectedEvent.scores.length; i++){
+            console.log("in loop: ",i);
+            
+            this.eventScores.push(this.ensembleService.getScoreByID(this.selectedEvent.scores[i]));
+          }
+          console.log("event Scores: ",this.eventScores);
         }
-        console.log("event Scores: ",this.eventScores);
     
   }
 

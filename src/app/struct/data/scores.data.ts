@@ -242,7 +242,7 @@ export const SCORES: Score[] =[
             partPath:"/assets/pdf/sympNo5/timpani.pdf"
         },
         {
-            partID:12,
+            partID:11,
             partFamiliy:'woodwind',
             partName:'Piccolo',
             partPath:"/assets/pdf/sympNo5/piccolo.pdf"

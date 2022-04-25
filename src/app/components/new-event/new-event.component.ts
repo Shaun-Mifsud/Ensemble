@@ -42,8 +42,10 @@ export class NewEventComponent implements OnInit {
 
   ngOnInit() {
     //selecting ensemble to save in    
-    this.newEvent.ensembleID = this.ensembleID;
-    console.log("ensemble ID: ",this.ensembleID);
+    if(this.hasEnsemble){
+      this.newEvent.ensembleID = this.ensembleID;
+      console.log("ensemble ID: ",this.ensembleID);
+    }
     
     
     //getting number of events
@@ -157,8 +159,14 @@ export class NewEventComponent implements OnInit {
   
   //saving new event
   async save(){
+    if(!this.hasEnsemble){
+      this.newEvent.ensembleID= undefined;
+    }
+    if(this.newEvent.image !=null){
+      this.newEvent.image = this.imageSource;
+    }
+
     this.newEvent.location = this.chosenLocation;
-    this.newEvent.image = this.imageSource;
     
     //save new event
     this.ensembleService.saveEvent("Events",this.newEvent);

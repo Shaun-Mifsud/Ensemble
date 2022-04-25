@@ -70,10 +70,10 @@
 
 <ion-content [fullscreen]="true">
   <!--scores-->
-  <div id="ScoreList" *ngIf="selectedtab =='score'">
+  <div *ngIf="selectedtab =='score'">
 
     <!--Full score-->
-    <ion-list lines="none">
+    <ion-list class="boxSection" lines="none">
       <!--list header-->
       <ion-item>
         <h2>Full Score</h2>
@@ -102,7 +102,7 @@
 
     <!--Parts-->
     <!--Strings-->
-    <ion-list *ngIf="checkParts('strings')" lines="none">
+    <ion-list class="boxSection" *ngIf="checkParts('strings')" lines="none">
       <ion-item>
         <h2>Strings</h2>
       </ion-item>
@@ -127,7 +127,7 @@
     </ion-list>
 
     <!--woodwind-->
-    <ion-list *ngIf="checkParts('woodwind')" lines="none">
+    <ion-list class="boxSection" *ngIf="checkParts('woodwind')" lines="none">
       <ion-item>
         <h2>Woodwind</h2>
       </ion-item>
@@ -152,7 +152,7 @@
     </ion-list>
 
     <!--Brass-->
-    <ion-list *ngIf="checkParts('brass')" lines="none">
+    <ion-list class="boxSection" *ngIf="checkParts('brass')" lines="none">
       <ion-item>
         <h2>Brass</h2>
       </ion-item>
@@ -177,7 +177,7 @@
     </ion-list>
 
     <!--percussion-->
-    <ion-list *ngIf="checkParts('percussion')" lines="none">
+    <ion-list class="boxSection" *ngIf="checkParts('percussion')" lines="none">
       <ion-item>
         <h2>percussion</h2>
       </ion-item>
@@ -204,9 +204,9 @@
   </div>
 
   <!--recordings-->
-  <div id="recordingList" *ngIf="selectedtab =='recordings'">
+  <div *ngIf="selectedtab =='recordings'">
     <!--Full score-->
-    <ion-list lines="none">
+    <ion-list class="boxSection" lines="none">
       <!--list header-->
       <ion-item>
         <h2>Full Score</h2>
@@ -229,8 +229,8 @@
               </ion-item>
 
               <ion-list slot="content">
-                <ion-item>yo</ion-item>
-                <ion-item>yo</ion-item>
+                <ion-item>(recording here)</ion-item>
+                <ion-item>(recording here)</ion-item>
                 <ion-item id="button-item">
                   <ion-button color="primary" expand="block">combine recordings</ion-button>
                 </ion-item>
@@ -244,7 +244,7 @@
     </ion-list>
 
     <!--strings-->
-    <ion-list *ngIf="checkParts('strings') && checkRecording('strings');" lines="none">
+    <ion-list class="boxSection" *ngIf="checkParts('strings') && checkRecording('strings');" lines="none">
       <ion-item>
         <h2>Strings</h2>
       </ion-item>
@@ -271,7 +271,7 @@
                       <ion-row>
                         <ion-col size="10">{{recording.name}}</ion-col>
                         <ion-col size="2" >
-                          <ion-icon name="play" *ngIf="!isPlaying == false"></ion-icon>
+                          <ion-icon name="play" *ngIf="!isPlaying"></ion-icon>
                           <ion-icon name="pause" *ngIf="isPlaying"></ion-icon>
                         </ion-col>
                       </ion-row>
@@ -285,7 +285,7 @@
     </ion-list>
 
     <!--woodwind-->
-    <ion-list *ngIf="checkParts('woodwind') && checkRecording('woodwind');" lines="none">
+    <ion-list class="boxSection" *ngIf="checkParts('woodwind') && checkRecording('woodwind');" lines="none">
       <ion-item>
         <h2>Woodwinds</h2>
       </ion-item>
@@ -328,7 +328,7 @@
     </ion-list>
 
     <!--brass-->
-    <ion-list *ngIf="checkParts('brass')  && checkRecording('brass');" lines="none">
+    <ion-list class="boxSection" *ngIf="checkParts('brass')  && checkRecording('brass');" lines="none">
       <ion-item>
         <h2>Brass</h2>
       </ion-item>
@@ -371,7 +371,7 @@
     </ion-list>
 
     <!--percussion-->
-    <ion-list *ngIf="checkParts('percussion')  && checkRecording('percussion');" lines="none">
+    <ion-list class="boxSection" *ngIf="checkParts('percussion')  && checkRecording('percussion');" lines="none">
       <ion-item>
         <h2>Percussion</h2>
       </ion-item>
@@ -417,7 +417,7 @@
 
   <!--events-->
   <!-- only show if score is in event -->
-  <div id="eventList" *ngIf="selectedtab =='events'">
+  <div *ngIf="selectedtab =='events'">
     <div>
       <ion-grid>
         <ion-row>
