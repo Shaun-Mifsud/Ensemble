@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ScoreDetailsPage } from '../score-details/score-details.page';
+import { ScorePage } from '../score/score.page';
 import { TabsPage } from './tabs.page';
 
 const routes: Routes = [
@@ -15,6 +17,16 @@ const routes: Routes = [
       {
         path: 'tab2',
         loadChildren: () => import('../tab2/tab2.module').then(m => m.Tab2PageModule)
+      },
+      {
+        path: 'tab2/score-detail/:scoreID',
+        //loadChildren: () => import('src\app\score-details').then(m => m.Tab2PageModule)
+        loadChildren: () => import('../score-details/score-details.module').then(m => m.ScoreDetailsPageModule)
+      },
+      {
+        path: 'tab2/score-detail/:scoreID/:scorePart',
+        //loadChildren: () => import('src\app\score-details').then(m => m.Tab2PageModule)
+        component:ScorePage
       },
       {
         path: 'tab3',
