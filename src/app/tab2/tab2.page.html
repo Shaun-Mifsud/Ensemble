@@ -33,7 +33,7 @@
     <swiper #swiper [config]="config">
       <ng-template swiperSlide *ngFor="let score of ensembleService.score">
         <!--card 1, 2, etc.. -->
-        <ion-card [routerLink]="['/score-detail/', score.id]">
+        <ion-card [routerLink]="[score.id]">
           <ion-card-content>
             <ion-card-title>{{score.name}}</ion-card-title>
             <ion-card-subtitle>{{score.composer}}</ion-card-subtitle>
@@ -79,7 +79,7 @@
               </ion-grid>
           </ion-item>
 
-          <ion-item-sliding *ngFor="let score of ensembleService.score; let i = index;" [routerLink]="['/score-detail/', score.id]">
+          <ion-item-sliding *ngFor="let score of ensembleService.score; let i = index;" [routerLink]="[score.id]">
             <ion-item>
             <!--piece card-->
               <ion-card class="pieceCard" color="light">
@@ -131,7 +131,7 @@
               </ion-grid>
           </ion-item>
 
-          <ion-item-sliding *ngFor="let score of composer.score; let i = index;" [routerLink]="['/score-detail/', score.id]">
+          <ion-item-sliding *ngFor="let score of composer.score; let i = index;" [routerLink]="[score.id]">
             <ion-item>
             <!--piece card-->
               <ion-card class="pieceCard" color="light">
@@ -183,7 +183,7 @@
               </ion-grid>
           </ion-item>
 
-          <ion-item-sliding *ngFor="let score of ensembleService.score; let i = index;" [routerLink]="['/score-detail/', score.id]">
+          <ion-item-sliding *ngFor="let score of ensembleService.score; let i = index;" [routerLink]="[score.id]">
             <ion-item>
             <!--piece card-->
               <ion-card class="pieceCard" color="light">

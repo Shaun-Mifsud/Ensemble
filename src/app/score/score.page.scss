@@ -23,6 +23,11 @@ ion-row{
     }
 }
 
+//hide bottom tabs when on score page
+ion-tab-bar{
+    display: none !important;
+}
+
 
 
 

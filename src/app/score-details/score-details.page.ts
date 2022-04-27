@@ -137,7 +137,7 @@ export class ScoreDetailsPage implements OnInit {
     console.log("selected part Index: ", this.selectedPart);
     
     //navigate by selectedPart
-    this.router.navigate(['/score', this.scoreID, this.selectedPart]);
+    this.router.navigate(['tabs/tab2',this.scoreID,this.selectedPart]);
 
   }
 

@@ -1,0 +1,17 @@
+ion-tabs {
+    &.show{
+        ion-tab-bar{
+            display: flex;
+        }
+    }
+}
+
+
+
+ion-tabs {
+    &.dontShow{
+        ion-tab-bar{
+            display: none;
+        }
+    }
+}
