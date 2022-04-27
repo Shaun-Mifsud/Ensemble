@@ -54,6 +54,9 @@ export class ScorePage implements OnInit {
 
   ngOnInit() {
 
+    console.log("in score page");
+    
+
     //get ID the user selected from URL
     this.scoreID=parseInt(this.route.snapshot.params['scoreID']);
     

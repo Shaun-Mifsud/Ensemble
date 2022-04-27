@@ -4,8 +4,11 @@ import { Tab2Page } from '../tab2/tab2.page';
 
 import { ScorePage } from './score.page';
 
+
+import { CommonModule } from '@angular/common';
+
 const routes: Routes = [
-  {
+/*     {
     path: '',
     children:[
       //if NO scoreID is present, redirect to tabs/tab2
@@ -37,11 +40,17 @@ const routes: Routes = [
         ]
       }
     ]
+  } */
+
+  {
+    path: '',
+    component: ScorePage
   }
+
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+  imports: [RouterModule.forChild(routes),CommonModule],
+  exports: [RouterModule,CommonModule],
 })
 export class ScorePageRoutingModule {}

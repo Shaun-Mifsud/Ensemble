@@ -3,8 +3,10 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { ScoreDetailsPage } from './score-details.page';
 
+import { CommonModule } from '@angular/common';
+
 const routes: Routes = [
-  {
+/*  {
     path: '',
     children:[
       //if NO scoreID is present, redirect to tabs/tab2
@@ -20,11 +22,15 @@ const routes: Routes = [
         component:ScoreDetailsPage
       }
     ]
+  } */
+  {
+    path: '',
+    component: ScoreDetailsPage
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+  imports: [RouterModule.forChild(routes),CommonModule],
+  exports: [RouterModule,CommonModule],
 })
 export class ScoreDetailsPageRoutingModule {}
