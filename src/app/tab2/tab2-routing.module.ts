@@ -21,14 +21,14 @@ const routes: Routes = [
         path: ':scoreID',
         children:[
           {
-            //ensemble by ID
+            //score by ID
             path: '',
             children:[
               {                
                 path: '',
                 component: ScoreDetailsPage
               },
-              //event by ID
+              //part by ID
               {
                 path:':scorePart',
                 component:ScorePage
