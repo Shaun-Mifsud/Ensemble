@@ -62,7 +62,7 @@ export class ScorePage implements OnInit {
 
 
   sound= new Audio;
-  public soundIsPlaying:boolean= false;
+  public metronomeIsPlaying:boolean= false;
 
   countdownBegan = false;     // flags that you want the countdown to start
   stopIn = 5000;    // how long the timer should run
@@ -221,16 +221,16 @@ export class ScorePage implements OnInit {
       
       }, "4n");
       
-    this.soundIsPlaying= true;
+    this.metronomeIsPlaying= true;
   }
 
   startPlaying() {
     Tone.Transport.start();
   }
 
-  stopPlaying() {
+  stopMetronome() {
     Tone.Transport.cancel();
-    this.soundIsPlaying =false;
+    this.metronomeIsPlaying =false;
   }
 
   //tuner modal
@@ -375,7 +375,7 @@ export class ScorePage implements OnInit {
   stopRecording() {
     this.isRecording = false;
     this.tempRecord.stop(this.processRecording.bind(this));
-    this.stopPlaying();
+    this.stopMetronome();
   }
 
   /**
@@ -470,6 +470,14 @@ export class ScorePage implements OnInit {
 
     if(this.zoomScaleSubscription != undefined){
       this.zoomScaleSubscription.unsubscribe();
+    }
+    
+    if(this.isRecording){
+      this.stopRecording();
+    }
+
+    if(this.metronomeIsPlaying){
+      this.stopMetronome();
     }
   }
 
