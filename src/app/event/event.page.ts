@@ -22,6 +22,110 @@ export class EventPage implements OnInit {
   public eventPic: any;
   public eventScores: Score[] | undefined;
 
+  //dummy data
+  public attending=[
+    {
+    name:'John Micallef',
+    phone:79123456
+    },
+    {
+    name:'Shaun Mifsud',
+    phone:79123456
+    },
+    {
+    name:'Redd Caruana',
+    phone:79123456
+    },
+    {
+    name:'Emmanuel Giordimaina',
+    phone:79123456
+    },
+    {
+    name:'Walter Muscat',
+    phone:79123456
+    },
+    {
+    name:'Shawn Bugeja',
+    phone:79123456
+    },
+    {
+    name:'Timothy xuereb',
+    phone:79123456
+    },
+    {
+    name:'Erica Schembri',
+    phone:79123456
+    },
+    {
+    name:'Jeanclaude Simiana',
+    phone:79123456
+    },
+    {
+    name:'Paul Mifsud',
+    phone:79123456
+    },
+    {
+    name:'Mark Mifsud',
+    phone:79123456
+    },
+    {
+    name:'Samuel Grech',
+    phone:79123456
+    },
+    {
+    name:'Justin Caruana',
+    phone:79123456
+    },
+    {
+    name:'Benji Magro',
+    phone:79123456
+    },
+    {
+      name:'Gabriel Farrugia',
+      phone:79123456
+    },
+    {
+      name:'Kieran camilleri Bianco',
+      phone:79123456
+    },
+    {
+      name:'Alex Attard',
+      phone:79123456
+    },
+    {
+      name:'Jayden Aquilina',
+      phone:79123456
+    },
+    {
+      name:'Luke Mifsud',
+      phone:79123456
+    },
+    {
+      name:'Peter Pantelic',
+      phone:79123456
+    },
+    {
+      name:'Andy Attard',
+      phone:79123456
+    },
+    {
+      name:'Luke Micallef',
+      phone:79123456
+    },
+    {
+      name:'Bernard Borg',
+      phone:79123456
+    },
+    {
+      name:'Matthew Falzon',
+      phone:79123456
+    },
+    {
+      name:'Jake Ellul',
+      phone:79123456
+    },
+];
+
   constructor(    
     private router: Router, 
     private route: ActivatedRoute,

@@ -116,31 +116,508 @@
     <!--Memeber list-->
     <div class="EventSection">
       <!--title-->
-      <ion-row>
-        <ion-col size="12">
-          <h2>Attending musicians</h2>
-        </ion-col>
-      </ion-row>
+      <ion-accordion-group class="attendingList" value="attending">
+        <ion-accordion>
+          <ion-item slot="header">
+
+            <span class="iconify" data-icon="ic:round-library-music"></span>
+            <span>
+              <h2>Attending musicians</h2>
+            </span>
+
+          <span>
+            <h3>39</h3>
+          </span>
+          </ion-item>
 
       <!--details card-->
-      <ion-row>
-        <ion-col size="1">
-          <ion-avatar>
-            <img src="assets/images/userPic.jpg" alt="">
-          </ion-avatar>
-        </ion-col>
-        <ion-col size="1">
-          <ion-avatar>
-            <img src="assets/images/userPic.jpg" alt="">
-          </ion-avatar>
-        </ion-col>
-        <ion-col size="1">
-          <ion-avatar>
-            <img src="assets/images/userPic.jpg" alt="">
-          </ion-avatar>
-        </ion-col>
-      </ion-row>
+      <ion-list class="attendingBox" slot="content" lines="none">
+        <div class="section">
+        <ion-item>
+          <h2>Flute</h2>
+        </ion-item>
 
+        <!--list header-->
+        <ion-item class="listHeader">
+          <ion-grid>
+            <ion-row>
+              <ion-col size="2"><h6>Profile image</h6></ion-col>
+              <ion-col size="6"><h6>Name</h6></ion-col>
+              <ion-col size="4"><h6>Contact</h6></ion-col>
+            </ion-row>
+          </ion-grid>
+      </ion-item>
+
+
+        <ion-item *ngFor="let musician of attending | slice: 0:5">
+          <ion-card class="pieceCard" color="light">
+            <ion-row>
+              <ion-col size="2">
+                <ion-avatar>
+                  <img src="assets/images/userPic.jpg" alt="">
+                </ion-avatar>
+              </ion-col>
+
+              <ion-col size="6">
+                <h2>{{musician.name}}</h2>
+              </ion-col>
+
+              <ion-col size="4">
+                <h4>{{musician.phone}}</h4>
+              </ion-col>
+            </ion-row>
+          </ion-card>
+        </ion-item>
+      </div>
+
+      <div class="section">
+        <ion-item>
+          <h2>Clarient</h2>
+        </ion-item>
+  
+        <!--list header-->
+        <ion-item class="listHeader">
+          <ion-grid>
+            <ion-row>
+              <ion-col size="2"><h6>Profile image</h6></ion-col>
+              <ion-col size="6"><h6>Name</h6></ion-col>
+              <ion-col size="4"><h6>Contact</h6></ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+
+        <ion-item *ngFor="let musician of attending | slice: 5:7">
+          <ion-card class="pieceCard" color="light">
+            <ion-row>
+              <ion-col size="2">
+                <ion-avatar>
+                  <img src="assets/images/userPic.jpg" alt="">
+                </ion-avatar>
+              </ion-col>
+
+              <ion-col size="6">
+                <h2>{{musician.name}}</h2>
+              </ion-col>
+
+              <ion-col size="4">
+                <h4>{{musician.phone}}</h4>
+              </ion-col>
+            </ion-row>
+
+          </ion-card>
+        </ion-item>
+      </div>
+
+      <div class="section">
+        <ion-item>
+          <h2>Alto Saxophone</h2>
+        </ion-item>
+  
+        <!--list header-->
+        <ion-item class="listHeader">
+          <ion-grid>
+            <ion-row>
+              <ion-col size="2"><h6>Profile image</h6></ion-col>
+              <ion-col size="6"><h6>Name</h6></ion-col>
+              <ion-col size="4"><h6>Contact</h6></ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+
+        <ion-item *ngFor="let musician of attending | slice: 7:8">
+          <ion-card class="pieceCard" color="light">
+            <ion-row>
+              <ion-col size="2">
+                <ion-avatar>
+                  <img src="assets/images/userPic.jpg" alt="">
+                </ion-avatar>
+              </ion-col>
+
+              <ion-col size="6">
+                <h2>{{musician.name}}</h2>
+              </ion-col>
+
+              <ion-col size="4">
+                <h4>{{musician.phone}}</h4>
+              </ion-col>
+          </ion-row>
+          </ion-card>
+        </ion-item>
+      </div>
+
+      <div class="section">
+        <ion-item>
+          <h2>Tenor Saxophone</h2>
+        </ion-item>
+  
+        <!--list header-->
+        <ion-item class="listHeader">
+          <ion-grid>
+            <ion-row>
+              <ion-col size="2"><h6>Profile image</h6></ion-col>
+              <ion-col size="6"><h6>Name</h6></ion-col>
+              <ion-col size="4"><h6>Contact</h6></ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+
+        <ion-item *ngFor="let musician of attending | slice: 8:9">
+          <ion-card class="pieceCard" color="light">
+            <ion-row>
+              <ion-col size="2">
+                <ion-avatar>
+                  <img src="assets/images/userPic.jpg" alt="">
+                </ion-avatar>
+              </ion-col>
+
+              <ion-col size="6">
+                <h2>{{musician.name}}</h2>
+              </ion-col>
+
+              <ion-col size="4">
+                <h4>{{musician.phone}}</h4>
+              </ion-col>
+            </ion-row>
+          </ion-card>
+        </ion-item>
+      </div>
+
+      <div class="section">
+        <ion-item>
+          <h2>Horn in F</h2>
+        </ion-item>
+  
+        <!--list header-->
+        <ion-item class="listHeader">
+          <ion-grid>
+            <ion-row>
+              <ion-col size="2"><h6>Profile image</h6></ion-col>
+              <ion-col size="6"><h6>Name</h6></ion-col>
+              <ion-col size="4"><h6>Contact</h6></ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+
+        <ion-item *ngFor="let musician of attending | slice: 9:12">
+          <ion-card class="pieceCard" color="light">
+            <ion-row>
+              <ion-col size="2">
+                <ion-avatar>
+                  <img src="assets/images/userPic.jpg" alt="">
+                </ion-avatar>
+              </ion-col>
+
+              <ion-col size="6">
+                <h2>{{musician.name}}</h2>
+              </ion-col>
+
+              <ion-col size="4">
+                <h4>{{musician.phone}}</h4>
+              </ion-col>
+            </ion-row>
+          </ion-card>
+        </ion-item>
+      </div>
+
+      <div class="section">
+        <ion-item>
+          <h2>Trumpet</h2>
+        </ion-item>
+  
+        <!--list header-->
+        <ion-item class="listHeader">
+          <ion-grid>
+            <ion-row>
+              <ion-col size="2"><h6>Profile image</h6></ion-col>
+              <ion-col size="6"><h6>Name</h6></ion-col>
+              <ion-col size="4"><h6>Contact</h6></ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+
+        <ion-item *ngFor="let musician of attending | slice: 12:20">
+          <ion-card class="pieceCard" color="light">
+            <ion-row>
+              <ion-col size="2">
+                <ion-avatar>
+                  <img src="assets/images/userPic.jpg" alt="">
+                </ion-avatar>
+              </ion-col>
+
+              <ion-col size="6">
+                <h2>{{musician.name}}</h2>
+              </ion-col>
+
+              <ion-col size="4">
+                <h4>{{musician.phone}}</h4>
+              </ion-col>
+            </ion-row>
+          </ion-card>
+        </ion-item>
+      </div>
+
+      <div class="section">
+        <ion-item>
+          <h2>Trombone</h2>
+        </ion-item>
+  
+        <!--list header-->
+        <ion-item class="listHeader">
+          <ion-grid>
+            <ion-row>
+              <ion-col size="2"><h6>Profile image</h6></ion-col>
+              <ion-col size="6"><h6>Name</h6></ion-col>
+              <ion-col size="4"><h6>Contact</h6></ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+
+        <ion-item *ngFor="let musician of attending | slice: 20:24">
+          <ion-card class="pieceCard" color="light">
+            <ion-row>
+              <ion-col size="2">
+                <ion-avatar>
+                  <img src="assets/images/userPic.jpg" alt="">
+                </ion-avatar>
+              </ion-col>
+
+              <ion-col size="6">
+                <h2>{{musician.name}}</h2>
+              </ion-col>
+
+              <ion-col size="4">
+                <h4>{{musician.phone}}</h4>
+              </ion-col>
+            </ion-row>
+          </ion-card>
+        </ion-item>
+      </div>
+
+      <div class="section">
+        <ion-item>
+          <h2>Bariton horn</h2>
+        </ion-item>
+  
+        <!--list header-->
+        <ion-item class="listHeader">
+          <ion-grid>
+            <ion-row>
+              <ion-col size="2"><h6>Profile image</h6></ion-col>
+              <ion-col size="6"><h6>Name</h6></ion-col>
+              <ion-col size="4"><h6>Contact</h6></ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+
+        <ion-item *ngFor="let musician of attending | slice: 10:15">
+          <ion-card class="pieceCard" color="light">
+            <ion-row>
+              <ion-col size="2">
+                <ion-avatar>
+                  <img src="assets/images/userPic.jpg" alt="">
+                </ion-avatar>
+              </ion-col>
+
+              <ion-col size="6">
+                <h2>{{musician.name}}</h2>
+              </ion-col>
+
+              <ion-col size="4">
+                <h4>{{musician.phone}}</h4>
+              </ion-col>
+            </ion-row>
+          </ion-card>
+        </ion-item>
+      </div>
+
+      <div class="section">
+        <ion-item>
+          <h2>Euphonium</h2>
+        </ion-item>
+  
+        <!--list header-->
+        <ion-item class="listHeader">
+          <ion-grid>
+            <ion-row>
+              <ion-col size="2"><h6>Profile image</h6></ion-col>
+              <ion-col size="6"><h6>Name</h6></ion-col>
+              <ion-col size="4"><h6>Contact</h6></ion-col>
+            </ion-row>
+          </ion-grid>
+      </ion-item>
+
+        <ion-item *ngFor="let musician of attending | slice: 10:15">
+          <ion-card class="pieceCard" color="light">
+            <ion-row>
+              <ion-col size="2">
+                <ion-avatar>
+                  <img src="assets/images/userPic.jpg" alt="">
+                </ion-avatar>
+              </ion-col>
+
+              <ion-col size="6">
+                <h2>{{musician.name}}</h2>
+              </ion-col>
+
+              <ion-col size="4">
+                <h4>{{musician.phone}}</h4>
+              </ion-col>
+            </ion-row>
+          </ion-card>
+        </ion-item>
+      </div>
+
+      <div class="section">
+        <ion-item>
+          <h2>Tuba</h2>
+        </ion-item>
+  
+        <!--list header-->
+        <ion-item class="listHeader">
+          <ion-grid>
+            <ion-row>
+              <ion-col size="2"><h6>Profile image</h6></ion-col>
+              <ion-col size="6"><h6>Name</h6></ion-col>
+              <ion-col size="4"><h6>Contact</h6></ion-col>
+            </ion-row>
+          </ion-grid>
+      </ion-item>
+
+        <ion-item *ngFor="let musician of attending | slice: 14:16">
+          <ion-card class="pieceCard" color="light">
+            <ion-row>
+              <ion-col size="2">
+                <ion-avatar>
+                  <img src="assets/images/userPic.jpg" alt="">
+                </ion-avatar>
+              </ion-col>
+
+              <ion-col size="6">
+                <h2>{{musician.name}}</h2>
+              </ion-col>
+
+              <ion-col size="4">
+                <h4>{{musician.phone}}</h4>
+              </ion-col>
+            </ion-row>
+          </ion-card>
+        </ion-item>
+      </div>
+
+      <div class="section">
+        <ion-item>
+          <h2>Snare Drum</h2>
+        </ion-item>
+  
+        <!--list header-->
+        <ion-item class="listHeader">
+          <ion-grid>
+            <ion-row>
+              <ion-col size="2"><h6>Profile image</h6></ion-col>
+              <ion-col size="6"><h6>Name</h6></ion-col>
+              <ion-col size="4"><h6>Contact</h6></ion-col>
+            </ion-row>
+          </ion-grid>
+      </ion-item>
+
+        <ion-item *ngFor="let musician of attending | slice: 17:18">
+          <ion-card class="pieceCard" color="light">
+            <ion-row>
+              <ion-col size="2">
+                <ion-avatar>
+                  <img src="assets/images/userPic.jpg" alt="">
+                </ion-avatar>
+              </ion-col>
+
+              <ion-col size="6">
+                <h2>{{musician.name}}</h2>
+              </ion-col>
+
+              <ion-col size="4">
+                <h4>{{musician.phone}}</h4>
+              </ion-col>
+            </ion-row>
+          </ion-card>
+        </ion-item>
+      </div>
+
+      <div class="section">
+        <ion-item>
+          <h2>Cymbals</h2>
+        </ion-item>
+  
+        <!--list header-->
+        <ion-item class="listHeader">
+          <ion-grid>
+            <ion-row>
+              <ion-col size="2"><h6>Profile image</h6></ion-col>
+              <ion-col size="6"><h6>Name</h6></ion-col>
+              <ion-col size="4"><h6>Contact</h6></ion-col>
+            </ion-row>
+          </ion-grid>
+      </ion-item>
+
+        <ion-item *ngFor="let musician of attending | slice: 18:19">
+          <ion-card class="pieceCard" color="light">
+            <ion-row>
+              <ion-col size="2">
+                <ion-avatar>
+                  <img src="assets/images/userPic.jpg" alt="">
+                </ion-avatar>
+              </ion-col>
+
+              <ion-col size="6">
+                <h2>{{musician.name}}</h2>
+              </ion-col>
+
+              <ion-col size="4">
+                <h4>{{musician.phone}}</h4>
+              </ion-col>
+            </ion-row>
+          </ion-card>
+        </ion-item>
+      </div>
+
+      <div class="section">
+        <ion-item>
+          <h2>Bass drum</h2>
+        </ion-item>
+  
+        <!--list header-->
+        <ion-item class="listHeader">
+          <ion-grid>
+            <ion-row>
+              <ion-col size="2"><h6>Profile image</h6></ion-col>
+              <ion-col size="6"><h6>Name</h6></ion-col>
+              <ion-col size="4"><h6>Contact</h6></ion-col>
+            </ion-row>
+          </ion-grid>
+      </ion-item>
+
+        <ion-item *ngFor="let musician of attending | slice: 20:21">
+          <ion-card class="pieceCard" color="light">
+            <ion-row>
+              <ion-col size="2">
+                <ion-avatar>
+                  <img src="assets/images/userPic.jpg" alt="">
+                </ion-avatar>
+              </ion-col>
+
+              <ion-col size="6">
+                <h2>{{musician.name}}</h2>
+              </ion-col>
+
+              <ion-col size="4">
+                <h4>{{musician.phone}}</h4>
+              </ion-col>
+            </ion-row>
+          </ion-card>
+        </ion-item>
+      </div>
+      </ion-list>
+
+        </ion-accordion>
+      </ion-accordion-group>
     </div>
 
     <!--Program-->

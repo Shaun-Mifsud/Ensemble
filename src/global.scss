@@ -170,7 +170,7 @@ ion-tab-bar{
 
 
 .events,.ensemblePost,.recentPlaylists,.favoritesScores,.scoresByComposer,.allScores
-,.recentScores,.accountFields{
+,.recentScores,.accountFields,.attendingList{
     h2{
         color: var(--ion-color-text);
         margin-left: 1rem;
@@ -505,6 +505,7 @@ ion-segment{
         color: var(--ion-color-primary);
     }
 }
+
 
 //categories  on tab1
 .categories{

@@ -13,7 +13,7 @@ export class TabsPage {
   public tabsVisibility:number | string="show";
 
   constructor(private router: Router) {
-    console.log("TOP: ", this.tabsVisibility);
+/*     console.log("TOP: ", this.tabsVisibility);
     
       this.router.events.subscribe((event: Event) => {
           if (event instanceof NavigationEnd) {
@@ -34,6 +34,7 @@ export class TabsPage {
               
           }
       });
-    }
+    } */
 
+  }
 }
