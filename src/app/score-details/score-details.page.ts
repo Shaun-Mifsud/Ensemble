@@ -71,7 +71,7 @@ export class ScoreDetailsPage implements OnInit {
 
       for(let list in stringList){
         const instrument = stringList[list];
-        instrument.recordings = this.ensembleService.getRecordingByPart(this.scoreID,instrument.partID) || [];
+        instrument.recordings = this.ensembleService.getRecordingsByPart(this.scoreID,instrument.partID) || [];
         this.strings.push(instrument);
       }
 
@@ -80,7 +80,7 @@ export class ScoreDetailsPage implements OnInit {
 
       for(let list in woodwindList){
         const instrument = woodwindList[list];
-        instrument.recordings = this.ensembleService.getRecordingByPart(this.scoreID,instrument.partID) || [];
+        instrument.recordings = this.ensembleService.getRecordingsByPart(this.scoreID,instrument.partID) || [];
         this.woodwind.push(woodwindList[list]);
       }
 
@@ -91,7 +91,7 @@ export class ScoreDetailsPage implements OnInit {
       for(let list in brassList){
         const instrument = brassList[list];
         
-        instrument.recordings = this.ensembleService.getRecordingByPart(this.scoreID,instrument.partID) || [];
+        instrument.recordings = this.ensembleService.getRecordingsByPart(this.scoreID,instrument.partID) || [];
         this.brass.push(brassList[list]);
       }
 
@@ -100,7 +100,7 @@ export class ScoreDetailsPage implements OnInit {
 
       for(let list in percussionList){
         const instrument = percussionList[list];
-        instrument.recordings = this.ensembleService.getRecordingByPart(this.scoreID,instrument.partID) || [];
+        instrument.recordings = this.ensembleService.getRecordingsByPart(this.scoreID,instrument.partID) || [];
         this.percussion.push(percussionList[list]);
       }
 

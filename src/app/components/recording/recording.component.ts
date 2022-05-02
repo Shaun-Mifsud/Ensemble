@@ -56,7 +56,11 @@ export class RecordingComponent implements OnInit {
     console.log("recording Count ngOnInit: ",this.recordingCount);
 
     //get recordings by partID
+    /* use this to get recording of the selected score but specific to the selected part
     this.recordings= this.ensembleService.getRecordingByPart(this.scoreID, this.selectedPart.partID);
+    */
+
+    this.recordings= this.ensembleService.getRecordingsByScoreID(this.scoreID);
     console.log('recording in score: ',this.recordings);
     
 

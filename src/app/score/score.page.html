@@ -9,7 +9,7 @@
         </ion-row>
       </ion-grid>
     </div>
-
+    
     <pdf-viewer
     [src]="pdfSrc"
     [rotation]="rotation"
@@ -27,15 +27,17 @@
     (pages-initialized)="pageInitialized($event)"
     ></pdf-viewer>
   </div>
-
+  
   <div id="sheetmusic"></div>
-
-
+  
+  
 </ion-content>
 
 <div #slideRuler></div>
 <div id="values"></div>
 <div id="app"></div>
+
+
 
 <ion-footer *ngIf="selectedScore.type =='interactive' ">
   <ion-toolbar color="light">   
@@ -80,20 +82,15 @@
         <span class="iconify" data-icon="ic:baseline-home"></span>
       </ion-col>
 
-      <ion-col (click)="recordingModal();" *ngIf="!isRecording"> 
+      <ion-col (click)="recordingModal();"*ngIf="!isRecording"> 
         <ion-icon name="mic"></ion-icon>
+        <div *ngIf="timeTillStop > 0" id="countdownNumber">{{timeTillStop}}</div>
       </ion-col>
       
       <ion-col id="stopButton" *ngIf="isRecording" (click)="stopRecording();">
         <ion-icon name="stop-circle" color="danger"></ion-icon>
       </ion-col>
 
-      <ion-col id="countdown" *ngIf="timeTillStop > 0">
-        <div id="countdown-number">{{timeTillStop}}</div>
-        <svg>
-          <circle r="18" cx="20" cy="20"></circle>
-        </svg>
-      </ion-col>
 
       <ion-col (click)="showMetornomeModal();">
         <span class="iconify" data-icon="mdi:metronome"></span>

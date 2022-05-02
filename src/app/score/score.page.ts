@@ -15,6 +15,9 @@ import { EnsembleService } from '../services/ensemble.service';
 import { ToolsService } from '../services/tools.service';
 import { Part, Recording, Score } from '../struct/ensemble';
 
+import * as Tone from 'tone';
+import {Howl, Howler} from 'howler'; 
+
 declare var $: any;
 import * as RecordRTC from 'recordrtc';
 
@@ -57,13 +60,16 @@ export class ScorePage implements OnInit {
   error:any
   isRecording=false;
 
-  sound= new Audio;
 
-  start = true;     // flags that you want the countdown to start
-  stopIn = 2000;    // how long the timer should run
+  sound= new Audio;
+  public soundIsPlaying:boolean= false;
+
+  countdownBegan = false;     // flags that you want the countdown to start
+  stopIn = 5000;    // how long the timer should run
   stopTime = 0;     // used to hold the stop time
   stop = false;     // flag to indicate that stop time has been reached
   timeTillStop = 0; // holds the display time
+
 
   constructor(private route:ActivatedRoute,
               public ensembleService:EnsembleService,
@@ -81,7 +87,7 @@ export class ScorePage implements OnInit {
     }
 
   ngOnInit() {
-
+    this.countdownBegan=false;
     console.log("in score page");
     
 
@@ -176,6 +182,57 @@ export class ScorePage implements OnInit {
     await modal.present();
   }
 
+  startMetronome(noOfBeats:number, beatValue:number){
+    Tone.start();
+    var barCount:number=0;
+
+		Tone.Transport.bpm.value=60;
+    Tone.Transport.start();
+
+    var sound = new Howl({
+      src: ['assets/sounds/metronome/woodblock.wav'],
+      onplayerror: function() {
+        sound.once('unlock', function() {
+          sound.play();
+
+        });
+      }
+    });
+
+    //this will start the player on every quarter note
+    Tone.Transport.scheduleRepeat(function(){
+      sound.play();    
+      barCount = barCount + 1;
+      console.log("bar count: ", barCount);
+      
+      if(barCount == noOfBeats){
+        barCount=0;
+      }
+
+      if(barCount  == 1){ 
+        console.log("bar counter is 1");
+
+        var firstBeat = new Howl({
+          src: ['assets/sounds/metronome/woodblockFirstBeat.wav']
+        });
+
+        firstBeat.play();
+      }
+      
+      }, "4n");
+      
+    this.soundIsPlaying= true;
+  }
+
+  startPlaying() {
+    Tone.Transport.start();
+  }
+
+  stopPlaying() {
+    Tone.Transport.cancel();
+    this.soundIsPlaying =false;
+  }
+
   //tuner modal
   async showTunerPopover(ev:any){
     const popover = await this.popoverController.create({
@@ -243,6 +300,7 @@ export class ScorePage implements OnInit {
     modal.onDidDismiss().then((data) => {
       if(data.data =="recordingClick"){
         this.startCountdown();
+        this.countdownBegan=true;
       }
 
     });
@@ -252,13 +310,14 @@ export class ScorePage implements OnInit {
   //start countdown
   startCountdown(){
     requestAnimationFrame(this.update.bind(this));  // start the countdown
+    this.startMetronome(4,4); //hard coded
   }
 
   update(timer){
 
-    if(this.start){  // do we need to start the timer
+    if(this.countdownBegan){  // do we need to start the timer
       this.stopTime = timer + this.stopIn; // yes the set the stoptime
-      this.start = false;             // clear the start flag
+      this.countdownBegan = false;             // clear the start flag
     }
     else{                         // waiting for stop
         if(timer >= this.stopTime){     // has stop time been reached?
@@ -269,6 +328,7 @@ export class ScorePage implements OnInit {
     this.timeTillStop = this.stopTime - timer;      // for display of time till stop
     // log() should be whatever you use to display the time.
     console.log("time: ",Math.floor(this.timeTillStop / 1000) );  // to display in 1/100th seconds
+    this.timeTillStop= Math.floor(this.timeTillStop / 1000);
   
     if(!this.stop){
         requestAnimationFrame(this.update.bind(this)); // continue animation until stop 
@@ -315,6 +375,7 @@ export class ScorePage implements OnInit {
   stopRecording() {
     this.isRecording = false;
     this.tempRecord.stop(this.processRecording.bind(this));
+    this.stopPlaying();
   }
 
   /**
