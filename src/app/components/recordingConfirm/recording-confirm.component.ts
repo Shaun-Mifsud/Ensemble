@@ -23,12 +23,6 @@ export class RecordingConfirmComponent implements OnInit {
   ngOnInit() {
     console.log("current recording in confirm modal: ", this.currentRecording);
   }
-  
-  ngOnDestroy(){
-    this.currentRecording= undefined;
-    this.recordingName='';
-  }
-
 
   confirm(){
     console.log("change: ", this.recordingName);
@@ -39,5 +33,11 @@ export class RecordingConfirmComponent implements OnInit {
 
     this.modalController.dismiss();
 
+  }
+
+    
+  ngOnDestroy(){
+    this.currentRecording= undefined;
+    this.recordingName='';
   }
 }

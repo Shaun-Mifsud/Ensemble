@@ -133,7 +133,7 @@ export class ScoreDetailsPage implements OnInit {
   //To navigate to score page by the part selected by the user
   partSelect(instrInPart:string){
     // get selectedPart index from partName
-    this.selectedPart = this.parts.findIndex((p) => p.partName == instrInPart);
+    this.selectedPart = this.parts.findIndex((p) => p.partName == instrInPart)+1;
     console.log("selected part Index: ", this.selectedPart);
     
     //navigate by selectedPart

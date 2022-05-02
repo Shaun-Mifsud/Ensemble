@@ -80,8 +80,19 @@
         <span class="iconify" data-icon="ic:baseline-home"></span>
       </ion-col>
 
-      <ion-col (click)="recordingModal();">
+      <ion-col (click)="recordingModal();" *ngIf="!isRecording"> 
         <ion-icon name="mic"></ion-icon>
+      </ion-col>
+      
+      <ion-col id="stopButton" *ngIf="isRecording" (click)="stopRecording();">
+        <ion-icon name="stop-circle" color="danger"></ion-icon>
+      </ion-col>
+
+      <ion-col id="countdown" *ngIf="timeTillStop > 0">
+        <div id="countdown-number">{{timeTillStop}}</div>
+        <svg>
+          <circle r="18" cx="20" cy="20"></circle>
+        </svg>
       </ion-col>
 
       <ion-col (click)="showMetornomeModal();">

@@ -1,17 +1,22 @@
 import { LEADING_TRIVIA_CHARS } from '@angular/compiler/src/render3/view/template';
 import { Component, ElementRef, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute} from '@angular/router';
 import { ModalController, PopoverController } from '@ionic/angular';
 
 import Embed from 'flat-embed';
 import { MetronomeComponent } from '../components/metronome/metronome.component';
 import { PageScaleComponent } from '../components/page-scale/page-scale.component';
-
 import { RecordingComponent } from '../components/recording/recording.component';
 import { TunerComponent } from '../components/tuner/tuner.component';
+import { RecordingConfirmComponent } from '../components/recordingConfirm/recording-confirm.component';
+
 import { EnsembleService } from '../services/ensemble.service';
 import { ToolsService } from '../services/tools.service';
-import { Part, Score } from '../struct/ensemble';
+import { Part, Recording, Score } from '../struct/ensemble';
+
+declare var $: any;
+import * as RecordRTC from 'recordrtc';
 
 
 
@@ -39,11 +44,34 @@ export class ScorePage implements OnInit {
   public currentPage:number= 1;
   public noOfPages:number;
 
+  //recording
+  tempRecord:any;
+  recordingCount:number;
+  newRecordingName:string;
+  base64:any;
+
+  currentRecording:Recording = {id:0,scoreID:0,partID:0,name:'',base64:''};
+  recordings:Recording[];
+
+  url:any;
+  error:any
+  isRecording=false;
+
+  sound= new Audio;
+
+  start = true;     // flags that you want the countdown to start
+  stopIn = 2000;    // how long the timer should run
+  stopTime = 0;     // used to hold the stop time
+  stop = false;     // flag to indicate that stop time has been reached
+  timeTillStop = 0; // holds the display time
+
   constructor(private route:ActivatedRoute,
               public ensembleService:EnsembleService,
               public tools:ToolsService,
               public popoverController:PopoverController,
               private modalCtrl:ModalController,
+              private modalCtrl2:ModalController,
+              private domSanitizer: DomSanitizer
             ) 
   { }
 
@@ -68,7 +96,7 @@ export class ScorePage implements OnInit {
       this.partID=parseInt(this.route.snapshot.params['scorePart']);
       console.log('PARTID: ', this.partID);
 
-      this.selectedPart = this.selectedScore.parts[this.partID]; // <-- can this be an issue since the index and partID is 1 number different ?
+      this.selectedPart = this.selectedScore.parts[this.partID-1]; // <-- can this be an issue since the index and partID is 1 number different ?
       
 
       if(this.selectedScore.type == "static"){
@@ -137,26 +165,7 @@ export class ScorePage implements OnInit {
     this.noOfPages= e.source._pages.length;
   }
 
-  
-
-
-  //recording modal
-  async recordingModal() {
-    const modal = await this.modalCtrl.create({
-      component: RecordingComponent,
-      componentProps: {scoreID:this.scoreID, selectedPart:this.selectedPart},
-      cssClass: 'recordingModal',
-    });
-    await modal.present();
-
-    modal.onDidDismiss().then(() => {
-      console.log("dismissed");
-      
-    });
-  }
-
-
-  
+    
   // metronome modal
   async showMetornomeModal(){
     const modal = await this.modalCtrl.create({
@@ -220,13 +229,188 @@ export class ScorePage implements OnInit {
     console.log("selecged zoom scale func: ",this.zoomScale);
     
   }
+  
+
+  //recording modal
+  async recordingModal() {
+    const modal = await this.modalCtrl.create({
+      component: RecordingComponent,
+      componentProps: {scoreID:this.scoreID, selectedPart:this.selectedPart},
+      cssClass: 'recordingModal',
+    });
+    await modal.present();
+
+    modal.onDidDismiss().then((data) => {
+      if(data.data =="recordingClick"){
+        this.startCountdown();
+      }
+
+    });
+  }
+
+
+  //start countdown
+  startCountdown(){
+    requestAnimationFrame(this.update.bind(this));  // start the countdown
+  }
+
+  update(timer){
+
+    if(this.start){  // do we need to start the timer
+      this.stopTime = timer + this.stopIn; // yes the set the stoptime
+      this.start = false;             // clear the start flag
+    }
+    else{                         // waiting for stop
+        if(timer >= this.stopTime){     // has stop time been reached?
+          this.stop = true;           // yes the flag to stop
+        }
+    }
+  
+    this.timeTillStop = this.stopTime - timer;      // for display of time till stop
+    // log() should be whatever you use to display the time.
+    console.log("time: ",Math.floor(this.timeTillStop / 1000) );  // to display in 1/100th seconds
+  
+    if(!this.stop){
+        requestAnimationFrame(this.update.bind(this)); // continue animation until stop 
+    }
+  
+    else{
+      console.log("countdown end");
+      this.initiateRecording();
+    }
+  }
+
+  //recording  
+  initiateRecording() {
+    this.isRecording = true;
+
+    let mediaConstraints = {
+    video: false,
+    audio: true
+    };
+    
+    navigator.mediaDevices.getUserMedia(mediaConstraints).then(this.successCallback.bind(this), this.errorCallback.bind(this));
+    }
+
+  /**
+  * Will be called automatically.
+  */
+  successCallback(stream) {
+    
+    var options = {
+    mimeType: "audio/wav",
+    numberOfAudioChannels: 1,
+    desiredSampRate: 16000,
+    };
+
+    //Start Actuall Recording
+    var StereoAudioRecorder = RecordRTC.StereoAudioRecorder;
+    this.tempRecord = new StereoAudioRecorder(stream, options);
+    this.tempRecord.record();
+  }
+
+  /**
+  * Stop recording.
+  */
+  stopRecording() {
+    this.isRecording = false;
+    this.tempRecord.stop(this.processRecording.bind(this));
+  }
+
+  /**
+  * processRecording Do what ever you want with blob
+  * @param  {any} blob Blog
+  */
+  async processRecording(blob) {
+    this.url = URL.createObjectURL(blob);    
+    console.log("blob: ", blob);
+    console.log(" url: ",this.url);
+    console.log('view: ', this.tempRecord.view);
+    console.log('newRecord: ', this.tempRecord);
+    
+    this.base64 = await this.blobToBase64(blob) as string;
+
+    // * saving recording *//
+
+    //store recordingID
+    this.currentRecording.id= this.recordingCount +1;
+    //save scoreID
+    this.currentRecording.scoreID= this.scoreID;
+    //store partID
+    this.currentRecording.partID= this.partID;
+    console.log("current recording part id: ",this.currentRecording.partID);
+    
+    //store name
+    this.currentRecording.name= this.newRecordingName;
+    //store url
+    this.currentRecording.base64= this.base64;
+
+    //open recording confirm modal and save there
+    this.recordingconfirmModal();
+
+    //reset the temporary variable
+    this.currentRecording = {id:0,scoreID:0,partID:0,name:'',base64:''};
+
+    //get the new recording count
+    this.recordingCount= this.ensembleService.getRecordingsLength();
+
+  }
+
+
+  blobToBase64(blob) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+
+      // if there's an error, reject
+      reader.onerror = reject;
+
+      reader.onloadend = () => resolve(reader.result);
+
+      reader.readAsDataURL(blob);
+      console.log('base64 in function:', reader);
+    });
+
+    
+  }
+
+
+  sanitize(url: string) {
+    console.log('url: ',url);
+    this.domSanitizer.bypassSecurityTrustResourceUrl(url);
+  }
+  
+  /**
+  * Process Error.
+  */
+  errorCallback(error) {
+    this.error = 'Can not play audio in your browser';
+  }
+
+
+
+
+  //recording confirm modal
+  async recordingconfirmModal() {
+    const modal = await this.modalCtrl2.create({
+      component: RecordingConfirmComponent,
+      componentProps: {currentRecording:this.currentRecording},
+      cssClass: 'recordingConfirmModal',
+    });
+      await modal.present();
+
+  }
+
 
   
   ngOnDestroy() {
-    this.rotationSubscription.unsubscribe();
-    this.zoomScaleSubscription.unsubscribe();
+    if(this.rotationSubscription != undefined){
+      this.rotationSubscription.unsubscribe();
+    }
+
+    if(this.zoomScaleSubscription != undefined){
+      this.zoomScaleSubscription.unsubscribe();
+    }
   }
-  
 
   
 }
