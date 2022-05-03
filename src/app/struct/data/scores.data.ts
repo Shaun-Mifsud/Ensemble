@@ -180,6 +180,7 @@ export const SCORES: Score[] =[
         type:'static',
         name:'Symphony No. 5',
         composer:'L.V Beethoven',
+        description:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui dicta minus molestiae vel beatae natus eveniet ratione temporibus aperiam harum alias officiis assumenda officia quibusdam deleniti eos cupiditate dolore doloribus!',
         fullScorePath:'/assets/pdf/sympNo5/fullScore.pdf',
         parts:[{
             partID:1,
