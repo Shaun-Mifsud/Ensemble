@@ -85,12 +85,11 @@
 
       <ion-item>
       <!--full score card-->
-        <ion-card [routerLink]="[scoreID]"  class="pieceCard" color="light">
+        <ion-card [routerLink]="['/score/',scoreID]"  class="pieceCard" color="light">
           <ion-card-content>
             <ion-grid>
               <ion-row>
-                <ion-col size="11"><h1>Full Score</h1></ion-col>
-                <ion-col size="1">popover</ion-col>
+                <ion-col size="12"><h1>Full Score</h1></ion-col>
               </ion-row>
             </ion-grid>
           </ion-card-content>
@@ -117,8 +116,7 @@
           <ion-card-content>
             <ion-grid>
               <ion-row>
-                <ion-col (click)="partSelect(instrInSection.partName);" size="11"><h1>{{instrInSection.partName}}</h1></ion-col>
-                <ion-col size="1">{{i}}popover</ion-col>
+                <ion-col (click)="partSelect(instrInSection.partName);" size="12"><h1>{{instrInSection.partName}}</h1></ion-col>
               </ion-row>
             </ion-grid>
           </ion-card-content>
@@ -142,8 +140,7 @@
           <ion-card-content>
             <ion-grid>
               <ion-row>
-                <ion-col (click)="partSelect(instrInSection.partName);" size="11"><h1>{{instrInSection.partName}}</h1></ion-col>
-                <ion-col size="1">{{i}}popover</ion-col>
+                <ion-col (click)="partSelect(instrInSection.partName);" size="12"><h1>{{instrInSection.partName}}</h1></ion-col>
               </ion-row>
             </ion-grid>
           </ion-card-content>
@@ -167,8 +164,7 @@
           <ion-card-content>
             <ion-grid>
               <ion-row>
-                <ion-col (click)="partSelect(instrInSection.partName);" size="11"><h1>{{instrInSection.partName}}</h1></ion-col>
-                <ion-col size="1">popover</ion-col>
+                <ion-col (click)="partSelect(instrInSection.partName);" size="12"><h1>{{instrInSection.partName}}</h1></ion-col>
               </ion-row>
             </ion-grid>
           </ion-card-content>
@@ -192,8 +188,7 @@
           <ion-card-content>
             <ion-grid>
               <ion-row>
-                <ion-col (click)="partSelect(instrInSection.partName);" size="11"><h1>{{instrInSection.partName}}</h1></ion-col>
-                <ion-col size="1">{{i}}popover</ion-col>
+                <ion-col (click)="partSelect(instrInSection.partName);" size="12"><h1>{{instrInSection.partName}}</h1></ion-col>
               </ion-row>
             </ion-grid>
           </ion-card-content>

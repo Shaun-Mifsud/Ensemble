@@ -44,7 +44,16 @@ const routes: Routes = [
 
   {
     path: '',
-    component: ScorePage
+    children:[
+      {
+        path:'',
+        component:ScorePage
+    },
+      {
+        path:':scoreID',
+        component: ScorePage
+      }
+    ]
   }
 
 ];

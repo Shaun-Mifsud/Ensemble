@@ -187,7 +187,7 @@
       <ion-item-sliding *ngFor="let score of ensembleService.score | slice:0:3; let i = index;">
         <!--piece card-->
         <ion-item>
-          <ion-card [routerLink]="['/score-detail/', score.id]" class="pieceCard" color="light">
+          <ion-card [routerLink]="['/tabs/tab2', score.id]" class="pieceCard" color="light">
             <ion-card-content>
               <ion-grid>
                 <ion-row>
