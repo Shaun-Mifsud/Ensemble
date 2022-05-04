@@ -176,41 +176,40 @@
     <div>  
       <ion-list lines="none">
         <!--list header-->
-        <ion-item id="listHeader">
-          <ion-grid>
-            <ion-row>
-              <ion-col size="5"><h6>Piece Title</h6></ion-col>
-              <ion-col size="2"><h6>Composer</h6></ion-col>
-              <ion-col size="2"><h6>Instrumentation</h6></ion-col>
-              <ion-col size="3"><h6>Ensemble</h6></ion-col>
-            </ion-row>
-          </ion-grid>
+        <ion-item class="listHeader">
+            <ion-grid>
+              <ion-row>
+                <ion-col size="6"><h6>Piece Title</h6></ion-col>
+                <ion-col size="2"><h6>Composer</h6></ion-col>
+                <ion-col size="2"><h6>Instrumentation</h6></ion-col>
+                <ion-col size="2"><h6>Ensemble</h6></ion-col>
+              </ion-row>
+            </ion-grid>
         </ion-item>
-  
-        <!--piece card-->
-        <ion-item *ngFor="let score of ensembleScore; let i = index;"  [routerLink]="['/score-detail/', score.id]">
-          <ion-card class="pieceCard" color="light">
-            <ion-card-content>
-              <ion-grid>
-                <ion-row>
-                  <ion-col size="5"><h1>{{score.name}}</h1></ion-col>
-                </ion-row>
-                
-                <ion-row>
-                  <ion-col size="2"><h3>{{score.composer}}</h3></ion-col>
-                  <ion-col size="2"><h3>{{score.instruments}}</h3></ion-col>
-                  <ion-col size="2"><h3>{{ensembleService.getEnsembleByID(score.ensembleID).name}}</h3></ion-col>
-                  <ion-col size="1">
-                    <ion-button fill="clear">
-                      <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
-                    </ion-button>
-                  </ion-col>
-                </ion-row>
-              </ion-grid>
-            </ion-card-content>
-          </ion-card>
-        </ion-item>
-    
+
+        <ion-item-sliding *ngFor="let score of ensembleScore; let i = index;" [routerLink]="['/tabs','tab2',score.id]">
+          <ion-item>
+          <!--piece card-->
+            <ion-card class="pieceCard" color="light">
+              <ion-card-content>
+                <ion-grid>
+                  <ion-row>
+                    <ion-col size="6"><h1>{{score.name}}</h1></ion-col>
+                    <ion-col size="2"><h3>{{score.composer}}</h3></ion-col>
+                    <ion-col size="2"><h3>{{score.instruments}}</h3></ion-col>
+                    <ion-col size="2"><h3>{{ensembleService.getEnsembleByID(score.ensembleID)? ensembleService.getEnsembleByID(score.ensembleID).name : 'Personal'  }}</h3></ion-col>
+                  </ion-row>
+                </ion-grid>
+              </ion-card-content>
+            </ion-card>
+          </ion-item>
+
+          <ion-item-options>
+            <ion-item-option>
+              <ion-icon name="trash"></ion-icon>
+            </ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
       </ion-list>
     </div>
   </div>

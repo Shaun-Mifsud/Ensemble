@@ -33,7 +33,7 @@ export const SCORES: Score[] =[
         type:'static',
         name: "March Op.13",
         composer:"Shaun Mifsud",
-        instruments:"Piano", // to be removed
+        instruments:"Marching band", // to be removed
         description:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui dicta minus molestiae vel beatae natus eveniet ratione temporibus aperiam harum alias officiis assumenda officia quibusdam deleniti eos cupiditate dolore doloribus!',
         fullScorePath:'/assets/pdf/march13/march 13.pdf',
         parts:[{
