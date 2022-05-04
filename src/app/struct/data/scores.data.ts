@@ -6,7 +6,7 @@ export const SCORES: Score[] =[
         id: 1,
         userID:1,
         type:'interactive',
-        name: "A Flat",
+        name: "Waltz in A flat",
         composer:"Shaun Mifsud",
         instruments:"Piano", // to be removed, flat.io instrument will be used instead
         fullScorePath:"/assets/musicXML/aflat.musicxml",
