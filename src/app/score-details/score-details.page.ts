@@ -34,6 +34,7 @@ export class ScoreDetailsPage implements OnInit {
   public woodwind:Part[] = [];
   public brass:Part[] = [];
   public percussion:Part[] = [];
+  public other:Part[] = [];
 
   // Audio
   sound= new Audio;
@@ -62,7 +63,7 @@ export class ScoreDetailsPage implements OnInit {
     console.log("Events by score: ", this.scoreEvents);
     
 
-    if(this.selectedScore.type == 'static'){
+    if(this.selectedScore.type == 'static' && this.parts){
       //get partFamily and place them in categories variables aggording to family
 
       //string
@@ -86,7 +87,6 @@ export class ScoreDetailsPage implements OnInit {
 
       //brass
       let brassList = Object.values(this.parts.filter(f => f.partFamiliy == 'brass'));
-      
 
       for(let list in brassList){
         const instrument = brassList[list];
@@ -102,6 +102,15 @@ export class ScoreDetailsPage implements OnInit {
         const instrument = percussionList[list];
         instrument.recordings = this.ensembleService.getRecordingsByPart(this.scoreID,instrument.partID) || [];
         this.percussion.push(percussionList[list]);
+      }
+
+      //other
+      let otherList = Object.values(this.parts.filter(f => f.partFamiliy == 'other'));
+
+      for(let list in otherList){
+        const instrument = otherList[list];
+        instrument.recordings = this.ensembleService.getRecordingsByPart(this.scoreID,instrument.partID) || [];
+        this.other.push(otherList[list]);
       }
 
       this.getRecordings();
@@ -122,6 +131,7 @@ export class ScoreDetailsPage implements OnInit {
         console.log("Woodwind: ",this.woodwind);
         console.log("Brass: ",this.brass);
         console.log("Percussion: ",this.percussion);
+        console.log("other: ",this.other);
         
         console.log("string rec: ", this.strings.filter(f => f.recordings.length) );
         console.log("woodwind rec: ", this.woodwind.filter(f => f.recordings.length));
@@ -173,6 +183,13 @@ export class ScoreDetailsPage implements OnInit {
       }
       case 'percussion':{
         if(this.percussion.length < 1){
+          return false;
+        }
+        else return true;
+      }
+
+      case 'other':{
+        if(this.other.length < 1){
           return false;
         }
         else return true;

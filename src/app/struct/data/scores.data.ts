@@ -35,7 +35,7 @@ export const SCORES: Score[] =[
         composer:"Shaun Mifsud",
         instruments:"Marching band", // to be removed
         description:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui dicta minus molestiae vel beatae natus eveniet ratione temporibus aperiam harum alias officiis assumenda officia quibusdam deleniti eos cupiditate dolore doloribus!',
-        fullScorePath:'/assets/pdf/march13/march 13.pdf',
+        fullScorePath:'/assets/pdf/march13/March13Fullscore.pdf',
         parts:[{
             partID:1,
             partFamiliy:'brass',
@@ -172,7 +172,7 @@ export const SCORES: Score[] =[
 
     },
     
-    // smyphony No 5 - Beethoven
+    // symphony No 5 - Beethoven
     {
         id:4,
         userID:1,
@@ -335,7 +335,230 @@ export const SCORES: Score[] =[
         
     ]
         
-    }
+    },
+
+    // symphony No 40 - Mozart
+    {
+        id:5,
+        userID:1,
+        ensembleID:3,
+        type:'static',
+        name:'Symphony No. 40',
+        composer:'W. A. Mozart',
+        description:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui dicta minus molestiae vel beatae natus eveniet ratione temporibus aperiam harum alias officiis assumenda officia quibusdam deleniti eos cupiditate dolore doloribus!',
+        fullScorePath:"/assets/pdf/mozartNo40/fullScore.pdf",
+        parts:[
+            {
+            partID:1,
+            partFamiliy:'string',
+            partName:'Violin I',
+            partPath:"/assets/pdf/mozartNo40/violin1.pdf",
+            },
+            {
+            partID:2,
+            partFamiliy:'string',
+            partName:'Violin II',
+            partPath:"/assets/pdf/mozartNo40/violin2.pdf",
+            },
+            {
+            partID:3,
+            partFamiliy:'string',
+            partName:'Viola',
+            partPath:"/assets/pdf/mozartNo40/viola.pdf",
+            },
+            {
+            partID:4,
+            partFamiliy:'string',
+            partName:'cello',
+            partPath:"/assets/pdf/mozartNo40/celloBass.pdf",
+            },
+            {
+            partID:5,
+            partFamiliy:'string',
+            partName:'Double bass',
+            partPath:"/assets/pdf/mozartNo40/celloBass.pdf",
+            },
+            {
+            partID:6,
+            partFamiliy:'woodwind',
+            partName:'Clarinet I',
+            partPath:"/assets/pdf/mozartNo40/clarinet1.pdf",
+            },
+            {
+            partID:7,
+            partFamiliy:'woodwind',
+            partName:'Clarinet II',
+            partPath:"/assets/pdf/mozartNo40/clarinet2.pdf",
+            },
+            {
+            partID:8,
+            partFamiliy:'woodwind',
+            partName:'bassoon I',
+            partPath:"/assets/pdf/mozartNo40/bassoon1.pdf",
+            },
+            {
+            partID:9,
+            partFamiliy:'woodwind',
+            partName:'bassoon II',
+            partPath:"/assets/pdf/mozartNo40/bassoon2.pdf",
+            },
+            {
+            partID:10,
+            partFamiliy:'brass',
+            partName:'Horn in B flat',
+            partPath:"/assets/pdf/mozartNo40/horn1.pdf",
+            },
+            {
+            partID:11,
+            partFamiliy:'brass',
+            partName:'Horn in G',
+            partPath:"/assets/pdf/mozartNo40/horn2.pdf",
+            },
+        ]
+    },
+
+    // fur elise - Beethoven
+    {
+        id:6,
+        userID:1,
+        type:'static',
+        name:'Fur Elise',
+        composer:'L.V Beethoven',
+        description:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui dicta minus molestiae vel beatae natus eveniet ratione temporibus aperiam harum alias officiis assumenda officia quibusdam deleniti eos cupiditate dolore doloribus!',
+        fullScorePath:"/assets/pdf/furelise/furelise.pdf",
+    },
+
+    // The New Colonial March - 
+    {
+        id:7,
+        userID:1,
+        ensembleID:1,
+        type:'static',
+        name:'The New Colonial March',
+        composer:'Hall, Robert B.',
+        description:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui dicta minus molestiae vel beatae natus eveniet ratione temporibus aperiam harum alias officiis assumenda officia quibusdam deleniti eos cupiditate dolore doloribus!',
+        fullScorePath:"/assets/pdf/newColonial/fullScore.pdf",
+        parts:[           
+            {
+            partID:1,
+            partFamiliy:'brass',
+            partName:'baritone I',
+            partPath:"/assets/pdf/newColonial/1_2_baritone.pdf",
+            },
+            {
+            partID:2,
+            partFamiliy:'brass',
+            partName:'baritone II',
+            partPath:"/assets/pdf/newColonial/1_2_baritone.pdf",
+            },
+            {
+            partID:3,
+            partFamiliy:'brass',
+            partName:'Trombone I',
+            partPath:"/assets/pdf/newColonial/1_2_trombone.pdf",
+            },
+            {
+            partID:4,
+            partFamiliy:'brass',
+            partName:'Trombone II',
+            partPath:"/assets/pdf/newColonial/1_2_trombone.pdf",
+            },
+            {
+            partID:5,
+            partFamiliy:'brass',
+            partName:'Cornet II',
+            partPath:"/assets/pdf/newColonial/2_3_cornet.pdf",
+            },
+            {
+            partID:6,
+            partFamiliy:'brass',
+            partName:'Cornet III',
+            partPath:"/assets/pdf/newColonial/2_3_cornet.pdf",
+            },
+            {
+            partID:7,
+            partFamiliy:'brass',
+            partName:'Bass Trombone',
+            partPath:"/assets/pdf/newColonial/bassTrombone.pdf",
+            },
+            {
+            partID:8,
+            partFamiliy:'brass',
+            partName:'B flat bass',
+            partPath:"/assets/pdf/newColonial/bFlatBass.pdf",
+            },
+            {
+            partID:9,
+            partFamiliy:'percussion',
+            partName:'Snare drums',
+            partPath:"/assets/pdf/newColonial/drums.pdf",
+            },
+            {
+            partID:10,
+            partFamiliy:'brass',
+            partName:'E flat bass',
+            partPath:"/assets/pdf/newColonial/eFlatBass.pdf",
+            },
+            {
+            partID:11,
+            partFamiliy:'brass',
+            partName:'E flat Horn II',
+            partPath:"/assets/pdf/newColonial/eFlatHorn2.pdf",
+            },
+            {
+            partID:12,
+            partFamiliy:'brass',
+            partName:'Euphonium',
+            partPath:"/assets/pdf/newColonial/euphonium.pdf",
+            },
+            {
+            partID:13,
+            partFamiliy:'brass',
+            partName:'Flugelhorn',
+            partPath:"/assets/pdf/newColonial/Flugelhorn.pdf",
+            },
+            {
+            partID:14,
+            partFamiliy:'brass',
+            partName:'repiano Cornet',
+            partPath:"/assets/pdf/newColonial/repianoCornet.pdf",
+            },
+            {
+            partID:15,
+            partFamiliy:'brass',
+            partName:'solo E flat horn',
+            partPath:"/assets/pdf/newColonial/solo_1EflatHorn.pdf",
+            },
+            {
+            partID:16,
+            partFamiliy:'brass',
+            partName:'E flat horn I',
+            partPath:"/assets/pdf/newColonial/solo_1EflatHorn.pdf",
+            },
+            {
+            partID:17,
+            partFamiliy:'brass',
+            partName:'Solo B flat cornet',
+            partPath:"/assets/pdf/newColonial/soloBflatCornet.pdf",
+            },
+            {
+            partID:18,
+            partFamiliy:'brass',
+            partName:'Soprano cornet',
+            partPath:"/assets/pdf/newColonial/sopranoCornet.pdf",
+            },
+            {
+            partID:19,
+            partFamiliy:'percussion',
+            partName:'Timpani, bells, triangle',
+            partPath:"/assets/pdf/newColonial/timpaniTriangle.pdf",
+            },
+            
+        ]
+    },
+    
+
+
 
     
 ]

@@ -96,23 +96,32 @@ export class ScorePage implements OnInit {
     
     //get score by scoreID
     this.selectedScore=this.ensembleService.getScoreByID(this.scoreID);
+    
+    //get part by URL
+    this.partID=parseInt(this.route.snapshot.params['scorePart']);
+    console.log('PARTID: ', this.partID);
 
-    if(this.route.snapshot.params['scorePart']){ 
-      //get part by URL
-      this.partID=parseInt(this.route.snapshot.params['scorePart']);
-      console.log('PARTID: ', this.partID);
-
-      this.selectedPart = this.selectedScore.parts[this.partID-1]; // <-- can this be an issue since the index and partID is 1 number different ?
+    if(this.partID ==0){ 
+      //get fullscore by URL
+      console.log("PART ID IS: ",this.partID);
       
+      this.pdfSrc=this.selectedScore.fullScorePath;
+    }
+      
+    else{
+      this.selectedPart = this.selectedScore.parts[this.partID-1]; // <-- can this be an issue since the index and partID is 1 number different ?
+    }
+    
 
-      if(this.selectedScore.type == "static"){
-        console.log("static score");
+    if(this.selectedScore.type == "static"){
+      console.log("static score");
+
+      if(this.partID !=0){
         //set PDF source by partPath
         this.pdfSrc=this.selectedPart.partPath;
         console.log("Selected score: ", this.selectedScore);
-        
-      } 
-  }
+      }
+    } 
 
     if(this.selectedScore.type == "interactive"){
       console.log("interactive score");

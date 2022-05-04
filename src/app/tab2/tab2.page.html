@@ -54,7 +54,6 @@
     </swiper>
   </div>
 
-
   <!--Favorites-->
   <div class="favoritesScores">
     <ion-accordion-group value="favorites">
@@ -63,6 +62,58 @@
           <span class="iconify" data-icon="ic:round-library-music"></span>
           <span>
               <h2>Favorites</h2>
+            </span>
+        </ion-item>
+
+        <ion-list slot="content" lines="none">
+          <!--list header-->
+          <ion-item class="listHeader">
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="6"><h6>Piece Title</h6></ion-col>
+                  <ion-col size="2"><h6>Composer</h6></ion-col>
+                  <ion-col size="2"><h6>Instrumentation</h6></ion-col>
+                  <ion-col size="2"><h6>Ensemble</h6></ion-col>
+                </ion-row>
+              </ion-grid>
+          </ion-item>
+
+          <ion-item-sliding *ngFor="let score of ensembleService.score  | slice:0:4; let i = index;" [routerLink]="[score.id]">
+            <ion-item>
+            <!--piece card-->
+              <ion-card class="pieceCard" color="light">
+                <ion-card-content>
+                  <ion-grid>
+                    <ion-row>
+                      <ion-col size="6"><h1>{{score.name}}</h1></ion-col>
+                      <ion-col size="2"><h3>{{score.composer}}</h3></ion-col>
+                      <ion-col size="2"><h3>{{score.instruments}}</h3></ion-col>
+                      <ion-col size="2"><h3>{{ensembleService.getEnsembleByID(score.ensembleID)? ensembleService.getEnsembleByID(score.ensembleID).name : 'Personal'  }}</h3></ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </ion-card-content>
+              </ion-card>
+            </ion-item>
+
+            <ion-item-options>
+              <ion-item-option>
+                <ion-icon name="trash"></ion-icon>
+              </ion-item-option>
+            </ion-item-options>
+          </ion-item-sliding>
+        </ion-list>
+      </ion-accordion>
+    </ion-accordion-group>
+  </div>
+
+  <!--allScores-->
+  <div class="allScores">
+    <ion-accordion-group value="allScores">
+      <ion-accordion value="allScores">
+        <ion-item slot="header">
+          <span class="iconify" data-icon="ic:round-library-music"></span>
+          <span>
+              <h2>All scores</h2>
             </span>
         </ion-item>
 
@@ -159,57 +210,6 @@
     </ion-accordion-group>
   </div>
 
-  <!--allScores-->
-  <div class="allScores">
-    <ion-accordion-group value="allScores">
-      <ion-accordion value="allScores">
-        <ion-item slot="header">
-          <span class="iconify" data-icon="ic:round-library-music"></span>
-          <span>
-              <h2>All scores</h2>
-            </span>
-        </ion-item>
-
-        <ion-list slot="content" lines="none">
-          <!--list header-->
-          <ion-item class="listHeader">
-              <ion-grid>
-                <ion-row>
-                  <ion-col size="6"><h6>Piece Title</h6></ion-col>
-                  <ion-col size="2"><h6>Composer</h6></ion-col>
-                  <ion-col size="2"><h6>Instrumentation</h6></ion-col>
-                  <ion-col size="2"><h6>Ensemble</h6></ion-col>
-                </ion-row>
-              </ion-grid>
-          </ion-item>
-
-          <ion-item-sliding *ngFor="let score of ensembleService.score; let i = index;" [routerLink]="[score.id]">
-            <ion-item>
-            <!--piece card-->
-              <ion-card class="pieceCard" color="light">
-                <ion-card-content>
-                  <ion-grid>
-                    <ion-row>
-                      <ion-col size="6"><h1>{{score.name}}</h1></ion-col>
-                      <ion-col size="2"><h3>{{score.composer}}</h3></ion-col>
-                      <ion-col size="2"><h3>{{score.instruments}}</h3></ion-col>
-                      <ion-col size="2"><h3>{{ensembleService.getEnsembleByID(score.ensembleID)? ensembleService.getEnsembleByID(score.ensembleID).name : 'Personal'  }}</h3></ion-col>
-                    </ion-row>
-                  </ion-grid>
-                </ion-card-content>
-              </ion-card>
-            </ion-item>
-
-            <ion-item-options>
-              <ion-item-option>
-                <ion-icon name="trash"></ion-icon>
-              </ion-item-option>
-            </ion-item-options>
-          </ion-item-sliding>
-        </ion-list>
-      </ion-accordion>
-    </ion-accordion-group>
-  </div>
 
 
 
