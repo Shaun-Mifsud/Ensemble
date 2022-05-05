@@ -129,7 +129,7 @@ export class ScorePage implements OnInit {
       const container = document.getElementById('sheetmusic');
       const embed = new Embed(container, {
         embedParams: {
-          appId: '59e7684b476cba39490801c2',
+          appId: '62042cdc7544f10012e789e6', //59e7684b476cba39490801c2
           controlsPosition: 'top',
           layout:'responsive',
           videoPosition:'top',
@@ -140,6 +140,8 @@ export class ScorePage implements OnInit {
   
         }
       });
+
+
   
       fetch(this.selectedScore.fullScorePath)
       .then(response => response.text())
@@ -148,10 +150,10 @@ export class ScorePage implements OnInit {
         {
           id: 'aflat',
           type: 'youtube',
-          mediaId: 'Hv4Jylc_Kq4',
+          mediaId: this.selectedScore.videoPath,
           synchronizationPoints: [
-            { type: 'measure', time: 5, location: { measureIdx: 0 }},
-            { type: 'end', time: 58 }
+            { type: 'measure', time: this.selectedScore.videoStart, location: { measureIdx: 0 }},
+            { type: 'end', time: this.selectedScore.videoEnd }
           ],
         }
       ))

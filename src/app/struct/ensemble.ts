@@ -41,6 +41,8 @@ export interface Score {
     instruments?: string; // to remove since 'parts' is used
     fullScorePath?: string;
     videoPath?: string;
+    videoStart?:number;
+    videoEnd?:number;
     parts?: Part[];
 }
 

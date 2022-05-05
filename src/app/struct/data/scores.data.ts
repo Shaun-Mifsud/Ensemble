@@ -11,6 +11,8 @@ export const SCORES: Score[] =[
         instruments:"Piano", // to be removed, flat.io instrument will be used instead
         fullScorePath:"/assets/musicXML/aflat.musicxml",
         videoPath:"Hv4Jylc_Kq4",
+        videoStart:5, // to be removed
+        videoEnd:58 // to be removed
     },
 
     //G minor
@@ -22,6 +24,9 @@ export const SCORES: Score[] =[
         composer:"Shaun Mifsud",
         instruments:"Piano", // to be removed, flat.io instrument will be used instead
         fullScorePath:"/assets/musicXML/G_Minor.xml",
+        videoPath:"O8X-i_BKxa0",
+        videoStart:5, // to be removed
+        videoEnd:52 // to be removed
     },
     
     //march 13
@@ -33,7 +38,7 @@ export const SCORES: Score[] =[
         type:'static',
         name: "March Op.13",
         composer:"Shaun Mifsud",
-        instruments:"Marching band", // to be removed
+        instruments:"Marching band", 
         description:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui dicta minus molestiae vel beatae natus eveniet ratione temporibus aperiam harum alias officiis assumenda officia quibusdam deleniti eos cupiditate dolore doloribus!',
         fullScorePath:'/assets/pdf/march13/March13Fullscore.pdf',
         parts:[{
@@ -180,6 +185,7 @@ export const SCORES: Score[] =[
         type:'static',
         name:'Symphony No. 5',
         composer:'L.V Beethoven',
+        instruments:'Classical orchestra', 
         description:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui dicta minus molestiae vel beatae natus eveniet ratione temporibus aperiam harum alias officiis assumenda officia quibusdam deleniti eos cupiditate dolore doloribus!',
         fullScorePath:'/assets/pdf/sympNo5/fullScore.pdf',
         parts:[{
@@ -345,6 +351,7 @@ export const SCORES: Score[] =[
         type:'static',
         name:'Symphony No. 40',
         composer:'W. A. Mozart',
+        instruments:'Classical orchestra',
         description:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui dicta minus molestiae vel beatae natus eveniet ratione temporibus aperiam harum alias officiis assumenda officia quibusdam deleniti eos cupiditate dolore doloribus!',
         fullScorePath:"/assets/pdf/mozartNo40/fullScore.pdf",
         parts:[
@@ -424,6 +431,7 @@ export const SCORES: Score[] =[
         type:'static',
         name:'Fur Elise',
         composer:'L.V Beethoven',
+        instruments:'piano',
         description:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui dicta minus molestiae vel beatae natus eveniet ratione temporibus aperiam harum alias officiis assumenda officia quibusdam deleniti eos cupiditate dolore doloribus!',
         fullScorePath:"/assets/pdf/furelise/furelise.pdf",
     },
@@ -432,10 +440,11 @@ export const SCORES: Score[] =[
     {
         id:7,
         userID:1,
-        ensembleID:1,
+        ensembleID:2,
         type:'static',
         name:'The New Colonial March',
         composer:'Hall, Robert B.',
+        instruments:'Marching band',
         description:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui dicta minus molestiae vel beatae natus eveniet ratione temporibus aperiam harum alias officiis assumenda officia quibusdam deleniti eos cupiditate dolore doloribus!',
         fullScorePath:"/assets/pdf/newColonial/fullScore.pdf",
         parts:[           
@@ -555,10 +564,8 @@ export const SCORES: Score[] =[
             },
             
         ]
-    },
+    }
     
-
-
 
     
 ]
