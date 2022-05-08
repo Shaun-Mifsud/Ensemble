@@ -45,7 +45,7 @@ export class ScoreDetailsPage implements OnInit {
               public ensembleService: EnsembleService,
               private modalCtrl:ModalController) { }
 
-  ngOnInit() {
+  ngOnInit() { 
     
     //get scoreID from URL
     this.scoreID=parseInt(this.route.snapshot.params['scoreID']);
