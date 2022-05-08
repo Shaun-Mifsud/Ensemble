@@ -1,0 +1,6 @@
+{
+	"appId": "com.ensemble.angular",
+	"appName": "Ensemble",
+	"webDir": "dist/Ensemble",
+	"bundledWebRuntime": false
+}
