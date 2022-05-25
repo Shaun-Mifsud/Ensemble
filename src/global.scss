@@ -665,6 +665,12 @@ ion-item-option{
     padding: 1em 2em 1em 2em;
 }
 
+//score tools backdrop
+.recordingModal::part(backdrop),
+.tunerPopover::part(backdrop),
+.pageScalePopover::part(backdrop){
+    background-color: var(--backdrop-primary-color);
+}
 
 //metronome modal
 app-metronome.ion-page{
@@ -679,12 +685,6 @@ app-metronome.ion-page{
     }
 }
 
-.metronomeModal::part(backdrop),
-.recordingModal::part(backdrop),
-.tunerPopover::part(backdrop),
-.pageScalePopover::part(backdrop){
-    background-color: var(--backdrop-primary-color);
-}
 
 .metronomeModal{
     margin: 0 5vh 0 5vh;
@@ -693,7 +693,7 @@ app-metronome.ion-page{
 .metronomeModal::part(content){
     width: 100%;
     height: 25%;
-
+    
     border-radius: var(--card-border);
     
     color: var(--ion-color-primary);
@@ -702,7 +702,11 @@ app-metronome.ion-page{
     position: absolute;
     bottom:56px;
     transform: translate(-8%, -8%);
+    
+}
 
+.metronomeModal::part(backdrop){
+    background-color: transparent;
 }
 
 //time signature display

@@ -1,5 +1,5 @@
-import { Ensemble,Event,Score,User } from "../ensemble"
-import { EVENTS } from "./events.data";
+import { Ensemble } from "../ensemble"
+
 
 export const ENSEMBLES: Ensemble[]=[
     {

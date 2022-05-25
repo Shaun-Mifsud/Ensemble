@@ -1,5 +1,4 @@
 import { User } from "../ensemble";
-import { SCORES } from "./scores.data";
 
 export const USERS:User[]=[
     {
@@ -7,7 +6,7 @@ export const USERS:User[]=[
         picture:"/assets/images/userPic.jpg",
         name:"Shaun Mifsud",
         email:"shaun@gmail.com",
-        password:"123",
+        password:"79651245",
 
         instrument:['piano','trumpet'],
 
@@ -17,7 +16,7 @@ export const USERS:User[]=[
         picture:"/assets/images/userPic.jpg",
         name:"Redd Caruana",
         email:"redd@gmail.com",
-        password:"123",
+        password:"yoyoyoyoyoyoyoyo",
         phoneNumber:79651245,
 
     }

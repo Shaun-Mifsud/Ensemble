@@ -74,9 +74,9 @@
           </ion-card>
         </ion-col>
 
-        <!--show email as size 6, only when phone number is not null-->
+        <!--show password as size 6, only when phone number is not null-->
         <ion-col size="6" *ngIf="loggedInUser.phoneNumber">
-          <h6>Email</h6>
+          <h6>Password</h6>
           <ion-card  class="pieceCard" color="light">
             <ion-card-content>
               <h1>{{convertPassword(loggedInUser.password)}}</h1>
@@ -84,9 +84,9 @@
           </ion-card>
         </ion-col>
 
-        <!--show email as size 12, only when phone number is null-->
+        <!--show password as size 12, only when phone number is null-->
         <ion-col size="12" *ngIf="!loggedInUser.phoneNumber">
-          <h6>Email</h6>
+          <h6>Password</h6>
           <ion-card  class="pieceCard" color="light">
             <ion-card-content>
               <h1>{{convertPassword(loggedInUser.password)}}</h1>
