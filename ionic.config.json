@@ -1,7 +1,0 @@
-{
-  "name": "musicflat",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "custom"
-}

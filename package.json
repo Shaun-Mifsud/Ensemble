@@ -9,9 +9,7 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "ionic:build": "npm run build",
-    "ionic:serve": "npm run start"
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
